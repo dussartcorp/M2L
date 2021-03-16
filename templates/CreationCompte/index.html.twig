@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+{% block body %}
+    
+   
+    </br>
+<div class="container">
+    <div class="InscriptionBox">
+        <div>
+        <h2> Remplissez ce formulaire afin de vous créer un compte ! </h2>
+        </div>
+    
+        <div class="InscriptionBoxInput">
+            {{ form_label(form.numLicence, 'Numéro de Licence') }}
+            {{ form_widget(form.numLicence, {'attr': {'placeholder': 'Numéro de Licence','class':'form-control'}}) }}
+        </div>
+        <div class="InscriptionBoxInput"> 
+            {{ form_label(form.Email, 'Email') }}
+            {{ form_widget(form.Email, {'attr': {'placeholder': 'Email','class':'form-control'}}) }}
+        </div>
+        <div class="InscriptionBoxInput">
+            {{ form_label(form.password, 'Mot de passe') }}
+            {{ form_widget(form.password, {'attr': {'placeholder': 'Mot de passe','class':'form-control'}}) }}
+        </div>
+        </br>
+    
+            <button type='submit' class='btn btn-success' style="margin-left: 15px;">S'inscrire</button>
+    </div> 
+</div>
+            
+{% endblock %}

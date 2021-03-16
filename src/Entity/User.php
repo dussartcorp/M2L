@@ -39,6 +39,11 @@ class User implements UserInterface
      */
     private $inscription;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Licencie::class, mappedBy="compte", cascade={"persist", "remove"})
+     */
+    private $licencie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,6 +135,24 @@ class User implements UserInterface
         $newCompte = null === $inscription ? null : $this;
         if ($inscription->getCompte() !== $newCompte) {
             $inscription->setCompte($newCompte);
+        }
+
+        return $this;
+    }
+
+    public function getLicencie(): ?Licencie
+    {
+        return $this->licencie;
+    }
+
+    public function setLicencie(?Licencie $licencie): self
+    {
+        $this->licencie = $licencie;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompte = null === $licencie ? null : $this;
+        if ($licencie->getCompte() !== $newCompte) {
+            $licencie->setCompte($newCompte);
         }
 
         return $this;

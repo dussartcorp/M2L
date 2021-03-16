@@ -39,6 +39,11 @@ class Atelier
      */
     private $themes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Vacation::class)
+     */
+    private $vacations;
+
 
     public function __construct()
     {
@@ -126,33 +131,17 @@ class Atelier
         return $this;
     }
 
-    /**
-     * @return Collection|Vacation[]
-     */
-    public function getVacations(): Collection
+    public function getVacations(): ?Vacation
     {
         return $this->vacations;
     }
 
-    public function addVacation(Vacation $vacation): self
+    public function setVacations(?Vacation $vacations): self
     {
-        if (!$this->vacations->contains($vacation)) {
-            $this->vacations[] = $vacation;
-            $vacation->setAtelier($this);
-        }
+        $this->vacations = $vacations;
 
         return $this;
     }
 
-    public function removeVacation(Vacation $vacation): self
-    {
-        if ($this->vacations->removeElement($vacation)) {
-            // set the owning side to null (unless already changed)
-            if ($vacation->getAtelier() === $this) {
-                $vacation->setAtelier(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

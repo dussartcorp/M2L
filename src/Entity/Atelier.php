@@ -39,16 +39,11 @@ class Atelier
      */
     private $themes;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Vacation::class, mappedBy="atelier")
-     */
-    private $vacations;
 
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
         $this->themes = new ArrayCollection();
-        $this->vacations = new ArrayCollection();
     }
 
     public function getId(): ?int

@@ -12,15 +12,16 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputNumLicence">Num Licence</label>
-    <input type="text" value="{{ last_username }}" name="numLicence" id="inputNumLicence" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
-
-    <input type="hidden" name="_csrf_token"
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal"></h1>
+        <label for="inputNumLicence">Numéro de licence</label>
+        <input type="text" value="{{ last_username }}" name="numLicence" id="inputNumLicence" placeholder="Entrez votre numéro de licence" class="form-control" required autofocus>
+        <label for="inputPassword">Mot de passe</label>
+        <input type="password" name="password" id="inputPassword" placeholder="Entrez votre mot de passe" class="form-control" required>
+        <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
-    >
+    </div>
+   
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.

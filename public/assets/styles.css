@@ -7,3 +7,24 @@
     position: fixed;
     bottom: 0;
 }
+
+#loginC{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#loginH1{
+    color:black;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#loginBtn{
+    margin-top: 10px;
+    display:flex;
+    justify-content: center;
+}
+
+body{
+    background:white;
+}

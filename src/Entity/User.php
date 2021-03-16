@@ -34,6 +34,11 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Inscription::class, mappedBy="compte", cascade={"persist", "remove"})
+     */
+    private $inscription;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,5 +115,23 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getInscription(): ?Inscription
+    {
+        return $this->inscription;
+    }
+
+    public function setInscription(?Inscription $inscription): self
+    {
+        $this->inscription = $inscription;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompte = null === $inscription ? null : $this;
+        if ($inscription->getCompte() !== $newCompte) {
+            $inscription->setCompte($newCompte);
+        }
+
+        return $this;
     }
 }

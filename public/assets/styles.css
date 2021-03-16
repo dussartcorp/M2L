@@ -11,7 +11,6 @@
 #loginC{
     display:flex;
     justify-content: center;
-    align-items: center;
 }
 #loginH1{
     color:black;

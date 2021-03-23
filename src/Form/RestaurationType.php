@@ -2,27 +2,25 @@
 
 namespace App\Form;
 
+use App\Entity\Restauration;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Form\AteliersType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Form\NuiteType;
 
-class InscriptionType extends AbstractType
+class RestaurationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ateliers',AteliersType::class)
-            ->add('hotels',NuiteType::class)
+            ->add('dateRestauration')
+            ->add('typesRepas')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Restauration::class,
         ]);
     }
 }

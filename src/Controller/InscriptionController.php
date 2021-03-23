@@ -34,12 +34,10 @@ class InscriptionController extends AbstractController
      */
     public function inscription(Request $request,EntityManagerInterface $manager)
     {
-        $inscription=new Inscription();
-        $form=$this->createForm(InscriptionType::class,$inscription);
+        $form=$this->createForm(InscriptionType::class);
         $form->handleRequest($request);
         if($form->isSubmitted()&&$form->isValid()){
-            $manager->persist($inscription);
-            $manager->flush();
+
         }
         return $this->render('inscription/inscriptionAtelier.html.twig',['form'=>$form->createView(),]);
     }

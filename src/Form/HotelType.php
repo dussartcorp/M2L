@@ -2,27 +2,30 @@
 
 namespace App\Form;
 
+use App\Entity\Hotel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Form\AteliersType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Form\NuiteType;
 
-class InscriptionType extends AbstractType
+class HotelType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ateliers',AteliersType::class)
-            ->add('hotels',NuiteType::class)
+            ->add('nomHotel')
+            ->add('adresse1')
+            ->add('adresse2')
+            ->add('cp')
+            ->add('ville')
+            ->add('tel')
+            ->add('mail')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Hotel::class,
         ]);
     }
 }

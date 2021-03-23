@@ -25,7 +25,7 @@ class Atelier
     private $libelle;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",name="nbPlaceMaxi")
      */
     private $nbPlaceMaxi;
 
@@ -36,11 +36,17 @@ class Atelier
 
     /**
      * @ORM\ManyToMany(targetEntity=Theme::class, inversedBy="ateliers")
+     * @ORM\JoinTable(
+     *        name="themesparatelier",
+     *        joinColumns={@ORM\JoinColumn(name="idatelier", referencedColumnName="id")},
+     *        inverseJoinColumns={@ORM\JoinColumn(name="idtheme", referencedColumnName="id")}
+     *        )
      */
     private $themes;
 
     /**
      * @ORM\ManyToOne(targetEntity=Vacation::class)
+     * @ORM\JoinColumn(name="idvacation")
      */
     private $vacations;
 

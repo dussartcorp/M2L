@@ -1,20 +1,20 @@
 -- -----------------------------------------------------------------------------
---             Génération d'une base de données pour
+--             GÃ©nÃ©ration d'une base de donnÃ©es pour
 --                      Oracle Version 11g XE
 --                        
 -- -----------------------------------------------------------------------------
 --      Projet : MaisonDesLigues
---      Auteur : Benoît ROCHE
---      Date de dernière modification : 9/01/2013 11:32:40
+--      Auteur : BenoÃ®t ROCHE
+--      Date de derniÃ¨re modification : 9/01/2013 11:32:40
 -- -----------------------------------------------------------------------------
 
 -- -----------------------------------------------------------------------------
---      Partie 3: Création de l'utilisateur MDL qui sera aussi le propriétaire
--- 		des objets : tables, index, procédures
+--      Partie 3: CrÃ©ation de l'utilisateur MDL qui sera aussi le propriÃ©taire
+-- 		des objets : tables, index, procÃ©dures
 --
---		Ce script doit être exécuté par un l'utilisateur MDL
---		(celui qui a été créé dans le script creer_user)
--- 	Ce script doit être exécuté APRES le script creer_objets.sql
+--		Ce script doit Ãªtre exÃ©cutÃ© par un l'utilisateur MDL
+--		(celui qui a Ã©tÃ© crÃ©Ã© dans le script creer_user)
+-- 	Ce script doit Ãªtre exÃ©cutÃ© APRES le script creer_objets.sql
 --- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 --
@@ -23,107 +23,106 @@
 -- -----------------------------------------------------------------------------
 --       TABLE : CATEGORIECHAMBRE
 -- 
-insert into CATEGORIECHAMBRE (ID, LIBELLECATEGORIE) values ('S', 'Single');
-insert into CATEGORIECHAMBRE (ID, LIBELLECATEGORIE) values ('D', 'Double');
-
--- -----------------------------------------------------------------------------
-
-
-
--- -----------------------------------------------------------------------------
---       TABLE : DATEBENEVOLAT
--- 
-insert into DATEBENEVOLAT(id,DATEBENEVOLAT) values(SEQDATEBENEVOLAT.NEXTVAL,to_timestamp('14/09/2013 09:00','DD/MM/YYYY HH24:mi') );
-insert into DATEBENEVOLAT(id, DATEBENEVOLAT) values(SEQDATEBENEVOLAT.NEXTVAL,to_timestamp('15/09/2013 23:59','DD/MM/YYYY HH24:mi') );
-
--- -----------------------------------------------------------------------------
+insert into CATEGORIECHAMBRE (LIBELLECATEGORIE) values ('Single');
+insert into CATEGORIECHAMBRE (LIBELLECATEGORIE) values ('Double');
 
 -- -----------------------------------------------------------------------------
 --       TABLE : QUALITE
 -- 
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Président de ligue');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Président de club');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Président de CD');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Vice-Président de ligue');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Vice-Président de club');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Vice-Président de CD');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'secrétaire de ligue');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'secrétaire de club');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'secrétaire de CD');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Trésorier de ligue');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Trésorier de club');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Trésorier de CD');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Maitre d''armes');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Eleve Maitre');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Cadre Technique Régional');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Relais');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Coordinateur de Pôle');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Athlète de Haut Niveau');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'TBenevole de Club');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Animateur');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'FFE');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Trésorier de CD');
-insert into qualite(id, libellequalite) values (SEQQUALITE.nextval, 'Autre');
+/*
+-- insert into qualite(libellequalite) values ('PrÃ©sident de ligue');
+-- insert into qualite(libellequalite) values ('PrÃ©sident de club');
+-- insert into qualite(libellequalite) values ('PrÃ©sident de CD');
+-- insert into qualite(libellequalite) values ('Vice-PrÃ©sident de ligue');
+-- insert into qualite(libellequalite) values ('Vice-PrÃ©sident de club');
+-- insert into qualite(libellequalite) values ('Vice-PrÃ©sident de CD');
+-- insert into qualite(libellequalite) values ('secrÃ©taire de ligue');
+-- insert into qualite(libellequalite) values ('secrÃ©taire de club');
+-- insert into qualite(libellequalite) values ('secrÃ©taire de CD');
+-- insert into qualite(libellequalite) values ('TrÃ©sorier de ligue');
+-- insert into qualite(libellequalite) values ('TrÃ©sorier de club');
+-- insert into qualite(libellequalite) values ('TrÃ©sorier de CD');
+-- insert into qualite(libellequalite) values ('Maitre d''armes');
+-- insert into qualite(libellequalite) values ('Eleve Maitre');
+-- insert into qualite(libellequalite) values ('Cadre Technique RÃ©gional');
+-- insert into qualite(libellequalite) values ('Relais');
+-- insert into qualite(libellequalite) values ('Coordinateur de PÃ´le');
+-- insert into qualite(libellequalite) values ('AthlÃ¨te de Haut Niveau');
+-- insert into qualite(libellequalite) values ('TBenevole de Club');
+-- insert into qualite(libellequalite) values ('Animateur');
+-- insert into qualite(libellequalite) values ('FFE');
+-- insert into qualite(libellequalite) values ('TrÃ©sorier de CD');
+-- insert into qualite(libellequalite) values ('Autre');
+*/
+
+-- -----------------------------------------------------------------------------
+--       TABLE : VACATION
+--
+
+insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 08:00:00', '2021-03-27 10:00:00');
+insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 14:00:00', '2021-03-27 18:00:00');
 
 -- -----------------------------------------------------------------------------
 --       TABLE : ATELIER
 --
-/*
-insert into ATELIER(id, libelleatelier, nbplacesmaxi) values(seqatelier.nextval, 'LE CLUB ET SON PROJET', 60);
-insert into ATELIER(id, libelleatelier, nbplacesmaxi) values(seqatelier.nextval, 'LE FONCTIONNEMENT DU CLUB', 80);
-insert into ATELIER(id, libelleatelier, nbplacesmaxi) values(seqatelier.nextval, 'LES OUTILS À DISPOSITION ET REMIS AUX CLUBS', 110);
-insert into ATELIER(id, libelleatelier, nbplacesmaxi) values(seqatelier.nextval, 'OBSERVATOIRE DES MÉTIERS DE L’ESCRIME', 60);
-insert into ATELIER(id, libelleatelier, nbplacesmaxi) values(seqatelier.nextval, 'I. F. F. E', 70);
-insert into ATELIER(id, libelleatelier, nbplacesmaxi) values(seqatelier.nextval, 'DÉVELOPPEMENT DURABLE', 60);
-*/
+
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE CLUB ET SON PROJET', 1, 60);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE FONCTIONNEMENT DU CLUB', 1, 80);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LES OUTILS Ã€ DISPOSITION ET REMIS AUX CLUBS', 2, 110);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('OBSERVATOIRE DES MÃ‰TIERS DE LÂ’ESCRIME', 2, 60);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('I. F. F. E', 1, 70);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('DÃ‰VELOPPEMENT DURABLE', 2, 60);
+
 -- -----------------------------------------------------------------------------
 --       TABLE : STATUT
 --
-
+/*
 insert into STATUT(id, libellestatut) values('ANI', 'Animateur');
 insert into STATUT(id, libellestatut) values('INT', 'Intervenant');
-
+*/
 
 -- -----------------------------------------------------------------------------
 --       TABLE : RESTAURATION
 --
-
-insert into RESTAURATION(idrestauration, daterestauration, typerepas) values(seqrestauration.nextval,'14/09/2013','midi');
-insert into RESTAURATION(idrestauration, daterestauration, typerepas) values(seqrestauration.nextval,'14/09/2013','soir');
-insert into RESTAURATION(idrestauration, daterestauration, typerepas) values(seqrestauration.nextval,'15/09/2013','midi');
-
--- -----------------------------------------------------------------------------
---       TABLE : DATENUITE
---
-insert into DATENUITE(ID,DATEARRIVEENUITEE) values(SEQDATENUITE.NEXTVAL,'13/09/2013');
-insert into DATENUITE(ID,DATEARRIVEENUITEE) values(SEQDATENUITE.NEXTVAL,'14/09/2013');
+/*
+insert into RESTAURATION(daterestauration, typerepas) values('14/09/2013','midi');
+insert into RESTAURATION(daterestauration, typerepas) values('14/09/2013','soir');
+insert into RESTAURATION(daterestauration, typerepas) values('15/09/2013','midi');
+*/
 
 -- -----------------------------------------------------------------------------
 --       TABLE : HOTEL
 --
 INSERT INTO HOTEL
-   (CODEHOTEL ,NOMHOTEL, ADRESSEHOTEL1,ADRESSEHOTEL2 ,CPHOTEL,VILLEHOTEL,TELHOTEL,MAILHOTEL) 
-   VALUES ('IBIS', 'Hôtel ibis Lille Centre Gares','29, Av Charles St-Venant','Le Forum','59000','LILLE','(+33)3/28363040','H0901@accor.com') ;
+   (NOMHOTEL, ADRESSE1,ADRESSE2 ,CP,VILLE,TEL,MAIL) 
+   VALUES ('HÃ´tel ibis Lille Centre Gares','29, Av Charles St-Venant','Le Forum','59000','LILLE','(+33)3/28363040','H0901@accor.com') ;
 INSERT INTO HOTEL
-   (CODEHOTEL ,NOMHOTEL, ADRESSEHOTEL1,ADRESSEHOTEL2 ,CPHOTEL,VILLEHOTEL,TELHOTEL,MAILHOTEL) 
-   VALUES ('NOVO', 'Hôtel Novotel Lille Centre Grand Place','116 rue de l''Hopital Militaire',null,'59000','LILLE','(+33)3/28385353','H0918@accor.com') ;
+   (NOMHOTEL, ADRESSE1,ADRESSE2 ,CP,VILLE,TEL,MAIL) 
+   VALUES ('HÃ´tel Novotel Lille Centre Grand Place','116 rue de l''Hopital Militaire',null,'59000','LILLE','(+33)3/28385353','H0918@accor.com') ;
 
 
   
 -- -----------------------------------------------------------------------------
+--       TABLE : NUITE
+--
+insert into NUITE(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-27 00:00:00',2);
+insert into NUITE(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-26 00:00:00',1);
+
+
+-- -----------------------------------------------------------------------------
 --       TABLE : PROPOSER
 -- -----------------------------------------------------------------------------
 
-INSERT INTO PROPOSER (CODEHOTEL,IDCATEGORIE, TARIFNUITE) VALUES('IBIS','S',61.20 );   
-INSERT INTO PROPOSER (CODEHOTEL,IDCATEGORIE, TARIFNUITE) VALUES('IBIS','D',62.20 ); 
-INSERT INTO PROPOSER (CODEHOTEL,IDCATEGORIE, TARIFNUITE) VALUES('NOVO','S',112.00 ); 
-INSERT INTO PROPOSER (CODEHOTEL,IDCATEGORIE, TARIFNUITE) VALUES('NOVO','D',122.00 );    
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(1,1,61.20 );   
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,1,62.20 ); 
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(1,2,112.00 ); 
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,2,122.00 );    
 
 -- -----------------------------------------------------------------------------
 --       TABLE : PARAMETRES
 --
-insert into parametres (nomddl, adrue1, adrue2, cp, ville, tel, fax, mail, tarifinscription, tarifrepasaccompagnant, duree, nbateliermax) 
-	values('maison des Ligues', '123 avenue des balladins', 'résidence du cirque', '83000', 'Toulon', '04 04 04 04 04','04 04 04 04 01','mdl@free.fr',100,35,90,6);
+-- insert into parametres (nomddl, adrue1, adrue2, cp, ville, tel, fax, mail, tarifinscription, tarifrepasaccompagnant, duree, nbateliermax) 
+--	values('maison des Ligues', '123 avenue des balladins', 'rÃ©sidence du cirque', '83000', 'Toulon', '04 04 04 04 04','04 04 04 04 01','mdl@free.fr',100,35,90,6);
 
 
 commit;

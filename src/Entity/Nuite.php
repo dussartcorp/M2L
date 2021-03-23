@@ -20,19 +20,27 @@ class Nuite
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",name="dateNuitee")
      */
     private $dateNuitee;
 
     /**
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="nuites")
+     * @ORM\JoinColumn(name="idhotel")
      */
     private $hotel;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="nuites")
+     * @ORM\Column(name="idcategorieChambre")
      */
     private $categorieChambre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="Nuitees")
+     * @ORM\JoinColumn(name="idinscription")
+     */
+    private $inscriptions;
 
 
     public function __construct()
@@ -77,6 +85,18 @@ class Nuite
     public function setCategorieChambre(?CategorieChambre $categorieChambre): self
     {
         $this->categorieChambre = $categorieChambre;
+
+        return $this;
+    }
+
+    public function getInscriptions(): ?Inscription
+    {
+        return $this->inscriptions;
+    }
+
+    public function setInscriptions(?Inscription $inscriptions): self
+    {
+        $this->inscriptions = $inscriptions;
 
         return $this;
     }

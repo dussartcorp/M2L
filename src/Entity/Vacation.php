@@ -18,15 +18,14 @@ class Vacation
     private $id;
 
     /**
-     * @ORM\Column(type="date",name="dateHeureDebut")
+     * @ORM\Column(type="datetime")
      */
     private $dateHeureDebut;
 
     /**
-     * @ORM\Column(type="date",name="dateHeureFin")
+     * @ORM\Column(type="datetime")
      */
     private $dateHeureFin;
-
 
     public function getId(): ?int
     {
@@ -56,5 +55,7 @@ class Vacation
 
         return $this;
     }
+
+   
 
 }

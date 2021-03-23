@@ -17,12 +17,12 @@
     </div>
     <div class="form-row">
       <div class="col-4" id="some-custom-id">
-        {{ form_label(form.mmsi, 'MMSI') }}
-        {{ form_widget(form.mmsi, {'attr': {'placeholder': 'Saisir le numero mmsi du navire', 'class': "form-control"}}) }}
+        {{ form_label(form.themes, 'Thèmes') }}
+        {{ form_widget(form.themes) }}
       </div>
       <div class="col-4" id="some-custom-id">
-        {{ form_label(form.indicatifAppel, 'Indicatif Appel') }}
-        {{ form_widget(form.indicatifAppel, { 'attr': {'placeholder': 'Saisir l\'indicatif du navire', 'class': "form-control"}}) }}
+        {{ form_label(form.vacations, 'Heure de début') }}
+        {{ form_widget(form.vacations) }}
       </div>
     </div>
     <br>

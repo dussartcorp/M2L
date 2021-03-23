@@ -8,7 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Atelier;
 use App\Repository\AtelierRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\AtelierType;
 
 /**
  * @Route("/congres/", name="congre_")
@@ -16,9 +17,9 @@ use Doctrine\ORM\EntityManager;
 class CreationCongresController extends AbstractController
 {
     /**
-     * @Route("creationatelier", name="createAtelier")
+     * @Route("atelier", name="atelier")
      */
-    public function creationAtelier(Request $request, EntityManager $manager, AtelierRepository $repo){
+    public function creationAtelier(Request $request, EntityManagerInterface $manager, AtelierRepository $repo){
         $atelier = new Atelier();
         $form = $this->createForm(AtelierType::class, $atelier);
         $form->handleRequest($request);

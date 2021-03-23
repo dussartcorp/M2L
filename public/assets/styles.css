@@ -23,3 +23,13 @@
     display:flex;
     justify-content: center;
 }
+
+.InscriptionBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.InscriptionBoxInput{
+   width: 500px;
+}

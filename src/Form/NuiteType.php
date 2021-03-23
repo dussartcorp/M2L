@@ -18,7 +18,8 @@ class NuiteType extends AbstractType
     {
         $builder
             ->add('dateNuitee',DateTimeType::class,[
-                'widget' => 'single_text',                                    
+                'widget' => 'single_text',  
+                'data'=> new DateTime('2021-06-22 00:50'),                       
             ])
             ->add('hotel',EntityType::class,[
                 'class'=>Hotel::class,

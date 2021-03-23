@@ -19,12 +19,12 @@ class NuiteType extends AbstractType
                 'class'=>Nuite::class,
                 'choice_label'=>'dateNuitee',
                 'expanded'=>false,
-                'multiple'=>true,])
+                'multiple'=>false,])
             ->add('hotel',EntityType::class,[
                 'class'=>Hotel::class,
                 'choice_label'=>'nomHotel',
                 'expanded'=>false,
-                'multiple'=>true,])
+                'multiple'=>false,])
             ->add('categorieChambre',EntityType::class,[
                 'class'=>CategorieChambre::class,
                 'choice_label'=>'libelleCategorie',

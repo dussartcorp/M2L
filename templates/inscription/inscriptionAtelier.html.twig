@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{form_start(form)}}
+        <div class="form-group  align-middle container">
+            <div class="row">
+                <div>
+                    {{ form_label(form.ateliers,'Choix Atelier') }}
+                    {{ form_widget(form.ateliers) }}
+                </div>
+            </div>
+        </div>
+    {{form_end(form)}}
+{% endblock %}

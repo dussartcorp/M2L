@@ -34,6 +34,17 @@ class User implements UserInterface
      */
     private $password;
 
+
+    /**
+     * @ORM\OneToOne(targetEntity=Inscription::class, mappedBy="compte", cascade={"persist", "remove"})
+     */
+    private $inscription;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Licencie::class, mappedBy="compte", cascade={"persist", "remove"})
+     */
+    private $licencie;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -115,6 +126,43 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    
+    public function getInscription(): ?Inscription
+    {
+        return $this->inscription;
+    }
+
+    public function setInscription(?Inscription $inscription): self
+    {
+        $this->inscription = $inscription;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompte = null === $inscription ? null : $this;
+        if ($inscription->getCompte() !== $newCompte) {
+            $inscription->setCompte($newCompte);
+        }
+
+        return $this;
+    }
+
+    public function getLicencie(): ?Licencie
+    {
+        return $this->licencie;
+    }
+
+    public function setLicencie(?Licencie $licencie): self
+    {
+        $this->licencie = $licencie;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompte = null === $licencie ? null : $this;
+        if ($licencie->getCompte() !== $newCompte) {
+            $licencie->setCompte($newCompte);
+        }
+
+        return $this;
     }
 
     public function getEmail(): ?string

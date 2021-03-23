@@ -22,7 +22,7 @@ class CreationCompteController extends AbstractController
         $form = $this->createForm(CreationCompteType::class, $compte);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $compte->setRoles(["roles : inscrit"]);
+            $compte->setRoles(["ROLE_INSCRIT"]);
             $manager->persist($compte);
             $manager->flush();
 

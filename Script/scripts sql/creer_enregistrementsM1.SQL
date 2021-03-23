@@ -21,10 +21,10 @@
 
 
 -- -----------------------------------------------------------------------------
---       TABLE : CATEGORIE_CHAMBRE
+--       TABLE : CATEGORIECHAMBRE
 -- 
-insert into CATEGORIE_CHAMBRE (LIBELLECATEGORIE) values ('Single');
-insert into CATEGORIE_CHAMBRE (LIBELLECATEGORIE) values ('Double');
+insert into CATEGORIECHAMBRE (LIBELLECATEGORIE) values ('Single');
+insert into CATEGORIECHAMBRE (LIBELLECATEGORIE) values ('Double');
 
 -- -----------------------------------------------------------------------------
 --       TABLE : QUALITE
@@ -54,16 +54,24 @@ insert into CATEGORIE_CHAMBRE (LIBELLECATEGORIE) values ('Double');
 -- insert into qualite(libellequalite) values ('Trésorier de CD');
 -- insert into qualite(libellequalite) values ('Autre');
 */
+
+-- -----------------------------------------------------------------------------
+--       TABLE : VACATION
+--
+
+insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 08:00:00', '2021-03-27 10:00:00');
+insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 14:00:00', '2021-03-27 18:00:00');
+
 -- -----------------------------------------------------------------------------
 --       TABLE : ATELIER
 --
 
-insert into ATELIER(libelle, nbplacemaxi) values('LE CLUB ET SON PROJET', 60);
-insert into ATELIER(libelle, nbplacemaxi) values('LE FONCTIONNEMENT DU CLUB', 80);
-insert into ATELIER(libelle, nbplacemaxi) values('LES OUTILS À DISPOSITION ET REMIS AUX CLUBS', 110);
-insert into ATELIER(libelle, nbplacemaxi) values('OBSERVATOIRE DES MÉTIERS DE LESCRIME', 60);
-insert into ATELIER(libelle, nbplacemaxi) values('I. F. F. E', 70);
-insert into ATELIER(libelle, nbplacemaxi) values('DÉVELOPPEMENT DURABLE', 60);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE CLUB ET SON PROJET', 1, 60);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE FONCTIONNEMENT DU CLUB', 1, 80);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LES OUTILS À DISPOSITION ET REMIS AUX CLUBS', 2, 110);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('OBSERVATOIRE DES MÉTIERS DE LESCRIME', 2, 60);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('I. F. F. E', 1, 70);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('DÉVELOPPEMENT DURABLE', 2, 60);
 
 -- -----------------------------------------------------------------------------
 --       TABLE : STATUT
@@ -97,18 +105,18 @@ INSERT INTO HOTEL
 -- -----------------------------------------------------------------------------
 --       TABLE : NUITE
 --
-insert into NUITE(HOTEL_ID, DATEARRIVEENUITEE, categorie_chambre) values(1,'13/09/2013',2);
-insert into NUITE(HOTEL_ID, DATEARRIVEENUITEE, categorie_chambre) values(1,'14/09/2013',1);
+insert into NUITE(idhotel, DATEARRIVEENUITEE, idcategoriechambre) values(1,'13/09/2013',2);
+insert into NUITE(idhotel, DATEARRIVEENUITEE, idcategoriechambre) values(1,'14/09/2013',1);
 
 
 -- -----------------------------------------------------------------------------
 --       TABLE : PROPOSER
 -- -----------------------------------------------------------------------------
 
-INSERT INTO PROPOSER (categorie_id, hotel_id, TARIFNUITE) VALUES(1,1,61.20 );   
-INSERT INTO PROPOSER (categorie_id, hotel_id, TARIFNUITE) VALUES(2,1,62.20 ); 
-INSERT INTO PROPOSER (categorie_id, hotel_id, TARIFNUITE) VALUES(1,2,112.00 ); 
-INSERT INTO PROPOSER (categorie_id, hotel_id, TARIFNUITE) VALUES(2,2,122.00 );    
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(1,1,61.20 );   
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,1,62.20 ); 
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(1,2,112.00 ); 
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,2,122.00 );    
 
 -- -----------------------------------------------------------------------------
 --       TABLE : PARAMETRES

@@ -20,7 +20,7 @@ class Inscription
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date",name="dateInscription")
      */
     private $dateInscription;
 

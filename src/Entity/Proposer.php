@@ -18,7 +18,7 @@ class Proposer
     private $id;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2)
+     * @ORM\Column(type="decimal", precision=5, scale=2,name="tarifNuite")
      */
     private $tarifNuite;
 

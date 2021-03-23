@@ -20,7 +20,7 @@ class Nuite
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",name="dateNuitee")
      */
     private $dateNuitee;
 
@@ -31,6 +31,7 @@ class Nuite
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="nuites")
+     * @ORM\Column(name="categorieChambre")
      */
     private $categorieChambre;
 

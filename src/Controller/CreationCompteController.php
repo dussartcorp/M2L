@@ -10,19 +10,23 @@ use App\Form\CreationCompteType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CreationCompteController extends AbstractController
 {
     /**
      * @Route("/CreationCompte", name="inscription")
      */
-    public function index(Request $request, EntityManagerInterface $manager, UserRepository $compte): Response
+    public function index(Request $request, EntityManagerInterface $manager, UserRepository $compte, UserPasswordEncoderInterface $encoder): Response
     {
         $compte = new User();
         $form = $this->createForm(CreationCompteType::class, $compte);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $compte->setRoles(["ROLE_INSCRIT"]);
+            $mdp = $form->get('password')->getData();
+            $encoder = $encoder->encodePassword($compte, $mdp);
+            $compte->setPassword($encoder);
             $manager->persist($compte);
             $manager->flush();
 

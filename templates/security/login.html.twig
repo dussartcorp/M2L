@@ -1,39 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+	<form method="post">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.username }},
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+		{% endif %}
 
-        <div class="container">
-            <h1 class="h3" id="loginH1">Veuillez vous connecter</h1>
-            <div class="loginC">
-                <label for="inputNumLicence">Numéro de licence</label>
-            </div>
-            <div class="loginC">
-                <input type="text" value="{{ last_username }}" name="numLicence" id="inputNumLicence" placeholder="Entrez votre numéro de licence" class="form-control col-5" required autofocus>
-            </div>
-            <div class="loginC">
-                <label for="inputPassword">Mot de passe</label>
-            </div>
-            <div class="loginC">
-                <input type="password" name="password" id="inputPassword" placeholder="Entrez votre mot de passe" class="form-control col-5" required>
-            </div>
-            <div class="loginC">
-                <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
-            </div>
+		<div class="container">
+			<div class="InscriptionBox">
+				<h1 class="h3" id="loginH1">Veuillez vous connecter</h1>
 
-            <div id="loginBtn">
-                <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
-            </div>
-        </div>
-   
-</form>
+				<label for="inputNumLicence">Numéro de licence</label>
+
+				<input type="text" value="{{ last_username }}" name="numLicence" id="inputNumLicence" placeholder="Entrez votre numéro de licence" class="form-control col-5" required autofocus>
+
+				<label for="inputPassword">Mot de passe</label>
+
+				<input type="password" name="password" id="inputPassword" placeholder="Entrez votre mot de passe" class="form-control col-5" required>
+
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			</div>
+			<div id="loginBtn">
+				<button class="btn btn-lg btn-primary" type="submit">Connexion</button>
+			</div>
+		</div>
+
+	</form>
 {% endblock %}

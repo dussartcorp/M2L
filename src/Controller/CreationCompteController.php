@@ -7,17 +7,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Form\CreationCompteType;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CreationCompteController extends AbstractController
 {
     /**
      * @Route("/CreationCompte", name="inscription")
      */
-    public function index(): Response
+    public function index(Request $request, EntityManagerInterface $manager, UserRepository $compte): Response
     {
         $compte = new User();
         $form = $this->createForm(CreationCompteType::class, $compte);
-        return $this->render('inscription/index.html.twig', [
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->persist($compte);
+            $manager->flush();
+
+            return $this->redirectToRoute('login');
+
+        }
+        return $this->render('CreationCompte/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }

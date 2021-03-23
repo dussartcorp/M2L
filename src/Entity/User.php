@@ -34,6 +34,7 @@ class User implements UserInterface
      */
     private $password;
 
+
     /**
      * @ORM\OneToOne(targetEntity=Inscription::class, mappedBy="compte", cascade={"persist", "remove"})
      */
@@ -43,6 +44,11 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity=Licencie::class, mappedBy="compte", cascade={"persist", "remove"})
      */
     private $licencie;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Email;
 
     public function getId(): ?int
     {
@@ -122,6 +128,7 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    
     public function getInscription(): ?Inscription
     {
         return $this->inscription;
@@ -154,6 +161,18 @@ class User implements UserInterface
         if ($licencie->getCompte() !== $newCompte) {
             $licencie->setCompte($newCompte);
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->Email;
+    }
+
+    public function setEmail(string $Email): self
+    {
+        $this->Email = $Email;
 
         return $this;
     }

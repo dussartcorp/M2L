@@ -3,9 +3,11 @@
     {{form_start(form)}}
         <div class="form-group  align-middle container">
             <div class="row">
-                <div class="col-2">
-                    {{ form_label(form.choixAtelier,'Choix Atelier') }}
-                    {{ form_widget(form.choixAtelier,{'attr':{'placeholder':'Numéro IMO','class':'form-control'}}) }}
+                <div>
+                    {{ form_label(form.ateliers,'Choix Atelier') }}
+                    {{ form_widget(form.ateliers) }}
                 </div>
             </div>
         </div>
+    {{form_end(form)}}
+{% endblock %}

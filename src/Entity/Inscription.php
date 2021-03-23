@@ -34,6 +34,16 @@ class Inscription
      */
     private $compte;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Restauration::class)
+     */
+    private $restaurations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Nuite::class)
+     */
+    private $nuites;
+
     public function __construct()
     {
         $this->ateliers = new ArrayCollection();
@@ -88,6 +98,30 @@ class Inscription
     public function setCompte(?User $compte): self
     {
         $this->compte = $compte;
+
+        return $this;
+    }
+
+    public function getRestaurations(): ?Restauration
+    {
+        return $this->restaurations;
+    }
+
+    public function setRestaurations(?Restauration $restaurations): self
+    {
+        $this->restaurations = $restaurations;
+
+        return $this;
+    }
+
+    public function getNuites(): ?Nuite
+    {
+        return $this->nuites;
+    }
+
+    public function setNuites(?Nuite $nuites): self
+    {
+        $this->nuites = $nuites;
 
         return $this;
     }

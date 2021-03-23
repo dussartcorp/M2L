@@ -18,14 +18,20 @@ class Restauration
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",name="dateRestauration")
      */
     private $dateRestauration;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15,name="typesRepas")
      */
     private $typesRepas;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="restaurations")
+     * @ORM\JoinColumn(name="idinscription")
+     */
+    private $inscriptions;
 
     public function getId(): ?int
     {
@@ -52,6 +58,18 @@ class Restauration
     public function setTypesRepas(string $typesRepas): self
     {
         $this->typesRepas = $typesRepas;
+
+        return $this;
+    }
+
+    public function getInscriptions(): ?Inscription
+    {
+        return $this->inscriptions;
+    }
+
+    public function setInscriptions(?Inscription $inscriptions): self
+    {
+        $this->inscriptions = $inscriptions;
 
         return $this;
     }

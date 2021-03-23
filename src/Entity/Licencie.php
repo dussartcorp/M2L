@@ -18,7 +18,7 @@ class Licencie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,name="numLicence")
      */
     private $numLicence;
 
@@ -63,12 +63,13 @@ class Licencie
     private $mail;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date",name="dateAdhesion")
      */
     private $dateAdhesion;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="licencie", cascade={"persist", "remove"})
+     * @ORM\Column(name="idcompte")
      */
     private $compte;
 

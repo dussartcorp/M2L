@@ -18,7 +18,7 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('choixAtelier',EntityType::class,[
+            ->add('ateliers',EntityType::class,[
             'class'=>Atelier::class,
             'choice_label'=>'libelle',
             'expanded'=>true,

@@ -22,10 +22,11 @@ class CreationCompteController extends AbstractController
         $form = $this->createForm(CreationCompteType::class, $compte);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $compte->setRoles(["roles : inscrit"]);
             $manager->persist($compte);
             $manager->flush();
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('app_login');
 
         }
         return $this->render('CreationCompte/index.html.twig', [

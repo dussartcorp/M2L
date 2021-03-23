@@ -10,7 +10,7 @@
         <div>
         <h2> Remplissez ce formulaire afin de vous créer un compte ! </h2>
         </div>
-    
+    {{form_start(form)}}
         <div class="InscriptionBoxInput">
             {{ form_label(form.numLicence, 'Numéro de Licence') }}
             {{ form_widget(form.numLicence, {'attr': {'placeholder': 'Numéro de Licence','class':'form-control'}}) }}
@@ -27,6 +27,7 @@
     
             <button type='submit' class='btn btn-success'>S'inscrire</button>
     </div> 
+    {{form_end(form)}}
 </div>
             
 {% endblock %}

@@ -24,7 +24,7 @@ class CreationCompteController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $compte->setRoles(["ROLE_INSCRIT"]);
-            $mdp = $compte->getPassword();
+            $mdp = $form->get('password')->getData();
             $encoder = $encoder->encodePassword($compte, $mdp);
             $compte->setPassword($encoder);
             $manager->persist($compte);

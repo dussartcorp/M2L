@@ -25,7 +25,7 @@ class Atelier
     private $libelle;
 
     /**
-     * @ORM\Column(type="integer",nam="nbPlaceMaxi")
+     * @ORM\Column(type="integer",name="nbPlaceMaxi")
      */
     private $nbPlaceMaxi;
 

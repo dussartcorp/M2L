@@ -30,7 +30,8 @@ class Nuite
     private $hotel;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="nuites",name="categorieChambre")
+     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="nuites")
+     * @ORM\Column(name="categorieChambre")
      */
     private $categorieChambre;
 

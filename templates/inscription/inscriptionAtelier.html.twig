@@ -3,14 +3,19 @@
     {{form_start(form)}}
         <div class="InscriptionBox">
             <div>
-                <div class="form-check-inline">                   
+                <div class="form-check-inline row">                   
                     {{ form_widget(form.ateliers) }}
                 </div>
-                <div>
-                    <h5>Bulletin Réservation hôtel</h5>
+                <h5>Bulletin Réservation hôtel</h5>
+                <div class='row'>
                     {{ form_widget(form.hotel1) }}
                     <hr>
                     {{ form_widget(form.hotel2) }}
+                </div>
+                <div>
+                    <hr>
+                    {{ form_widget(form.restaurations1) }}
+                    {{ form_widget(form.restaurations2) }}
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ class NuiteType extends AbstractType
                 'class'=>CategorieChambre::class,
                 'choice_label'=>'libelleCategorie',
                 'expanded'=>false,
-                'multiple'=>true,
+                'multiple'=>false,
             ])
         ;
     }

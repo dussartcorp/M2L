@@ -105,8 +105,8 @@ INSERT INTO HOTEL
 -- -----------------------------------------------------------------------------
 --       TABLE : NUITE
 --
-insert into NUITE(idhotel, DATEARRIVEENUITEE, idcategoriechambre) values(1,'13/09/2013',2);
-insert into NUITE(idhotel, DATEARRIVEENUITEE, idcategoriechambre) values(1,'14/09/2013',1);
+insert into NUITE(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-27 00:00:00',2);
+insert into NUITE(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-26 00:00:00',1);
 
 
 -- -----------------------------------------------------------------------------

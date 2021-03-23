@@ -20,7 +20,7 @@ class Hotel
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30,name="nomHotel")
+     * @ORM\Column(type="string", length=100,name="nomHotel")
      */
     private $nomHotel;
 

@@ -26,27 +26,36 @@ class Inscription
 
     /**
      * @ORM\ManyToMany(targetEntity=Atelier::class, inversedBy="inscriptions")
+     * @ORM\JoinTable(
+     *        name="inscriptionparAtelier",
+     *        joinColumns={@ORM\JoinColumn(name="idinscription", referencedColumnName="id")},
+     *        inverseJoinColumns={@ORM\JoinColumn(name="idatelier", referencedColumnName="id")}
+     *        )
      */
     private $ateliers;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="inscription", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="idcompte")
      */
     private $compte;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity=Restauration::class)
+     * @ORM\OneToMany(targetEntity=Restauration::class, mappedBy="inscriptions")
      */
     private $restaurations;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Nuite::class)
+     * @ORM\OneToMany(targetEntity=Nuite::class, mappedBy="inscriptions")
      */
-    private $nuites;
+    private $Nuitees;
 
     public function __construct()
     {
         $this->ateliers = new ArrayCollection();
+        $this->restaurations = new ArrayCollection();
+        $this->Nuitees = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,26 +111,62 @@ class Inscription
         return $this;
     }
 
-    public function getRestaurations(): ?Restauration
+    /**
+     * @return Collection|Restauration[]
+     */
+    public function getRestaurations(): Collection
     {
         return $this->restaurations;
     }
 
-    public function setRestaurations(?Restauration $restaurations): self
+    public function addRestauration(Restauration $restauration): self
     {
-        $this->restaurations = $restaurations;
+        if (!$this->restaurations->contains($restauration)) {
+            $this->restaurations[] = $restauration;
+            $restauration->setInscriptions($this);
+        }
 
         return $this;
     }
 
-    public function getNuites(): ?Nuite
+    public function removeRestauration(Restauration $restauration): self
     {
-        return $this->nuites;
+        if ($this->restaurations->removeElement($restauration)) {
+            // set the owning side to null (unless already changed)
+            if ($restauration->getInscriptions() === $this) {
+                $restauration->setInscriptions(null);
+            }
+        }
+
+        return $this;
     }
 
-    public function setNuites(?Nuite $nuites): self
+    /**
+     * @return Collection|Nuite[]
+     */
+    public function getNuitees(): Collection
     {
-        $this->nuites = $nuites;
+        return $this->Nuitees;
+    }
+
+    public function addNuitee(Nuite $nuitee): self
+    {
+        if (!$this->Nuitees->contains($nuitee)) {
+            $this->Nuitees[] = $nuitee;
+            $nuitee->setInscriptions($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNuitee(Nuite $nuitee): self
+    {
+        if ($this->Nuitees->removeElement($nuitee)) {
+            // set the owning side to null (unless already changed)
+            if ($nuitee->getInscriptions() === $this) {
+                $nuitee->setInscriptions(null);
+            }
+        }
 
         return $this;
     }

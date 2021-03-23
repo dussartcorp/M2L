@@ -69,6 +69,7 @@ class Licencie
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="licencie", cascade={"persist", "remove"})
+     * @ORM\Column(name="idcompte")
      */
     private $compte;
 

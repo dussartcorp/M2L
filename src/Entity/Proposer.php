@@ -24,11 +24,13 @@ class Proposer
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="tarifs")
+     * @ORM\Column(name="idcategorie")
      */
     private $categorie;
 
     /**
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="tarifs")
+     * @ORM\Column(name="idhotel")
      */
     private $hotel;
 

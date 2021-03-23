@@ -27,6 +27,12 @@ class Restauration
      */
     private $typesRepas;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="restaurations")
+     * @ORM\JoinColumn(name="idinscription")
+     */
+    private $inscriptions;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Restauration
     public function setTypesRepas(string $typesRepas): self
     {
         $this->typesRepas = $typesRepas;
+
+        return $this;
+    }
+
+    public function getInscriptions(): ?Inscription
+    {
+        return $this->inscriptions;
+    }
+
+    public function setInscriptions(?Inscription $inscriptions): self
+    {
+        $this->inscriptions = $inscriptions;
 
         return $this;
     }

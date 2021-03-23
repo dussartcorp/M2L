@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{form_start(form)}}
-        <div class="form-group  align-middle container">
-            <div class="row">
-                <div>
-                    <h5>Choix des ateliers (5 ateliers maximum - a cocher)</h5>                    
+        <div class="InscriptionBox">
+            <div>
+                <div class="form-check-inline">                   
                     {{ form_widget(form.ateliers) }}
                 </div>
                 <div>
                     <h5>Bulletin Réservation hôtel</h5>
-                    {{ form_widget(form.hotels) }}
+                    {{ form_widget(form.hotel1) }}
+                    <hr>
+                    {{ form_widget(form.hotel2) }}
                 </div>
             </div>
         </div>

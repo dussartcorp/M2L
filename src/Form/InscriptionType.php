@@ -15,7 +15,8 @@ class InscriptionType extends AbstractType
     {
         $builder
             ->add('ateliers',AteliersType::class)
-            ->add('hotels',NuiteType::class)
+            ->add('hotel1',NuiteType::class)
+            ->add('hotel2',NuiteType::class)
         ;
     }
 

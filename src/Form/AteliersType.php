@@ -18,7 +18,7 @@ class AteliersType extends AbstractType
                 'choice_label'=>'libelle',
                 'expanded'=>true,
                 'multiple'=>true,
-                'label'=>'libelle',
+                'label'=>'Choix des ateliers (5 ateliers maximum - a cocher)',
             ])
         ;
     }

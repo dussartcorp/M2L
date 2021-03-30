@@ -18,6 +18,7 @@ class CreationCompteType extends AbstractType
             ->add('numLicence', TextType::class)
             ->add('password', PasswordType::class)
             ->add('Email', EmailType::class)
+            ->add('confPassword', PasswordType::class)
         ;
     }
 

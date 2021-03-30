@@ -12,10 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @Route("/inscription/", name="creation_")
+ */
 class CreationCompteController extends AbstractController
 {
     /**
-     * @Route("/CreationCompte", name="inscription")
+     * @Route("compte", name="compte")
      */
     public function index(Request $request, EntityManagerInterface $manager, UserRepository $compte, UserPasswordEncoderInterface $encoder): Response
     {

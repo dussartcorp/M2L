@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<div>
     {{form_start(form)}}
         <div class="InscriptionBox">
             <div>
                 <div class="form-check-inline row">                   
                     {{ form_widget(form.ateliers) }}
                 </div>
-                <hr>
-                <div id="hotel1" style="display:block" >
+                <div id="hotel1" style="display:block";>
                     <h5>Bulletin Réservation hôtel</h5>
                     {{ form_label(form.dateNuitee1,'Date de nuitée') }}
                     {{ form_widget(form.dateNuitee1,{'attr':{'class':'col-5','disabled':'true'}}) }}
@@ -27,6 +27,13 @@
             </div>
         </div>       
     {{form_end(form)}}
+    <div class="btn-group"> 
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ajouter<span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu"> 
+            <li><a href="ajouterHotel()">Ajouter hôtel</a></li> 
+            <li><a href="#">Ajouter la restauration</a></li>  
+        </ul> 
+    </div>
     <button onclick="ajouterHotel()" id="btnAjouterHotel">Ajouter</button>
     <button onclick="supprimerHotel()" id="btnSupprimerHotel">Suprimer</button>
 {% endblock %}

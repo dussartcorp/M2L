@@ -29,8 +29,6 @@ class InscriptionType extends AbstractType
             ])
             ->add('hotel1',NuiteType::class)
             ->add('hotel2',NuiteType::class)
-            ->add('restaurations1',RestaurationType::class)
-            ->add('restaurations2',RestaurationType::class)
         ;
     }
 

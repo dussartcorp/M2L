@@ -2,13 +2,30 @@
 {% block body %}
 <div>
     {{form_start(form)}}
-        <div class="InscriptionBox">
+        <div class="InscriptionBox container">
             <div>
                 <div class="form-check-inline row">                   
                     {{ form_widget(form.ateliers) }}
                 </div>
+                <hr class="my-4">
+                <div class="row">
+                        <h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
+                        <div id="dropHotel" class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Ajouter</button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li id="liAjoutHotel"><a class="dropdown-item" href="#" onclick="ajouterHotel()">Ajouter Hôtel</a></li>
+                                <li id="liAjoutResto"><a class="dropdown-item" href="#" onclick="ajouterRestauration()">Ajouter restauration</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Supprimer</button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li id="liSuppHotel"><a class="dropdown-item" href="#" onclick="supprimerHotel()">Supprimer hôtel</a></li>
+                                <li id="liSuppResto"><a class="dropdown-item" href="#" onclick="supprimerRestauration()">Supprimer restauration</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 <div id="hotel1" style="display:block";>
-                    <h5>Bulletin Réservation hôtel</h5>
                     {{ form_label(form.dateNuitee1,'Date de nuitée') }}
                     {{ form_widget(form.dateNuitee1,{'attr':{'class':'col-5','disabled':'true'}}) }}
                     {{ form_widget(form.hotel1) }}
@@ -19,15 +36,15 @@
                     {{ form_widget(form.dateNuitee2,{'attr':{'class':'col-5','disabled':'true'}}) }}
                     {{ form_widget(form.hotel2) }}
                 </div>
-                <div id="idRestauration" style="display:block")>
+                <div id="idRestauration1" style="display:block")>
                     <hr>
+                    <h5>Réservation restaurations accompagnant</h5>
                     {{ form_widget(form.restaurations1) }}
+                </div>
+                <div id="idRestauration2" style="display:block">
                     {{ form_widget(form.restaurations2) }}
                 </div>
             </div>
         </div>       
     {{form_end(form)}}
-
-    <button onclick="ajouterHotel()" id="btnAjouterHotel">Ajouter</button>
-    <button onclick="supprimerHotel()" id="btnSupprimerHotel">Suprimer</button>
 {% endblock %}

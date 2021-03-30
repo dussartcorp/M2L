@@ -6,18 +6,27 @@
                 <div class="form-check-inline row">                   
                     {{ form_widget(form.ateliers) }}
                 </div>
-                <h5>Bulletin Réservation hôtel</h5>
-                <div class='row'>
+                <hr>
+                <div id="hotel1" style="display:block" >
+                    <h5>Bulletin Réservation hôtel</h5>
+                    {{ form_label(form.dateNuitee1,'Date de nuitée') }}
+                    {{ form_widget(form.dateNuitee1,{'attr':{'class':'col-5','disabled':'true'}}) }}
                     {{ form_widget(form.hotel1) }}
+                </div>
+                <div id="hotel2" style="display:block">
                     <hr>
+                    {{ form_label(form.dateNuitee2,'Date de nuitée') }}
+                    {{ form_widget(form.dateNuitee2,{'attr':{'class':'col-5','disabled':'true'}}) }}
                     {{ form_widget(form.hotel2) }}
                 </div>
-                <div>
+                <div id="idRestauration" style="display:block")>
                     <hr>
                     {{ form_widget(form.restaurations1) }}
                     {{ form_widget(form.restaurations2) }}
                 </div>
             </div>
-        </div>
+        </div>       
     {{form_end(form)}}
+    <button onclick="ajouterHotel()" id="btnAjouterHotel">Ajouter</button>
+    <button onclick="supprimerHotel()" id="btnSupprimerHotel">Suprimer</button>
 {% endblock %}

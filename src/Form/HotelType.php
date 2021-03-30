@@ -13,7 +13,7 @@ class HotelType extends AbstractType
     {
         $builder
             ->add('nomHotel')
-            ->add('adresse1')
+            ->add('adresse')
             ->add('adresse2')
             ->add('cp')
             ->add('ville')

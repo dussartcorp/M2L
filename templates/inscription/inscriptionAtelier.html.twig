@@ -4,8 +4,10 @@
     {{form_start(form)}}
         <div class="InscriptionBox container">
             <div>
-                <div class="form-check-inline row">                   
-                    {{ form_widget(form.ateliers) }}
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">                   
+                        {{ form_widget(form.ateliers) }}
+                    </div>
                 </div>
                 <hr class="my-4">
                 <div class="row">
@@ -30,24 +32,38 @@
                     {{ form_widget(form.dateNuitee1,{'attr':{'class':'col-5','disabled':'true'}}) }}
                     {{ form_widget(form.hotel1) }}
                 </div>
-                <div id="hotel2" style="display:block">
+                <div id="hotel2" style="display:block";>
                     <hr>
                     {{ form_label(form.dateNuitee2,'Date de nuitée') }}
                     {{ form_widget(form.dateNuitee2,{'attr':{'class':'col-5','disabled':'true'}}) }}
                     {{ form_widget(form.hotel2) }}
                 </div>
-                <div id="idRestauration1" style="display:block")>
+                <div id="lblRestauration" style="display:block";>
                     <hr>
                     <h5>Réservation restaurations accompagnant</h5>
-                    <input type="checkbox" id="samedi" name="scales">
-                    <label for="samedi">Samedi</label>
-                    <input type="checkbox" id="dimanche" name="scales">
-                    <label for="dimanche">Dimanche</label>
                 </div>
-                <div id="idRestauration2" style="display:block">
-                    
+                <div id="idRestauration1" style="display:block">
+                    <h6>Pour le Samedi :</h6>
+                   <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Midi</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2">Soir</label>
+                    </div>
                 </div>
+                 <div id="idRestauration2" style="display:block">
+                    <h6>Pour le Dimanche :</h6>
+                   <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck3">
+                            <label class="custom-control-label" for="customCheck3">Midi</label>
+                        </div>
+                </div>   
             </div>
-        </div>       
+        </div>
+    </div>       
     {{form_end(form)}}
 {% endblock %}

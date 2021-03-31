@@ -50,3 +50,11 @@
 body{
     margin-bottom: 100px;
 }
+
+.resto{
+    margin:0px 15px;
+}
+
+#lblSamedi,#samedi{
+    margin-right: 5px;
+}

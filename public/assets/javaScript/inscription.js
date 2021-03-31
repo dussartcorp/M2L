@@ -30,6 +30,7 @@ function ajouterRestauration(){
     var restauration2=document.getElementById("idRestauration2");
     if(restauration1.style.display=="none" && restauration2.style.display=="none"){
         restauration1.style.display="block";
+        document.getElementById("lblRestauration").style.display="block";
         document.getElementById("liSuppResto").style.pointerEvents="";
     }
     else if(restauration1.style.display=="block"&&restauration2.style.display=="none"){
@@ -45,6 +46,7 @@ function supprimerRestauration(){
     }
     else if(restauration1.style.display=="block"&&restauration2.style.display=="none"){
         restauration1.style.display="none";
+        document.getElementById("lblRestauration").style.display="none";
         document.getElementById("liSuppResto").style.pointerEvents="none";
     }
 }

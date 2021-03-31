@@ -20,17 +20,17 @@ class Licencie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=11,name="numLicence")
+     * @ORM\Column(type="string", length=12,name="numLicence")
      */
     private $numLicence;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=70)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=70)
      */
     private $prenom;
 
@@ -45,22 +45,22 @@ class Licencie
     private $adresse2;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=6)
      */
     private $cp;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=80)
      */
     private $ville;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=14)
      */
     private $tel;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=100)
      */
     private $mail;
 
@@ -71,7 +71,7 @@ class Licencie
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="licencie", cascade={"persist", "remove"})
-     * @ORM\Column(name="idcompte")
+     * @ORM\Column(name="idcompte", nullable=true)
      */
     private $compte;
 

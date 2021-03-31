@@ -31,16 +31,16 @@ insert into CATEGORIECHAMBRE (LIBELLECATEGORIE) values ('Double');
 -- 
 /*
 -- insert into qualite(libellequalite) values ('Président de ligue');
--- insert into qualite(libellequalite) values ('Président de club');
+-- insert into qualite(libellequalite) values ('Président de Club');
 -- insert into qualite(libellequalite) values ('Président de CD');
 -- insert into qualite(libellequalite) values ('Vice-Président de ligue');
--- insert into qualite(libellequalite) values ('Vice-Président de club');
+-- insert into qualite(libellequalite) values ('Vice-Président de Club');
 -- insert into qualite(libellequalite) values ('Vice-Président de CD');
 -- insert into qualite(libellequalite) values ('secrétaire de ligue');
--- insert into qualite(libellequalite) values ('secrétaire de club');
+-- insert into qualite(libellequalite) values ('secrétaire de Club');
 -- insert into qualite(libellequalite) values ('secrétaire de CD');
 -- insert into qualite(libellequalite) values ('Trésorier de ligue');
--- insert into qualite(libellequalite) values ('Trésorier de club');
+-- insert into qualite(libellequalite) values ('Trésorier de Club');
 -- insert into qualite(libellequalite) values ('Trésorier de CD');
 -- insert into qualite(libellequalite) values ('Maitre d''armes');
 -- insert into qualite(libellequalite) values ('Eleve Maitre');
@@ -66,9 +66,9 @@ insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 14:00:00',
 --       TABLE : ATELIER
 --
 
-insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE CLUB ET SON PROJET', 1, 60);
-insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE FONCTIONNEMENT DU CLUB', 1, 80);
-insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LES OUTILS À DISPOSITION ET REMIS AUX CLUBS', 2, 110);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE Club ET SON PROJET', 1, 60);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LE FONCTIONNEMENT DU Club', 1, 80);
+insert into ATELIER(libelle, idvacation, nbplacemaxi) values('LES OUTILS À DISPOSITION ET REMIS AUX ClubS', 2, 110);
 insert into ATELIER(libelle, idvacation, nbplacemaxi) values('OBSERVATOIRE DES MÉTIERS DE LESCRIME', 2, 60);
 insert into ATELIER(libelle, idvacation, nbplacemaxi) values('I. F. F. E', 1, 70);
 insert into ATELIER(libelle, idvacation, nbplacemaxi) values('DÉVELOPPEMENT DURABLE', 2, 60);

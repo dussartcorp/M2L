@@ -47,7 +47,14 @@ class InscriptionController extends AbstractController
         $formNuitee1->handleRequest($request);
         $formNuitee2->handleRequest($request);
         if(($form->isSubmitted()&&$form->isValid())&&($formNuitee1->isSubmitted()&&$formNuitee1->isValid())&&($formNuitee2->isSubmitted()&&$formNuitee2->isValid())){   
-            
+            if($nuitee2->getHotel()==null && $nuitee1->getHotel()!=null){
+                $inscription->addNuitee($nuitee1);
+            }
+            else if($nuitee2->getHotel()!=null && $nuitee1->getHotel()!=null){
+                $inscription->addNuitee($nuitee1);
+                $inscription->addNuitee($nuitee2);
+            }
+            var_dump($inscription);
         }
         return $this->render('inscription/inscriptionSejour.html.twig',['form'=>$form->createView(),'nuitee1'=>$formNuitee1->createView(),'nuitee2'=>$formNuitee2->createView()]);
     }

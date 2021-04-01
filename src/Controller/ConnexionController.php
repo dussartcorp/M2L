@@ -33,4 +33,12 @@ class ConnexionController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    /**
+     * @Route("/mdpOublie", name="mdpOublie")
+     */
+    public function mdpOublie(){
+        $form = $_POST['email'];
+        return $this->render('security/mdpOublie.html.twig');
+    }
 }

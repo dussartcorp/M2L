@@ -47,11 +47,13 @@
 			</li>
 		</ul>
 	</div>
-</html></nav></header><body>{% block body %}
-{# {{app.flashes}} #}
+</html></nav></header><body>
 {% for message in app.flashes('warning') %}
 	<div class="alert alert-danger" style="margin: 0 !important" role="alert">
 		{{ message }}
 	</div>
 {% endfor %}
+{% block body %}
+{# {{app.flashes}} #}
+
 {% endblock %}</body><footer class="footer">Maison Des Ligues</footer></html>

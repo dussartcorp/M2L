@@ -25,21 +25,19 @@ class CreationCompteController extends AbstractController
         $compte = new User();
         $form = $this->createForm(CreationCompteType::class, $compte);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $compte->setRoles(["ROLE_INSCRIT"]);
             $mdp = $form->get('password')->getData();
             $vmdp = $form->get('confPassword')->getData();
-            if($mdp === $vmdp){
-            $encoder = $encoder->encodePassword($compte, $mdp);
-            $compte->setPassword($encoder);
-            $manager->persist($compte);
-            $manager->flush();
+            if ($mdp === $vmdp) {
+                $encoder = $encoder->encodePassword($compte, $mdp);
+                $compte->setPassword($encoder);
+                $manager->persist($compte);
+                $manager->flush();
 
-            return $this->redirectToRoute('app_login');
-            }
-            else
-            { 
-                echo '<div class="alert alert-danger" style="margin: 0 !important" role="alert"> Les mots de passes doivent êtres identiques ! </div>';
+                return $this->redirectToRoute('app_login');
+            } else {
+                $this->addFlash('warning', " Les mots de passes doivent êtres identiques !");
             };
         }
         return $this->render('CreationCompte/index.html.twig', [

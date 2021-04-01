@@ -2,10 +2,13 @@
 {% block body %}
 <div>
     {{form_start(form)}}
+    {{form_start(nuitee1)}}
+    {{form_start(nuitee2)}}
         <div class="InscriptionBox container">
             <div>
                 <div class="form-group">
-                    <div class="custom-control custom-checkbox">                   
+                    <div class="form-check" row> 
+                        <h5>Choix des ateliers (5 ateliers maximum - a cocher)</h5>                  
                         {{ form_widget(form.ateliers) }}
                     </div>
                 </div>
@@ -28,15 +31,15 @@
                         </div>
                     </div>
                 <div id="hotel1" style="display:block";>
-                    {{ form_label(form.dateNuitee1,'Date de nuitée') }}
-                    {{ form_widget(form.dateNuitee1,{'attr':{'class':'col-5','disabled':'true'}}) }}
-                    {{ form_widget(form.hotel1) }}
+                    <input class=" paramHotel form form-control col-5" type="date" id="date1" name="trip-start" value="2020-09-14" disabled>
+                    {{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
+                    {{form_widget(nuitee1.categorieChambre)}}
                 </div>
                 <div id="hotel2" style="display:block";>
                     <hr>
-                    {{ form_label(form.dateNuitee2,'Date de nuitée') }}
-                    {{ form_widget(form.dateNuitee2,{'attr':{'class':'col-5','disabled':'true'}}) }}
-                    {{ form_widget(form.hotel2) }}
+                    <input class=" paramHotel form form-control col-5" type="date" id="date2" name="trip-start" value="2020-09-15" disabled>
+                    {{ form_widget(nuitee2.hotel,{'attr':{'class':'paramHotel'}}) }}
+                    {{form_widget(nuitee2.categorieChambre)}}
                 </div>
                 <div id="lblRestauration" style="display:block";>
                     <hr>
@@ -64,6 +67,10 @@
                 </div>   
             </div>
         </div>
+        <hr>
+        <button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
     </div>       
     {{form_end(form)}}
+    {{form_end(nuitee1)}}
+    {{form_end(nuitee2)}}
 {% endblock %}

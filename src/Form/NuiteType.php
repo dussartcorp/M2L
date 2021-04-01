@@ -9,7 +9,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Hotel;
-
+use DateTime;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class NuiteType extends AbstractType
 {
@@ -20,12 +21,16 @@ class NuiteType extends AbstractType
                 'class'=>Hotel::class,
                 'choice_label'=>'nomHotel',
                 'expanded'=>false,
-                'multiple'=>false,])
+                'multiple'=>false,
+                'placeholder'=>'None',
+                'required'=>false])
             ->add('categorieChambre',EntityType::class,[
                 'class'=>CategorieChambre::class,
                 'choice_label'=>'libelleCategorie',
                 'expanded'=>false,
                 'multiple'=>false,
+                'placeholder'=>'None',
+                'required'=>false
             ])
         ;
     }

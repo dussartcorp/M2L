@@ -22,12 +22,12 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=9, unique=true)
+     * @ORM\Column(type="string", length=11, unique=true)
      * @Assert\Length(
-     *              min=9, 
-     *              max=9,
-     *              minMessage="Le numéro de licence doit contenir 9 chiffres",
-     *              maxMessage="Le numéro de licence doit contenir 9 chiffres")
+     *              min=11, 
+     *              max=11,
+     *              minMessage="Le numéro de licence doit contenir 11 chiffres",
+     *              maxMessage="Le numéro de licence doit contenir 11 chiffres")
      */
     private $numLicence;
 
@@ -59,6 +59,12 @@ class User implements UserInterface
      *              message="L'adresse mail n'est pas valide")
      */
     private $Email;
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $confPassword;
 
     public function getId(): ?int
     {
@@ -183,6 +189,18 @@ class User implements UserInterface
     public function setEmail(string $Email): self
     {
         $this->Email = $Email;
+
+        return $this;
+    }
+
+    public function getConfPassword(): ?string
+    {
+        return $this->confPassword;
+    }
+
+    public function setConfPassword(string $confPassword): self
+    {
+        $this->confPassword = $confPassword;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LicencieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,17 +20,17 @@ class Licencie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255,name="numLicence")
+     * @ORM\Column(type="string", length=12,name="numLicence")
      */
     private $numLicence;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=70)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=70)
      */
     private $prenom;
 
@@ -43,22 +45,22 @@ class Licencie
     private $adresse2;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=6)
      */
     private $cp;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=80)
      */
     private $ville;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=14)
      */
     private $tel;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=100)
      */
     private $mail;
 
@@ -69,9 +71,27 @@ class Licencie
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="licencie", cascade={"persist", "remove"})
-     * @ORM\Column(name="idcompte")
+     * @ORM\Column(name="idcompte", nullable=true)
      */
     private $compte;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Qualite::class)
+     * @ORM\JoinColumn(nullable=false, name="idQualite")
+     */
+    private $laQualite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Club::class)
+     * @ORM\JoinColumn(nullable=false, name="idClub")
+     */
+    private $leClub;
+
+
+    public function __construct()
+    {
+
+    }
 
     public function getId(): ?int
     {
@@ -206,6 +226,31 @@ class Licencie
     public function setCompte(?User $compte): self
     {
         $this->compte = $compte;
+
+        return $this;
+    }
+    
+
+    public function getLaQualite(): ?Qualite
+    {
+        return $this->laQualite;
+    }
+
+    public function setLaQualite(?Qualite $laQualite): self
+    {
+        $this->laQualite = $laQualite;
+
+        return $this;
+    }
+
+    public function getLeClub(): ?Club
+    {
+        return $this->leClub;
+    }
+
+    public function setLeClub(?Club $leClub): self
+    {
+        $this->leClub = $leClub;
 
         return $this;
     }

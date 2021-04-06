@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Regex;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -19,7 +22,12 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=11, unique=true)
+     * @Assert\Length(
+     *              min=11, 
+     *              max=11,
+     *              minMessage="Le numéro de licence doit contenir 11 chiffres",
+     *              maxMessage="Le numéro de licence doit contenir 11 chiffres")
      */
     private $numLicence;
 
@@ -33,6 +41,30 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity=Inscription::class, mappedBy="compte", cascade={"persist", "remove"})
+     */
+    private $inscription;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Licencie::class, mappedBy="compte", cascade={"persist", "remove"})
+     */
+    private $licencie;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *              message="L'adresse mail n'est pas valide")
+     */
+    private $Email;
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $confPassword;
 
     public function getId(): ?int
     {
@@ -110,5 +142,66 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    
+    public function getInscription(): ?Inscription
+    {
+        return $this->inscription;
+    }
+
+    public function setInscription(?Inscription $inscription): self
+    {
+        $this->inscription = $inscription;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompte = null === $inscription ? null : $this;
+        if ($inscription->getCompte() !== $newCompte) {
+            $inscription->setCompte($newCompte);
+        }
+
+        return $this;
+    }
+
+    public function getLicencie(): ?Licencie
+    {
+        return $this->licencie;
+    }
+
+    public function setLicencie(?Licencie $licencie): self
+    {
+        $this->licencie = $licencie;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompte = null === $licencie ? null : $this;
+        if ($licencie->getCompte() !== $newCompte) {
+            $licencie->setCompte($newCompte);
+        }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->Email;
+    }
+
+    public function setEmail(string $Email): self
+    {
+        $this->Email = $Email;
+
+        return $this;
+    }
+
+    public function getConfPassword(): ?string
+    {
+        return $this->confPassword;
+    }
+
+    public function setConfPassword(string $confPassword): self
+    {
+        $this->confPassword = $confPassword;
+
+        return $this;
     }
 }

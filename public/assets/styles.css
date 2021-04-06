@@ -1,0 +1,40 @@
+.footer{
+    width: 100%;
+    background-color: #423e3e;
+    color: white;
+    padding: 20px 0px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
+
+.loginC{
+    display:flex;
+    justify-content: center;
+}
+#loginH1{
+    color:black;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#loginBtn{
+    margin-top: 10px;
+    display:flex;
+    justify-content: center;
+}
+
+.InscriptionBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.InscriptionBoxInput{
+   width: 500px;
+}
+
+.hotel{
+    flex-direction: column;
+
+}

@@ -17,10 +17,7 @@ class Restauration
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", columnDefinition="enum('Samedi', 'Dimanche')", length=20,name="dateRestauration")
-     */
-    private $dateRestauration;
+
 
     /**
      * @ORM\Column(type="string", columnDefinition="enum('Midi', 'Soir')", length=15,name="typesRepas")
@@ -33,22 +30,17 @@ class Restauration
      */
     private $inscriptions;
 
+    /**
+     * @ORM\Column(type="datetime",name="dateRestauration")
+     */
+    private $dateRestauration;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateRestauration(): ?string
-    {
-        return $this->dateRestauration;
-    }
 
-    public function setDateRestauration(string $dateRestauration): self
-    {
-        $this->dateRestauration = $dateRestauration;
-
-        return $this;
-    }
 
     public function getTypesRepas(): ?string
     {
@@ -70,6 +62,18 @@ class Restauration
     public function setInscriptions(?Inscription $inscriptions): self
     {
         $this->inscriptions = $inscriptions;
+
+        return $this;
+    }
+
+    public function getDateRestauration(): ?\DateTimeInterface
+    {
+        return $this->dateRestauration;
+    }
+
+    public function setDateRestauration(\DateTimeInterface $dateRestauration): self
+    {
+        $this->dateRestauration = $dateRestauration;
 
         return $this;
     }

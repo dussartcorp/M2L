@@ -13,11 +13,6 @@ class RestaurationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateRestauration',EntityType::class,[
-                'class'=>Restauration::class,
-                'choice_label'=>'dateRestauration',
-                'expanded'=>false,
-                'multiple'=>false,])
             ->add('typesRepas',EntityType::class,[
                 'class'=>Restauration::class,
                 'choice_label'=>'typesRepas',

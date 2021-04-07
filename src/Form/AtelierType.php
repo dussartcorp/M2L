@@ -29,7 +29,7 @@ class AtelierType extends AbstractType
                 'class' => Vacation::class,
                 'choice_label' => 'libelle',
                 'expanded' => true,
-                'multiple' => true,
+                'multiple' => false,
             ])
         ;
     }
@@ -41,3 +41,4 @@ class AtelierType extends AbstractType
         ]);
     }
 }
+

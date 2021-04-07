@@ -28,7 +28,7 @@ class Restauration
     private $typesRepas;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="restaurations")
+     * @ORM\ManyToMany(targetEntity=Inscription::class, inversedBy="restaurations")
      * @ORM\JoinColumn(name="idinscription")
      */
     private $inscriptions;

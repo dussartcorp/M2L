@@ -27,7 +27,7 @@ class AtelierType extends AbstractType
             ])
             ->add('vacations', EntityType::class,[
                 'class' => Vacation::class,
-                'choice_label' => 'id',
+                'choice_label' => 'libelle',
                 'expanded' => true,
                 'multiple' => true,
             ])

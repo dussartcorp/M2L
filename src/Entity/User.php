@@ -66,6 +66,11 @@ class User implements UserInterface
      */
     private $confPassword;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $activation_token;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -201,6 +206,18 @@ class User implements UserInterface
     public function setConfPassword(string $confPassword): self
     {
         $this->confPassword = $confPassword;
+
+        return $this;
+    }
+
+    public function getActivationToken(): ?string
+    {
+        return $this->activation_token;
+    }
+
+    public function setActivationToken(?string $activation_token): self
+    {
+        $this->activation_token = $activation_token;
 
         return $this;
     }

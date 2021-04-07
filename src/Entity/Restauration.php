@@ -18,7 +18,6 @@ class Restauration
     private $id;
 
 
-
     /**
      * @ORM\Column(type="string", columnDefinition="enum('Midi', 'Soir')", length=15,name="typesRepas")
      */

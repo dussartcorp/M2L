@@ -59,8 +59,8 @@ insert into CATEGORIECHAMBRE (LIBELLECATEGORIE) values ('Double');
 --       TABLE : VACATION
 --
 
-insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 08:00:00', '2021-03-27 10:00:00');
-insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 14:00:00', '2021-03-27 18:00:00');
+insert into VACATION(libelle, dateheuredebut, dateheurefin) values('le 27 mars de 8h à 10h', '2021-03-27 08:00:00', '2021-03-27 10:00:00');
+insert into VACATION(libelle, dateheuredebut, dateheurefin) values('le 27 mars de 14h à 18h', '2021-03-27 14:00:00', '2021-03-27 18:00:00');
 
 -- -----------------------------------------------------------------------------
 --       TABLE : ATELIER

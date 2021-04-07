@@ -18,6 +18,11 @@ class Vacation
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=70)
+     */
+    private $Libelle;
+
+    /**
      * @ORM\Column(type="datetime", name="dateheuredebut")
      */
     private $dateHeureDebut;
@@ -52,6 +57,18 @@ class Vacation
     public function setDateHeureFin(\DateTimeInterface $dateHeureFin): self
     {
         $this->dateHeureFin = $dateHeureFin;
+
+        return $this;
+    }
+
+    public function getLibelle(): ?string
+    {
+        return $this->Libelle;
+    }
+
+    public function setLibelle(string $Libelle): self
+    {
+        $this->Libelle = $Libelle;
 
         return $this;
     }

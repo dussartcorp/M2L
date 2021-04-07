@@ -27,7 +27,7 @@ class AtelierType extends AbstractType
             ])
             ->add('vacations', EntityType::class,[
                 'class' => Vacation::class,
-                'choice_label' => 'dateHeureDebut',
+                'choice_label' => 'id',
                 'expanded' => true,
                 'multiple' => true,
             ])

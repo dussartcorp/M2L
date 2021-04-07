@@ -18,7 +18,7 @@ class Restauration
     private $id;
 
     /**
-     * @ORM\Column(type="datetime",name="dateRestauration")
+     * @ORM\Column(type="string", length=20,name="dateRestauration")
      */
     private $dateRestauration;
 
@@ -28,7 +28,7 @@ class Restauration
     private $typesRepas;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="restaurations")
+     * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations")
      * @ORM\JoinColumn(name="idinscription")
      */
     private $inscriptions;
@@ -38,12 +38,12 @@ class Restauration
         return $this->id;
     }
 
-    public function getDateRestauration(): ?\DateTimeInterface
+    public function getDateRestauration(): ?string
     {
         return $this->dateRestauration;
     }
 
-    public function setDateRestauration(\DateTimeInterface $dateRestauration): self
+    public function setDateRestauration(string $dateRestauration): self
     {
         $this->dateRestauration = $dateRestauration;
 

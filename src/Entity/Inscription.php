@@ -42,7 +42,7 @@ class Inscription
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=Restauration::class, mappedBy="inscriptions")
+     * @ORM\ManyToMany(targetEntity=Restauration::class, inversedBy="inscriptions")
      * @ORM\JoinTable(
      *        name="inscriptionparRestauration",
      *        joinColumns={@ORM\JoinColumn(name="idinscription", referencedColumnName="id")},

@@ -125,14 +125,6 @@ INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,2,122.00 );
 -- insert into parametres (nomddl, adrue1, adrue2, cp, ville, tel, fax, mail, tarifinscription, tarifrepasaccompagnant, duree, nbateliermax) 
 --	values('maison des Ligues', '123 avenue des balladins', 'résidence du cirque', '83000', 'Toulon', '04 04 04 04 04','04 04 04 04 01','mdl@free.fr',100,35,90,6);
 
-INSERT INTO `dbmdl`.`restauration` (`id`, `dateRestauration`, `typesRepas`) VALUES ('1', '2020-09-14', 'Midi');
-INSERT INTO `dbmdl`.`restauration` (`id`, `dateRestauration`, `typesRepas`) VALUES ('2', '2020-09-14', 'Soir');
-INSERT INTO `dbmdl`.`restauration` (`id`, `dateRestauration`, `typesRepas`) VALUES ('3', '2020-09-15', 'Midi');
-ALTER TABLE `dbmdl`.`restauration` 
-CHANGE COLUMN `dateRestauration` `dateRestauration` VARCHAR(20) NOT NULL ;
-UPDATE `dbmdl`.`restauration` SET `dateRestauration` = 'Samedi' WHERE (`id` = '1');
-UPDATE `dbmdl`.`restauration` SET `dateRestauration` = 'Samedi' WHERE (`id` = '2');
-UPDATE `dbmdl`.`restauration` SET `dateRestauration` = 'Dimanche' WHERE (`id` = '3');
 
 
 commit;

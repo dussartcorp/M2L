@@ -47,4 +47,10 @@ class RestaurationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getRestauration() : array{
+        
+        $restauration=[];
+         n,
+    }
 }

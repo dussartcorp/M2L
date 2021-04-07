@@ -23,9 +23,9 @@ class Restauration
     private $dateRestauration;
 
     /**
-     * @ORM\Column(type="json", length=15,name="typesRepas")
+     * @ORM\Column(type="string", columnDefinition="enum('Midi', 'Soir')", length=15,name="typesRepas")
      */
-    private $typesRepas =[];
+    private $typesRepas;
 
     /**
      * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations")
@@ -50,12 +50,12 @@ class Restauration
         return $this;
     }
 
-    public function getTypesRepas(): ?array
+    public function getTypesRepas(): ?string
     {
         return $this->typesRepas;
     }
 
-    public function setTypesRepas(array $typesRepas): self
+    public function setTypesRepas(string $typesRepas): self
     {
         $this->typesRepas = $typesRepas;
 

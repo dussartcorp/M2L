@@ -42,7 +42,12 @@ class Inscription
 
 
     /**
-     * @ORM\OneToMany(targetEntity=Restauration::class, mappedBy="inscriptions")
+     * @ORM\ManyToMany(targetEntity=Restauration::class, inversedBy="inscriptions")
+     * @ORM\JoinTable(
+     *        name="inscriptionparRestauration",
+     *        joinColumns={@ORM\JoinColumn(name="idinscription", referencedColumnName="id")},
+     *        inverseJoinColumns={@ORM\JoinColumn(name="idrestauration", referencedColumnName="id")}
+     *        )
      */
     private $restaurations;
 

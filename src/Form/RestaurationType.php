@@ -17,8 +17,7 @@ class RestaurationType extends AbstractType
                 'class'=>Restauration::class,
                 'choice_label'=>'dateRestauration',
                 'expanded'=>false,
-                'multiple'=>false,
-                'label'=>'Jour de restauration'])
+                'multiple'=>false,])
             ->add('typesRepas',EntityType::class,[
                 'class'=>Restauration::class,
                 'choice_label'=>'typesRepas',

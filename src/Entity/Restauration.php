@@ -18,17 +18,17 @@ class Restauration
     private $id;
 
     /**
-     * @ORM\Column(type="datetime",name="dateRestauration")
+     * @ORM\Column(type="string", columnDefinition="enum('Samedi', 'Dimanche')", length=20,name="dateRestauration")
      */
     private $dateRestauration;
 
     /**
-     * @ORM\Column(type="string", length=15,name="typesRepas")
+     * @ORM\Column(type="json", length=15,name="typesRepas")
      */
-    private $typesRepas;
+    private $typesRepas =[];
 
     /**
-     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="restaurations")
+     * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations")
      * @ORM\JoinColumn(name="idinscription")
      */
     private $inscriptions;
@@ -38,24 +38,24 @@ class Restauration
         return $this->id;
     }
 
-    public function getDateRestauration(): ?\DateTimeInterface
+    public function getDateRestauration(): ?string
     {
         return $this->dateRestauration;
     }
 
-    public function setDateRestauration(\DateTimeInterface $dateRestauration): self
+    public function setDateRestauration(string $dateRestauration): self
     {
         $this->dateRestauration = $dateRestauration;
 
         return $this;
     }
 
-    public function getTypesRepas(): ?string
+    public function getTypesRepas(): ?array
     {
         return $this->typesRepas;
     }
 
-    public function setTypesRepas(string $typesRepas): self
+    public function setTypesRepas(array $typesRepas): self
     {
         $this->typesRepas = $typesRepas;
 

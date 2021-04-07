@@ -64,3 +64,9 @@ insert into themesparatelier(idatelier, idtheme) values
 (6, 29),
 (6, 30),
 (6, 31);
+
+
+insert into restauration (typesrepas, daterestauration) values 
+('midi', '2021-09-14 00:00:00'),
+('soir', '2021-09-14 00:00:00'),
+('midi', '2021-09-15 00:00:00');

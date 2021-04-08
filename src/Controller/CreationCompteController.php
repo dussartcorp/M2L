@@ -35,7 +35,8 @@ class CreationCompteController extends AbstractController
                 if ($mdp === $vmdp) {
                     $encoder = $encoder->encodePassword($compte, $mdp);
                     $compte->setPassword($encoder);
-
+                    $compte->setconfPassword($encoder);
+                    
                     $compte->setActivationToken(md5(uniqid()));
 
                     $manager->persist($compte);

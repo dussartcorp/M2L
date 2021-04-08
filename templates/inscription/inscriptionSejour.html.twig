@@ -31,13 +31,13 @@
                         </div>
                     </div>
                 <div id="hotel1" style="display:block";>
-                    <input class=" paramHotel form form-control col-5" type="date" id="date1" name="trip-start" value="2020-09-14" disabled>
+                    <input class=" paramHotel form form-control col-5" type="date" id="date1" name="trip-start" value="{{resto1.dateResto}}" disabled>
                     {{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
                     {{form_widget(nuitee1.categorieChambre)}}
                 </div>
                 <div id="hotel2" style="display:block";>
                     <hr>
-                    <input class=" paramHotel form form-control col-5" type="date" id="date2" name="trip-start" value="2020-09-15" disabled>
+                    <input class=" paramHotel form form-control col-5" type="date" id="date2" name="trip-start" value="{{ resto2.dateResto }}" disabled>
                     {{ form_widget(nuitee2.hotel,{'attr':{'class':'paramHotel'}}) }}
                     {{form_widget(nuitee2.categorieChambre)}}
                 </div>
@@ -46,32 +46,30 @@
                     <h5>Réservation restaurations accompagnant</h5>
                 </div>
                 <div id="idRestauration1" style="display:block">
-                    <h6>Pour le Samedi :</h6>
-                   <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Midi</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2">Soir</label>
-                    </div>
-                </div>
-                 <div id="idRestauration2" style="display:block">
-                    <h6>Pour le Dimanche :</h6>
-                   <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                            <label class="custom-control-label" for="customCheck3">Midi</label>
+                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{resto1.dateResto}}" disabled>
+                   <div class="from-control">
+                        {% for resto in resto1.typeRepas %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="ckcSam{{ resto }}" ></input>
+                            <label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
                         </div>
-                </div>   
-            </div>
+                        {% endfor %}
+                    </div>
+                <br>
+                 <div id="idRestauration2" style="display:block">
+                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" disabled>
+                   <div class="from-control">
+                        {% for resto in resto2.typeRepas %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="ckcSam{{ resto }}" ></input>
+                            <label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>  
+                </div>
         </div>
         <hr>
         <button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
-        {% for resto in restos %}
-            <h1>{{ resto }}</h1>
-        {% endfor %}
     </div>       
     {{form_end(form)}}
     {{form_end(nuitee1)}}

@@ -11,10 +11,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\InscriptionRepository;
 use App\Form\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use App\Entity\Atelier;
 use App\Form\NuiteType;
 use App\Entity\Nuite;
 use App\Repository\RestaurationRepository;
+use App\Service\Outils;
 
 /**
  * @Route("/inscription",name="inscription_")
@@ -40,6 +40,18 @@ class InscriptionController extends AbstractController
     {   
 
         $restauration=$repoResto->getRestauration();
+        $resto1=[];
+        $resto2=[];
+        foreach($restauration as $item){
+    
+            if(count($item['typeRepas'])==2){
+                $resto1=$item;
+            }
+            else if(count($item['typeRepas'])<2){
+                $resto2=$item;
+            }
+            
+        }
         $inscription= New Inscription();
         $nuitee1=New Nuite();
         $nuitee2=New Nuite();
@@ -58,7 +70,14 @@ class InscriptionController extends AbstractController
                 $inscription->addNuitee($nuitee2);
             }
         }
-        return $this->render('inscription/inscriptionSejour.html.twig',['form'=>$form->createView(),'nuitee1'=>$formNuitee1->createView(),'nuitee2'=>$formNuitee2->createView(),'restos'=>$restauration]);
+        return $this->render('inscription/inscriptionSejour.html.twig',['form'=>$form->createView(),'nuitee1'=>$formNuitee1->createView(),'nuitee2'=>$formNuitee2->createView(),'resto1'=>$resto1,'resto2'=>$resto2]);
+    }
+
+    public function traitementArray( array $tabP,$tabRe,$tabRe2){
+
+        
+    
     }
 
 }
+

@@ -4,7 +4,6 @@
     {{form_start(form)}}
     {{form_start(nuitee1)}}
     {{form_start(nuitee2)}}
-    {{form_start(resto1)}}
         <div class="InscriptionBox container">
             <div>
                 <div class="form-group">
@@ -70,11 +69,11 @@
         </div>
         <hr>
         <button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
-        {{form_widget(resto1.typesRepas)}}
-        {{form_label(resto1.typesRepas)}}
+        {% for resto in restos %}
+            <h1>{{ resto }}</h1>
+        {% endfor %}
     </div>       
     {{form_end(form)}}
     {{form_end(nuitee1)}}
     {{form_end(nuitee2)}}
-    {{form_end(resto1)}}
 {% endblock %}

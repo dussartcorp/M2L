@@ -49,8 +49,15 @@ class RestaurationRepository extends ServiceEntityRepository
     */
 
     public function getRestauration() : array{
-        
         $restauration=[];
-         n,
+        $temp=[];
+        $dql=$this->getEntityManager()->createQuery('select resto from App\Entity\Restauration resto')->getResult();
+        foreach($dql as $resto){
+            if(!in_array($resto->getDateRestauration(),$temp)){
+                $restauration[]=$resto->getTypesRepas();
+                $temp[]=$resto->getDateRestauration();
+            }
+        }
+        return $restauration;
     }
 }

@@ -20,7 +20,16 @@ class AtelierType extends AbstractType
         $builder
             ->add('libelle', TextType::class)
             ->add('nbPlaceMaxi', NumberType::class)
-            ->add('themes', ChoiceType::class)
+            ->add('themes', EntityType::class,[
+                'class' => Theme::class,
+               'choice_label' => function ($theme) {
+                   return $theme->getLibelle();
+               },
+               'multiple' => true,
+               'attr' => [
+                   'class' => 'select_themes'
+               ]
+           ])
             // ->add('themes', EntityType::class,[
             //       'class' => Theme::class,
             //       'choice_label' => 'libelle',

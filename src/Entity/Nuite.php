@@ -25,19 +25,19 @@ class Nuite
     private $dateNuitee;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="nuites")
+     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="nuites",cascade={"persist"})
      * @ORM\JoinColumn(name="idhotel")
      */
     private $hotel;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="nuites")
+     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="nuites",cascade={"persist"})
      * @ORM\Column(name="idcategorieChambre")
      */
     private $categorieChambre;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="Nuitees")
+     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="Nuitees",cascade={"persist"})
      * @ORM\JoinColumn(name="idinscription")
      */
     private $inscriptions;

@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\InscriptionRepository;
 use App\Form\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Form\NuiteType;
 use App\Entity\Nuite;
 use App\Entity\Restauration;
+use App\Entity\User;
 use App\Repository\RestaurationRepository;
 use App\Service\Outils;
 use DateTime;
@@ -40,7 +40,7 @@ class InscriptionController extends AbstractController
      */
     public function inscription(Request $request,EntityManagerInterface $manager,RestaurationRepository $repoResto)
     {   
-
+        $user=$this->getUser();
         $restauration=$repoResto->getRestauration();
         $resto1=[];
         $resto2=[];
@@ -93,7 +93,10 @@ class InscriptionController extends AbstractController
                 $uneRestauration3->setInscriptions($inscription);
                 $inscription->addRestauration($uneRestauration3);
             }
-            echo '<h1>'. $inscription->getRestaurations()[0]->getDateRestauration()->format('Y-m-d') . '</h1>';
+            $inscription->setCompte($user);
+            $manager->persist($inscription);
+            $manager->flush();
+            return $this->redirectToRoute('home');
         }
         return $this->render('inscription/inscriptionSejour.html.twig',['form'=>$form->createView(),'nuitee1'=>$formNuitee1->createView(),'nuitee2'=>$formNuitee2->createView(),'resto1'=>$resto1,'resto2'=>$resto2]);
     }

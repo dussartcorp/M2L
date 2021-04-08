@@ -25,7 +25,7 @@ class Inscription
     private $dateInscription;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Atelier::class, inversedBy="inscriptions")
+     * @ORM\ManyToMany(targetEntity=Atelier::class, inversedBy="inscriptions",cascade={"persist"})
      * @ORM\JoinTable(
      *        name="inscriptionparAtelier",
      *        joinColumns={@ORM\JoinColumn(name="idinscription", referencedColumnName="id")},
@@ -42,7 +42,7 @@ class Inscription
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=Restauration::class, inversedBy="inscriptions")
+     * @ORM\ManyToMany(targetEntity=Restauration::class, inversedBy="inscriptions",cascade={"persist"})
      * @ORM\JoinTable(
      *        name="inscriptionparRestauration",
      *        joinColumns={@ORM\JoinColumn(name="idinscription", referencedColumnName="id")},

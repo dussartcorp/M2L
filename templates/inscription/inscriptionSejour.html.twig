@@ -31,13 +31,13 @@
                         </div>
                     </div>
                 <div id="hotel1" style="display:block";>
-                    <input class=" paramHotel form form-control col-5" type="date" id="date1" name="trip-start" value="{{resto1.dateResto}}" disabled>
+                    <input class=" paramHotel form form-control col-5" type="date" id="date1" name="date1" value="{{resto1.dateResto}}" readonly>
                     {{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
                     {{form_widget(nuitee1.categorieChambre)}}
                 </div>
                 <div id="hotel2" style="display:block";>
                     <hr>
-                    <input class=" paramHotel form form-control col-5" type="date" id="date2" name="trip-start" value="{{ resto2.dateResto }}" disabled>
+                    <input class=" paramHotel form form-control col-5" type="date" id="date2" name="date2" value="{{ resto2.dateResto }}" readonly>
                     {{ form_widget(nuitee2.hotel,{'attr':{'class':'paramHotel'}}) }}
                     {{form_widget(nuitee2.categorieChambre)}}
                 </div>
@@ -46,23 +46,23 @@
                     <h5>Réservation restaurations accompagnant</h5>
                 </div>
                 <div id="idRestauration1" style="display:block">
-                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{resto1.dateResto}}" disabled>
+                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{resto1.dateResto}}" readonly>
                    <div class="from-control">
                         {% for resto in resto1.typeRepas %}
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="ckcSam{{ resto }}" ></input>
+                            <input class="form-check-input" type="checkbox" name="ckcSam{{ resto }}" id="ckcSam{{ resto }}" value="{{ resto }}" ></input>
                             <label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
                         </div>
                         {% endfor %}
                     </div>
                 <br>
                  <div id="idRestauration2" style="display:block">
-                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" disabled>
+                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" readonly>
                    <div class="from-control">
                         {% for resto in resto2.typeRepas %}
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="ckcSam{{ resto }}" ></input>
-                            <label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
+                            <input class="form-check-input" type="checkbox" name="ckcDim{{ resto }}" id="ckcDim{{ resto }}" value="{{ resto }}" ></input>
+                            <label class="form-check-label" for="ckcDim{{ resto }}">{{ resto }}</label>
                         </div>
                         {% endfor %}
                     </div>  

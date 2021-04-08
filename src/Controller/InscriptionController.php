@@ -13,8 +13,10 @@ use App\Form\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Form\NuiteType;
 use App\Entity\Nuite;
+use App\Entity\Restauration;
 use App\Repository\RestaurationRepository;
 use App\Service\Outils;
+use DateTime;
 
 /**
  * @Route("/inscription",name="inscription_")
@@ -55,6 +57,9 @@ class InscriptionController extends AbstractController
         $inscription= New Inscription();
         $nuitee1=New Nuite();
         $nuitee2=New Nuite();
+        $uneRestauration1=New Restauration();
+        $uneRestauration2=New Restauration();
+        $uneRestauration3=New Restauration();
         $formNuitee1=$this->createForm(NuiteType::class,$nuitee1);
         $formNuitee2=$this->createForm(NuiteType::class,$nuitee2);
         $form=$this->createForm(InscriptionType::class,$inscription);
@@ -69,15 +74,31 @@ class InscriptionController extends AbstractController
                 $inscription->addNuitee($nuitee1);
                 $inscription->addNuitee($nuitee2);
             }
+            $inscription->setDateInscription(new DateTime('NOW'));
+            if(isset($_POST['ckcSamMidi'])){
+                $uneRestauration1->setTypesRepas($_POST['ckcSamMidi']);
+                $uneRestauration1->setDateRestauration(New DateTime($_POST['date1']));
+                $uneRestauration1->setInscriptions($inscription);
+                $inscription->addRestauration($uneRestauration1);
+            }
+            if(isset($_POST['ckcSamSoir'])){
+                $uneRestauration2->setTypesRepas($_POST['ckcSamSoir']);
+                $uneRestauration2->setDateRestauration(new DateTime($_POST['date1']));
+                $uneRestauration2->setInscriptions($inscription);
+                $inscription->addRestauration($uneRestauration2);
+            }
+            if(isset($_POST['ckcDimMidi'])){
+                $uneRestauration3->setTypesRepas($_POST['ckcDimMidi']);
+                $uneRestauration3->setDateRestauration(New DateTime($_POST['date2']));
+                $uneRestauration3->setInscriptions($inscription);
+                $inscription->addRestauration($uneRestauration3);
+            }
+            echo '<h1>'. $inscription->getRestaurations()[0]->getDateRestauration()->format('Y-m-d') . '</h1>';
         }
         return $this->render('inscription/inscriptionSejour.html.twig',['form'=>$form->createView(),'nuitee1'=>$formNuitee1->createView(),'nuitee2'=>$formNuitee2->createView(),'resto1'=>$resto1,'resto2'=>$resto2]);
     }
 
-    public function traitementArray( array $tabP,$tabRe,$tabRe2){
 
-        
-    
-    }
 
 }
 

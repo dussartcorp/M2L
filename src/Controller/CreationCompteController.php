@@ -28,6 +28,11 @@ class CreationCompteController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $numLicence = $form->get('numLicence')->getData();
+            if($lrepo->isNumLicenceExist($numLicence) === 'ok'){
+
+                $this->addFlash('warning', 'Un compte est déjà créé avec ce numéro de licence');
+                return $this->redirectToRoute('app_login');
+            }
             if ($lrepo->isNumLicenceValid($numLicence) === 'ok') {
                 $compte->setRoles(["ROLE_INSCRIT"]);
                 $mdp = $form->get('password')->getData();

@@ -60,4 +60,17 @@ class LicencieRepository extends ServiceEntityRepository
             return 'ko';
         }
     }
+    
+    public function isNumLicenceExist(string $numLicence){
+        $dql = $this->getEntityManager()->createQuery('select l.numLicence '
+        . 'from App\Entity\User l '
+        . 'where l.numLicence = :licence');
+        $dql->setParameter('licence', $numLicence);
+        $result = $dql->getResult();
+        if($result){
+            return 'ok';
+        }else{
+            return 'ko';
+        }
+    }
 }

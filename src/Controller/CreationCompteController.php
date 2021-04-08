@@ -68,7 +68,7 @@ class CreationCompteController extends AbstractController
     }
 
     /**
-     * @Route("/activation/{token}", name="activation")
+     * @Route("activation/{token}", name="activation")
      */
     public function activation($token, UserRepository $usersRepo){
         $user = $usersRepo->findOneBy((['activation_token' => $token]));
@@ -82,8 +82,8 @@ class CreationCompteController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Vous avez bien activer votre compte');
+        $this->addFlash('success', 'Vous avez bien activé votre compte');
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('app_login');
     }
 }

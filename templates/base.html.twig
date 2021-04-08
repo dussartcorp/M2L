@@ -7,10 +7,10 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-		           and uncomment the following Encore helpers to start using Symfony UX #}
+						           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
-      <link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.css') }}" type="text/css">
-      <link rel="stylesheet" href="{{ asset('styles.css') }}" type="text/css">
+			<link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.css') }}" type="text/css">
+			<link rel="stylesheet" href="{{ asset('styles.css') }}" type="text/css">
 		{% endblock %}
 
 		{% block javascripts %}
@@ -47,4 +47,18 @@
 			</li>
 		</ul>
 	</div>
-</html></nav></header><body>{% block body %}{% endblock %}</body><footer class="footer">Maison Des Ligues</footer></html>
+</html></nav></header><body>
+{% for message in app.flashes('warning') %}
+	<div class="alert alert-danger" style="margin: 0 !important" role="alert">
+		{{ message }}
+	</div>
+{% endfor %}
+{% for message in app.flashes('success') %}
+	<div class="alert alert-success" style="margin: 0 !important" role="alert">
+		{{ message }}
+	</div>
+{% endfor %}
+{% block body %}
+{# {{app.flashes}} #}
+
+{% endblock %}</body><footer class="footer">Maison Des Ligues</footer></html>

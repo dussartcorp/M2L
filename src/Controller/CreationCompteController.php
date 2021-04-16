@@ -48,7 +48,7 @@ class CreationCompteController extends AbstractController
                     $manager->flush();
 
                     $message = (new \Swift_Message('Activation de votre compte'))
-                        ->setFrom('robinbijaudy@gmail.com')
+                        ->setFrom('lraM2L@gmail.com')
                         ->setTo($compte->getEmail())
                         ->setBody(
                             $this->renderView(

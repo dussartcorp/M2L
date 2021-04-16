@@ -64,14 +64,14 @@ class ConnexionController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
 
-            $url = $this->generateUrl('app_reset_password', ['token' => $token]);
 
             $message = (new \Swift_Message('Mot de passe oublié'))
-                ->setFrom('robinbijaudy@gmail.com')
+                ->setFrom('lraM2L@gmail.com')
                 ->setTo($user->getEmail())
                 ->setBody(
-                    "<p>Bonjour,</p><p>Une demande de réinitialisation de mot de passe a été effectuée pour votre compte. Veuillez cliquer sur 
-                            le lien suivant : " . $url . '</p>',
+                    $this->renderView(
+                        'emails/motDePasseOublie.html.twig', ['token' => $user->getActivationToken()]
+                    ),
                     'text/html'
                 );
             $mailer->send($message);

@@ -13,8 +13,7 @@ class HomePageController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('base.html.twig', [
-            
-        ]);
+        // $date = $repo->getRestauration();
+        return $this->render('base.html.twig', []);
     }
 }

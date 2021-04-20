@@ -47,4 +47,23 @@ class RestaurationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function getRestauration(){
+        $dateResto = [];
+        $dql = $this->getEntityManager()->createQuery('select r from App\Entity\Restauration r');
+        $result = $dql->getResult();
+        foreach($result as $q){
+            
+            if(!in_array($q->getDateRestauration()->format('Y-m-d'), array_column($dateResto, 'dateResto'))){ 
+                $dateResto[] = [ 'dateResto' => $q->getDateRestauration()->format('Y-m-d'),
+                'typeRepas' => [$q->getTypesRepas()]];
+                
+            } else {
+                $key = array_search($q->getDateRestauration()->format('Y-m-d'), array_column($dateResto, 'dateResto'));
+                array_push($dateResto[$key]['typeRepas'], $q->getTypesRepas());
+            }
+        }
+        return $dateResto;
+    }
 }

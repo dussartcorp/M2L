@@ -35,7 +35,7 @@ class Atelier
     private $inscriptions;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Theme::class, inversedBy="ateliers")
+     * @ORM\ManyToMany(targetEntity=Theme::class, inversedBy="ateliers",cascade={"persist"})
      * @ORM\JoinTable(
      *        name="themesparatelier",
      *        joinColumns={@ORM\JoinColumn(name="idatelier", referencedColumnName="id")},

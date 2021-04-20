@@ -58,7 +58,7 @@ class User implements UserInterface
      * @Assert\Email(
      *              message="L'adresse mail n'est pas valide")
      */
-    private $Email;
+    private $email;
 
     /**
      * @var string The hashed password
@@ -188,12 +188,12 @@ class User implements UserInterface
 
     public function getEmail(): ?string
     {
-        return $this->Email;
+        return $this->email;
     }
 
-    public function setEmail(string $Email): self
+    public function setEmail(string $email): self
     {
-        $this->Email = $Email;
+        $this->email = $email;
 
         return $this;
     }

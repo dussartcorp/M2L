@@ -14,10 +14,7 @@ class HomePageController extends AbstractController
      */
     public function index(RestaurationRepository $repo): Response
     {
-        $date = $repo->getRestauration();
-        var_dump($date);
-        return $this->render('base.html.twig', [
-            'date' => $date
-        ]);
+
+        return $this->render('base.html.twig');
     }
 }

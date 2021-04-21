@@ -73,4 +73,25 @@ class LicencieRepository extends ServiceEntityRepository
             return 'ko';
         }
     }
+
+    public function recupIdCompte(string $numLicence){
+        $dql = $this->getEntityManager()->createQuery('select l.id '
+        . 'from App\Entity\User l '
+        . 'where l.numLicence = :licence');
+        $dql->setParameter('licence', $numLicence);
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'ko';
+        }
+    }
+
+    public function addIdCompte(string $numLicence, int $id){
+        $dql = $this->getEntityManager()->createQuery('Update App\Entity\Licencie l '
+        . 'set l.compte = :id '
+        . 'where l.numLicence = :licence');
+        $dql->setParameter('licence', $numLicence);
+        $dql->setParameter('id', $id);
+    }
 }

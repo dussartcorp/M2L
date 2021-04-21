@@ -1,77 +1,95 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<div>
-    {{form_start(form)}}
-    {{form_start(nuitee1)}}
-    {{form_start(nuitee2)}}
-        <div class="InscriptionBox container">
-            <div>
-                <div class="form-group">
-                    <div class="form-check" row> 
-                        <h5>Choix des ateliers (5 ateliers maximum - a cocher)</h5>                  
-                        {{ form_widget(form.ateliers) }}
-                    </div>
-                </div>
-                <hr class="my-4">
-                <div class="row">
-                        <h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
-                        <div id="dropHotel" class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Ajouter</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li id="liAjoutHotel"><a class="dropdown-item" href="#" onclick="ajouterHotel()">Ajouter Hôtel</a></li>
-                                <li id="liAjoutResto"><a class="dropdown-item" href="#" onclick="ajouterRestauration()">Ajouter restauration</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Supprimer</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li id="liSuppHotel"><a class="dropdown-item" href="#" onclick="supprimerHotel()">Supprimer hôtel</a></li>
-                                <li id="liSuppResto"><a class="dropdown-item" href="#" onclick="supprimerRestauration()">Supprimer restauration</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                <div id="hotel1" style="display:block";>
-                    <input class=" paramHotel form form-control col-5" type="date" id="date1" name="date1" value="{{resto1.dateResto}}" readonly>
-                    {{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
-                    {{form_widget(nuitee1.categorieChambre)}}
-                </div>
-                <div id="hotel2" style="display:block";>
-                    <hr>
-                    <input class=" paramHotel form form-control col-5" type="date" id="date2" name="date2" value="{{ resto2.dateResto }}" readonly>
-                    {{ form_widget(nuitee2.hotel,{'attr':{'class':'paramHotel'}}) }}
-                    {{form_widget(nuitee2.categorieChambre)}}
-                </div>
-                <div id="lblRestauration" style="display:block";>
-                    <hr>
-                    <h5>Réservation restaurations accompagnant</h5>
-                </div>
-                <div id="idRestauration1" style="display:block">
-                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{resto1.dateResto}}" readonly>
-                   <div class="from-control">
-                        {% for resto in resto1.typeRepas %}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="ckcSam{{ resto }}" id="ckcSam{{ resto }}" value="{{ resto }}" ></input>
-                            <label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
-                        </div>
-                        {% endfor %}
-                    </div>
-                <br>
-                 <div id="idRestauration2" style="display:block">
-                    <input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" readonly>
-                   <div class="from-control">
-                        {% for resto in resto2.typeRepas %}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="ckcDim{{ resto }}" id="ckcDim{{ resto }}" value="{{ resto }}" ></input>
-                            <label class="form-check-label" for="ckcDim{{ resto }}">{{ resto }}</label>
-                        </div>
-                        {% endfor %}
-                    </div>  
-                </div>
-        </div>
-        <hr>
-        <button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
-    </div>       
-    {{form_end(form)}}
-    {{form_end(nuitee1)}}
-    {{form_end(nuitee2)}}
+
+	{% if app.user %}
+		{% set info = [] %}
+		{% set info = info|merge(app.user.roles) %}
+		{% if info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
+			<div>
+				{{form_start(form)}}
+				{{form_start(nuitee1)}}
+				{{form_start(nuitee2)}}
+				<div class="InscriptionBox container">
+					<div>
+						<div class="form-group">
+							<div class="form-check" row>
+								<h5>Choix des ateliers (5 ateliers maximum - a cocher)</h5>
+								{{ form_widget(form.ateliers) }}
+							</div>
+						</div>
+						<hr class="my-4">
+						<div class="row">
+							<h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
+							<div id="dropHotel" class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Ajouter</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<li id="liAjoutHotel">
+										<a class="dropdown-item" href="#" onclick="ajouterHotel()">Ajouter Hôtel</a>
+									</li>
+									<li id="liAjoutResto">
+										<a class="dropdown-item" href="#" onclick="ajouterRestauration()">Ajouter restauration</a>
+									</li>
+								</ul>
+							</div>
+							<div class="dropdown">
+								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Supprimer</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<li id="liSuppHotel">
+										<a class="dropdown-item" href="#" onclick="supprimerHotel()">Supprimer hôtel</a>
+									</li>
+									<li id="liSuppResto">
+										<a class="dropdown-item" href="#" onclick="supprimerRestauration()">Supprimer restauration</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="hotel1" style="display:block" ;>
+							<input class=" paramHotel form form-control col-5" type="date" id="date1" name="date1" value="{{resto1.dateResto}}" readonly>
+							{{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
+							{{form_widget(nuitee1.categorieChambre)}}
+						</div>
+						<div id="hotel2" style="display:block" ;>
+							<hr>
+							<input class=" paramHotel form form-control col-5" type="date" id="date2" name="date2" value="{{ resto2.dateResto }}" readonly>
+							{{ form_widget(nuitee2.hotel,{'attr':{'class':'paramHotel'}}) }}
+							{{form_widget(nuitee2.categorieChambre)}}
+						</div>
+						<div id="lblRestauration" style="display:block" ;>
+							<hr>
+							<h5>Réservation restaurations accompagnant</h5>
+						</div>
+						<div id="idRestauration1" style="display:block">
+							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{resto1.dateResto}}" readonly>
+							<div class="from-control">
+								{% for resto in resto1.typeRepas %}
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="ckcSam{{ resto }}" id="ckcSam{{ resto }}" value="{{ resto }}"></input>
+									<label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
+								</div>
+							{% endfor %}
+						</div>
+						<br>
+						<div id="idRestauration2" style="display:block">
+							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" readonly>
+							<div class="from-control">
+								{% for resto in resto2.typeRepas %}
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="ckcDim{{ resto }}" id="ckcDim{{ resto }}" value="{{ resto }}"></input>
+									<label class="form-check-label" for="ckcDim{{ resto }}">{{ resto }}</label>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<hr>
+				<button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
+			</div>
+			{{form_end(form)}}
+			{{form_end(nuitee1)}}
+			{{form_end(nuitee2)}}
+		{% endif %}
+	{% endif %}
+	{% if not info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
+		<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>
+	{% endif %}
 {% endblock %}

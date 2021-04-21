@@ -5,9 +5,8 @@
 {% endblock %}
 {% block body %}
 	{% if app.user %}
-		{% set info = [] %}
-		{% set info = info|merge(app.user.roles) %}
-		{% if info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
+		{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')  %}
+		
 			<div class="container" style="padding-top: 10px;padding-bottom: 10px;">
 				<h1 class="text-center">Création d'un nouvel atelier :</h1>
 				{{ form_start(form)}}
@@ -38,7 +37,7 @@
 		{% endif %}
 	{% endif %}
 
-	{% if not info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
+	{% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_USER') %}
 		<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>
 	{% endif %}
 {% endblock %}

@@ -29,21 +29,14 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			{% if app.user %}
-				{% set info = [] %}
-				{% set info = info|merge(app.user.roles) %}
-			{% endif %}
-
 			<div class="navbar-collapse collapse" id="navbarColor03" style="">
 				<ul class="navbar-nav mr-auto">
 					{% if app.user %}
-						{% if info|join(', ') is same as('ROLE_INSCRIT, ROLE_USER') or info|join(', ') is same as('ROLE_ADMIN, ROLE_USER')  %}
 							<li class="nav-item active">
 								<a class="nav-link" href="{{path('home')}}">
 									Accueil
 								</a>
 							</li>
-						{% endif %}
 					{% endif %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('app_login')}}">Connexion
@@ -54,12 +47,12 @@
 						<a class="nav-link" href="{{ path('creation_compte') }}">Inscription</a>
 					</li>
 					{% if app.user %}
-						{% if info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
+						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('congre_atelier') }}">Congrès</a>
 							</li>
 						{% endif %}
-						{% if info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
+						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('inscription_sejour') }}">Séjour</a>
 							</li>

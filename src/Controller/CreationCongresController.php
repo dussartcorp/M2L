@@ -15,6 +15,7 @@ use App\Form\VacationType;
 use App\Entity\Theme;
 use App\Entity\Vacation;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/congres/", name="congres_")
@@ -22,9 +23,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class CreationCongresController extends AbstractController
 {
     /**
+     * 
      * @Route("atelier", name="atelier")
      */
-    public function creationAtelier(Request $request, EntityManagerInterface $manager, AtelierRepository $repo){
+    public function creationAtelier(Request $request, EntityManagerInterface $manager)
+    {
+        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
+       
         $atelier = new Atelier();
         $theme = new Theme();
         $vacation = new Vacation();

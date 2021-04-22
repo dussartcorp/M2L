@@ -14,6 +14,6 @@ class HomePageController extends AbstractController
      */
     public function index(RestaurationRepository $repo): Response
     {
-        return $this->render('base.html.twig', []);
+        return $this->render('home_page/index.html.twig');
     }
 }

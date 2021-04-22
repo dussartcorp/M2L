@@ -93,5 +93,11 @@ class LicencieRepository extends ServiceEntityRepository
         . 'where l.numLicence = :licence');
         $dql->setParameter('licence', $numLicence);
         $dql->setParameter('id', $id);
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'ko';
+        }
     }
 }

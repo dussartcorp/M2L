@@ -45,7 +45,7 @@
 								<a class="nav-link" href="{{ path('congres_atelier') }}">Congrès</a>
 							</li>
 						{% endif %}
-						{% if is_granted('ROLE_INSCRIT') or is_granted('ROLE_USER') %}
+						{% if is_granted('ROLE_INSCRIT') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('inscription_sejour') }}">Séjour</a>
 							</li>

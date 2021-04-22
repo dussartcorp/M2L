@@ -6,4 +6,8 @@
 
 Ceci est la page d'accueil !
 
+{% if app.user %}
+<a href="{{ path('app_logout') }}">Déconnexion</a>
+{% endif %}
+
 {% endblock %}

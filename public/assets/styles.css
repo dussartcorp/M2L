@@ -62,3 +62,21 @@ body{
 .paramHotel{
     margin: 10px 0px;
 }
+
+.accueil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.deco a{
+    text-decoration: none !important;
+    font-size: 1.3em;
+    margin: 10px;
+}
+
+.deco{
+    display: flex;
+    justify-content: flex-end;
+}

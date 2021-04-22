@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
 
 {% block body %}
 
-Ceci est la page d'accueil !
+	{% if app.user %}
+		<div class="deco">
+			<a href="{{ path('app_logout') }}">Déconnexion</a>
+		</div>
+	{% endif %}
 
-{% if app.user %}
-<a href="{{ path('app_logout') }}">Déconnexion</a>
-{% endif %}
+	<div class="accueil">
+		Ceci est la page d'accueil !
+	</div>
 
 {% endblock %}

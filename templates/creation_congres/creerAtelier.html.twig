@@ -8,7 +8,7 @@
 		{% set info = [] %}
 		{% set info = info|merge(app.user.roles) %}
 		{% if info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
-
+		
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
@@ -130,11 +130,14 @@ function libelleDate(){
 }
  
 </script>
+{% endif %}
+{% endif %}
 
-{% endblock %}
 
 	{% if not info|join(', ') is same as('ROLE_ADMIN, ROLE_USER') %}
 		<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>
 	{% endif %}
+  
+{% endblock %}
 
 

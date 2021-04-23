@@ -5,8 +5,28 @@
 
 
 
-	<div class="container accueil">
-		Ceci est la page d'accueil !
+	<div class="container">
+		<h1> Maison des ligues :</h1>
+		<h2> Championnat du monde d'escrime artistique : </h2>
+		{# <div class"container"> #}
+			<div class="col-6">
+				<img src="{{asset('images/escrime_noir_blanc.jpg')}}" title="image d'un duel d'escrimeurs sur un parvis, de Ben Kerckx et Pixabay" alt="escrimeur en duel" width="90%" height="90%">
+			</div>
+			<div class="col-6">
+				<p>
+					La maison des ligues de lorraine vous accueille sur son site dédié à la sixième édition des championnats du monde d'escrime artistique organisé par la ligue d'escrime de lorraine.
+				</p>
+			</div>
+		{# </div> #}
+		{% if not app.user %}
+			Veuillez vous connecter<a href="{{path('app_login')}}"> en cliquant par ici</a> ou vous inscrire<a href="{{path('inscription_inscription')}}"> ici.</a>
+		{% else %}
+			{% if is_granted('ROLE_USER') or is_granted('ROLE_INSCRIT') %}
+				Vous pouvez vous inscrire au congrès<a href="{{path('inscription_sejour')}}"> par ici.
+			{% else %}
+				Créez des ateliers, thèmes, vacations<a href="{{path('congres_themes')}}"> par ici.
+			{% endif %}
+			{% endif %}
 	</div>
 
 {% endblock %}

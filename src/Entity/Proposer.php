@@ -23,7 +23,7 @@ class Proposer
     private $tarifNuite;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="tarifs")
+     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="tarifs",cascade={"persist"})
      * @ORM\Column(name="idcategorie")
      */
     private $categorie;

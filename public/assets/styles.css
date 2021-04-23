@@ -19,7 +19,7 @@
 }
 
 #loginBtn{
-    margin-top: 10px;
+    margin: 10px 0px;
     display:flex;
     justify-content: center;
 }
@@ -37,4 +37,46 @@
 .hotel{
     flex-direction: column;
 
+}
+
+.dropdown{
+    margin:0px 7px;
+}
+
+#dropHotel{
+    margin-left: 20px;
+}
+
+body{
+    margin-bottom: 100px;
+}
+
+.resto{
+    margin:0px 15px;
+}
+
+#lblSamedi,#samedi{
+    margin-right: 5px;
+}
+
+.paramHotel{
+    margin: 10px 0px;
+}
+
+.accueil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.deco a{
+    text-decoration: none !important;
+    font-size: 1.3em;
+    margin: 10px;
+}
+
+.deco{
+    display: flex;
+    justify-content: flex-end;
 }

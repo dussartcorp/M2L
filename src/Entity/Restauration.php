@@ -17,38 +17,29 @@ class Restauration
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime",name="dateRestauration")
-     */
-    private $dateRestauration;
 
     /**
-     * @ORM\Column(type="string", length=15,name="typesRepas")
+     * @ORM\Column(type="string", columnDefinition="enum('Midi', 'Soir')", length=15,name="typesRepas")
      */
     private $typesRepas;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="restaurations")
+     * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations")
      * @ORM\JoinColumn(name="idinscription")
      */
     private $inscriptions;
+
+    /**
+     * @ORM\Column(type="datetime",name="dateRestauration")
+     */
+    private $dateRestauration;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateRestauration(): ?\DateTimeInterface
-    {
-        return $this->dateRestauration;
-    }
 
-    public function setDateRestauration(\DateTimeInterface $dateRestauration): self
-    {
-        $this->dateRestauration = $dateRestauration;
-
-        return $this;
-    }
 
     public function getTypesRepas(): ?string
     {
@@ -70,6 +61,18 @@ class Restauration
     public function setInscriptions(?Inscription $inscriptions): self
     {
         $this->inscriptions = $inscriptions;
+
+        return $this;
+    }
+
+    public function getDateRestauration(): ?\DateTimeInterface
+    {
+        return $this->dateRestauration;
+    }
+
+    public function setDateRestauration(\DateTimeInterface $dateRestauration): self
+    {
+        $this->dateRestauration = $dateRestauration;
 
         return $this;
     }

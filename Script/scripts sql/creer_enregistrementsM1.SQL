@@ -59,9 +59,8 @@ insert into CATEGORIECHAMBRE (LIBELLECATEGORIE) values ('Double');
 --       TABLE : VACATION
 --
 
-insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 08:00:00', '2021-03-27 10:00:00');
-insert into VACATION(dateheuredebut, dateheurefin) values('2021-03-27 14:00:00', '2021-03-27 18:00:00');
-
+insert into VACATION(libelle, dateheuredebut, dateheurefin) values('le 14 septembre de 8:00 à 10:00', '2021-09-14 08:00:00', '2021-09-14 10:00:00');
+insert into VACATION(libelle, dateheuredebut, dateheurefin) values('le 14 septembre de 14:00 à 18:00', '2021-09-14 14:00:00', '2021-09-14 18:00:00');
 -- -----------------------------------------------------------------------------
 --       TABLE : ATELIER
 --
@@ -123,6 +122,7 @@ INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,2,122.00 );
 --
 -- insert into parametres (nomddl, adrue1, adrue2, cp, ville, tel, fax, mail, tarifinscription, tarifrepasaccompagnant, duree, nbateliermax) 
 --	values('maison des Ligues', '123 avenue des balladins', 'résidence du cirque', '83000', 'Toulon', '04 04 04 04 04','04 04 04 04 01','mdl@free.fr',100,35,90,6);
+
 
 
 commit;

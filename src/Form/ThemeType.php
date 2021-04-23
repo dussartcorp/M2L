@@ -2,30 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\Hotel;
+use App\Entity\Theme;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class HotelType extends AbstractType
+class ThemeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomHotel')
-            ->add('adresse1')
-            ->add('adresse2')
-            ->add('cp')
-            ->add('ville')
-            ->add('tel')
-            ->add('mail')
+            ->add('libelle', TextType::class)
+            // ->add('ateliers')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Hotel::class,
+            'data_class' => Theme::class,
         ]);
     }
 }

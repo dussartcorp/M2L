@@ -58,13 +58,18 @@ class User implements UserInterface
      * @Assert\Email(
      *              message="L'adresse mail n'est pas valide")
      */
-    private $Email;
+    private $email;
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $confPassword;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $activation_token;
 
     public function getId(): ?int
     {
@@ -183,12 +188,12 @@ class User implements UserInterface
 
     public function getEmail(): ?string
     {
-        return $this->Email;
+        return $this->email;
     }
 
-    public function setEmail(string $Email): self
+    public function setEmail(string $email): self
     {
-        $this->Email = $Email;
+        $this->email = $email;
 
         return $this;
     }
@@ -201,6 +206,18 @@ class User implements UserInterface
     public function setConfPassword(string $confPassword): self
     {
         $this->confPassword = $confPassword;
+
+        return $this;
+    }
+
+    public function getActivationToken(): ?string
+    {
+        return $this->activation_token;
+    }
+
+    public function setActivationToken(?string $activation_token): self
+    {
+        $this->activation_token = $activation_token;
 
         return $this;
     }

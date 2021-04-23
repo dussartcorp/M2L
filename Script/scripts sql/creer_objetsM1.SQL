@@ -1,19 +1,19 @@
 -- -----------------------------------------------------------------------------
---             Génération d'une base de données pour
+--             Gï¿½nï¿½ration d'une base de donnï¿½es pour
 --                      Oracle Version 10g XE
 --                        
 -- -----------------------------------------------------------------------------
 --      Projet : MaisonDesLigues
---      Auteur : Benoît ROCHE
---      Date de dernière modification : 9/01/2013 11:32:40
+--      Auteur : Benoï¿½t ROCHE
+--      Date de derniï¿½re modification : 9/01/2013 11:32:40
 -- -----------------------------------------------------------------------------
 
 -- -----------------------------------------------------------------------------
---      Partie 2: Création de l'utilisateur MDL qui sera aussi le propriétaire
--- 		des objets : tables, index, procédures
+--      Partie 2: Crï¿½ation de l'utilisateur MDL qui sera aussi le propriï¿½taire
+-- 		des objets : tables, index, procï¿½dures
 --
---		Ce script doit être exécuté par un l'utilisateur MDL
---		(celui qui vient d'être créé dans le script creer_user)
+--		Ce script doit ï¿½tre exï¿½cutï¿½ par un l'utilisateur MDL
+--		(celui qui vient d'ï¿½tre crï¿½ï¿½ dans le script creer_user)
 --- -----------------------------------------------------------------------------
 
 -- -----------------------------------------------------------------------------
@@ -38,8 +38,8 @@ DROP TABLE HOTEL CASCADE CONSTRAINTS;
 Drop public synonym HOTEL;
 DROP TABLE INTERVENANT CASCADE CONSTRAINTS;
 Drop public synonym INTERVENANT;
-DROP TABLE LICENCIE CASCADE CONSTRAINTS;
-Drop public synonym LICENCIE ;
+DROP TABLE Licencie CASCADE CONSTRAINTS;
+Drop public synonym Licencie ;
 DROP TABLE RESTAURATION CASCADE CONSTRAINTS;
 Drop public synonym RESTAURATION;
 DROP TABLE VACATION CASCADE CONSTRAINTS;
@@ -132,7 +132,7 @@ create public synonym SEQDATENUITE for SEQDATENUITE;
 CREATE TABLE PAIEMENT
    (
     ID NUMBER(4)  NOT NULL,
-    IDLICENCIE NUMBER(4)  NOT NULL,
+    IDLicencie NUMBER(4)  NOT NULL,
     MONTANTCHEQUE NUMBER(6,2)  NOT NULL,
     NUMEROCHEQUE NUMBER(7)  NOT NULL,
     TYPEPAIEMENT CHAR(4) 
@@ -141,23 +141,23 @@ CREATE TABLE PAIEMENT
    ) ;
 create public synonym PAIEMENT for PAIEMENT;
 COMMENT ON COLUMN PAIEMENT.ID
-     IS 'identifant de l''hébergement';
+     IS 'identifant de l''hï¿½bergement';
 
-COMMENT ON COLUMN PAIEMENT.IDLICENCIE
+COMMENT ON COLUMN PAIEMENT.IDLicencie
      IS 'identifiant du participant';
 
 COMMENT ON COLUMN PAIEMENT.MONTANTCHEQUE
-     IS 'obligatoire pour un licencié';
+     IS 'obligatoire pour un licenciï¿½';
 
 COMMENT ON COLUMN PAIEMENT.NUMEROCHEQUE
-     IS 'obligatoire pour un licencié';
+     IS 'obligatoire pour un licenciï¿½';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE PAIEMENT
 -- -----------------------------------------------------------------------------
 
-CREATE  INDEX I_FK_PAIEMENT_LICENCIE
-     ON PAIEMENT (IDLICENCIE ASC)
+CREATE  INDEX I_FK_PAIEMENT_Licencie
+     ON PAIEMENT (IDLicencie ASC)
     ;
 
 -- -----------------------------------------------------------------------------
@@ -185,10 +185,10 @@ COMMENT ON COLUMN PARTICIPANT.ID
      IS 'identifiant du participant';
 
 COMMENT ON COLUMN PARTICIPANT.DATEENREGISTREMENTARRIVEE
-     IS 'Date et heure à laqielle le participant arrive aux assises';
+     IS 'Date et heure ï¿½ laqielle le participant arrive aux assises';
 
 COMMENT ON COLUMN PARTICIPANT.CLEWIFI
-     IS 'si le participant veut une clé wifi, on la génère et on la sauvegarde.';
+     IS 'si le participant veut une clï¿½ wifi, on la gï¿½nï¿½re et on la sauvegarde.';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : ATELIER
@@ -236,13 +236,13 @@ CREATE TABLE CONTENUHEBERGEMENT
    ) ;
 create public synonym CONTENUHEBERGEMENT for CONTENUHEBERGEMENT;
 COMMENT ON COLUMN CONTENUHEBERGEMENT.IDPARTICIPANT
-     IS 'identifiant du participant. Ne peut être l''identifiant d''un bénévole';
+     IS 'identifiant du participant. Ne peut ï¿½tre l''identifiant d''un bï¿½nï¿½vole';
 
 COMMENT ON COLUMN CONTENUHEBERGEMENT.CODEHOTEL
-     IS 'Identifiant de l''hôtel';
+     IS 'Identifiant de l''hï¿½tel';
 
 COMMENT ON COLUMN CONTENUHEBERGEMENT.IDCATEGORIE
-     IS 'Identifiant de la catégorie';
+     IS 'Identifiant de la catï¿½gorie';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE CONTENUHEBERGEMENT
@@ -276,7 +276,7 @@ CREATE TABLE DATENUITE
    ) ;
 create public synonym DATENUITE for DATENUITE;
 COMMENT ON TABLE DATENUITE
-     IS 'date d''arrivée hotel pour une nuit';
+     IS 'date d''arrivï¿½e hotel pour une nuit';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : DATEBENEVOLAT
@@ -307,7 +307,7 @@ CREATE TABLE HOTEL
    ) ;
 create public synonym HOTEL for HOTEL;
 COMMENT ON COLUMN HOTEL.CODEHOTEL
-     IS 'Identifiant de l''hôtel';
+     IS 'Identifiant de l''hï¿½tel';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : INTERVENANT
@@ -337,29 +337,29 @@ CREATE  INDEX I_FK_INTERVENANT_ATELIER
     ;
 
 -- -----------------------------------------------------------------------------
---       TABLE : LICENCIE
+--       TABLE : Licencie
 -- -----------------------------------------------------------------------------
 
-CREATE TABLE LICENCIE
+CREATE TABLE Licencie
    (
-    IDLICENCIE NUMBER(4)  NOT NULL,
+    IDLicencie NUMBER(4)  NOT NULL,
     IDQUALITE NUMBER(2)  NULL,
     NUMEROLICENCE NUMBER(12)  NOT NULL,
-	CONSTRAINT PK_LICENCIE PRIMARY KEY (IDLICENCIE)  
+	CONSTRAINT PK_Licencie PRIMARY KEY (IDLicencie)  
    ) ;
-create public synonym LICENCIE for LICENCIE;
-COMMENT ON COLUMN LICENCIE.IDLICENCIE
+create public synonym Licencie for Licencie;
+COMMENT ON COLUMN Licencie.IDLicencie
      IS 'identifiant du participant';
 
-COMMENT ON COLUMN LICENCIE.IDQUALITE
-     IS 'identifiant de qualité';
+COMMENT ON COLUMN Licencie.IDQUALITE
+     IS 'identifiant de qualitï¿½';
 
 -- -----------------------------------------------------------------------------
---       INDEX DE LA TABLE LICENCIE
+--       INDEX DE LA TABLE Licencie
 -- -----------------------------------------------------------------------------
 
-CREATE  INDEX I_FK_LICENCIE_QUALITE
-     ON LICENCIE (IDQUALITE ASC)
+CREATE  INDEX I_FK_Licencie_QUALITE
+     ON Licencie (IDQUALITE ASC)
     ;
 
 -- -----------------------------------------------------------------------------
@@ -391,10 +391,10 @@ COMMENT ON COLUMN VACATION.IDATELIER
      IS 'Identifiant d''un atelier';
 
 COMMENT ON COLUMN VACATION.NUMERO
-     IS 'identifiant de la session de 1 à 5';
+     IS 'identifiant de la session de 1 ï¿½ 5';
 
 COMMENT ON COLUMN VACATION.HEUREDEBUT
-     IS 'Format date heure, doit inclure date ET heure de début';
+     IS 'Format date heure, doit inclure date ET heure de dï¿½but';
 
 COMMENT ON COLUMN VACATION.HEUREFIN
      IS 'Format date heure, doit inclure date ET heure de fin';
@@ -419,7 +419,7 @@ CREATE TABLE CATEGORIECHAMBRE
    ) ;
 create public synonym CATEGORIECHAMBRE for CATEGORIECHAMBRE;
 COMMENT ON COLUMN CATEGORIECHAMBRE.ID
-     IS 'Identifiant de la catégorie';
+     IS 'Identifiant de la catï¿½gorie';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : QUALITE
@@ -433,7 +433,7 @@ CREATE TABLE QUALITE
    ) ;
 create public synonym QUALITE for QUALITE;
 COMMENT ON COLUMN QUALITE.ID
-     IS 'identifiant de qualité';
+     IS 'identifiant de qualitï¿½';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : THEME
@@ -451,7 +451,7 @@ COMMENT ON COLUMN THEME.IDATELIER
      IS 'Identifiant d''un atelier';
 
 COMMENT ON COLUMN THEME.NUMERO
-     IS 'Numéro du thème à l''intérieur d''un atelier';
+     IS 'Numï¿½ro du thï¿½me ï¿½ l''intï¿½rieur d''un atelier';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE THEME
@@ -467,20 +467,20 @@ CREATE  INDEX I_FK_THEME_ATELIER
 
 CREATE TABLE PARTICIPER
    (
-    IDLICENCIE NUMBER(4)  NOT NULL,
+    IDLicencie NUMBER(4)  NOT NULL,
     IDATELIER NUMBER(5)  NOT NULL   CHECK (IDATELIER BETWEEN 1 AND 6),
     NUMERO NUMBER(1)  NOT NULL,
-    CONSTRAINT PK_PARTICIPER PRIMARY KEY (IDATELIER, NUMERO, IDLICENCIE)  
+    CONSTRAINT PK_PARTICIPER PRIMARY KEY (IDATELIER, NUMERO, IDLicencie)  
    ) ;
 create public synonym PARTICIPER for PARTICIPER;
-COMMENT ON COLUMN PARTICIPER.IDLICENCIE
+COMMENT ON COLUMN PARTICIPER.IDLicencie
      IS 'identifiant du participant';
 
 COMMENT ON COLUMN PARTICIPER.IDATELIER
      IS 'Identifiant d''un atelier';
 
 COMMENT ON COLUMN PARTICIPER.NUMERO
-     IS 'identifiant de la session de 1 à 5';
+     IS 'identifiant de la session de 1 ï¿½ 5';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE PARTICIPER
@@ -491,7 +491,7 @@ CREATE  INDEX I_FK_PARTICIPER_VACATION
     ;
 
 CREATE  INDEX I_FK_PARTICIPER_INSCRIRE
-     ON PARTICIPER (IDLICENCIE ASC, IDATELIER ASC)
+     ON PARTICIPER (IDLicencie ASC, IDATELIER ASC)
     ;
 
 -- -----------------------------------------------------------------------------
@@ -515,7 +515,7 @@ COMMENT ON COLUMN INSCRIRE.IDATELIER
 --       INDEX DE LA TABLE INSCRIRE
 -- -----------------------------------------------------------------------------
 
-CREATE  INDEX I_FK_INSCRIRE_LICENCIE
+CREATE  INDEX I_FK_INSCRIRE_Licencie
      ON INSCRIRE (IDPARTICIPANT ASC)
     ;
 
@@ -536,13 +536,13 @@ CREATE TABLE PROPOSER
    ) ;
 create public synonym PROPOSER for PROPOSER;
 COMMENT ON COLUMN PROPOSER.CODEHOTEL
-     IS 'Identifiant de l''hôtel';
+     IS 'Identifiant de l''hï¿½tel';
 
 COMMENT ON COLUMN PROPOSER.IDCATEGORIE
-     IS 'Identifiant de la catégorie';
+     IS 'Identifiant de la catï¿½gorie';
 
 COMMENT ON COLUMN PROPOSER.TARIFNUITE
-     IS 'tarif de la nuité pour les assises';
+     IS 'tarif de la nuitï¿½ pour les assises';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE PROPOSER
@@ -589,11 +589,11 @@ CREATE  INDEX I_FK_ETREPRESENT_DATEBENEVOLAT
 CREATE TABLE INCLUREACCOMPAGNANT
    (
     IDRESTAURATION NUMBER(1)  NOT NULL,
-    IDLICENCIE NUMBER(4)  NOT NULL,
-    CONSTRAINT PK_INCLUREACCOMPAGNANT PRIMARY KEY (IDRESTAURATION, IDLICENCIE)  
+    IDLicencie NUMBER(4)  NOT NULL,
+    CONSTRAINT PK_INCLUREACCOMPAGNANT PRIMARY KEY (IDRESTAURATION, IDLicencie)  
    ) ;
 create public synonym INCLUREACCOMPAGNANT for INCLUREACCOMPAGNANT;
-COMMENT ON COLUMN INCLUREACCOMPAGNANT.IDLICENCIE
+COMMENT ON COLUMN INCLUREACCOMPAGNANT.IDLicencie
      IS 'identifiant du participant';
 
 -- -----------------------------------------------------------------------------
@@ -605,7 +605,7 @@ CREATE  INDEX I_FK_INCLUREACCOMPAGNANT_RESTA
     ;
 
 CREATE  INDEX I_FK_INCLUREACCOMPAGNANT_LICEN
-     ON INCLUREACCOMPAGNANT (IDLICENCIE ASC)
+     ON INCLUREACCOMPAGNANT (IDLicencie ASC)
     ;
 
 
@@ -651,9 +651,9 @@ create public synonym PARAMETRES for PARAMETRES;
 
 
 ALTER TABLE PAIEMENT ADD (
-     CONSTRAINT FK_PAIEMENT_LICENCIE
-          FOREIGN KEY (IDLICENCIE)
-               REFERENCES LICENCIE (IDLICENCIE))   ;
+     CONSTRAINT FK_PAIEMENT_Licencie
+          FOREIGN KEY (IDLicencie)
+               REFERENCES Licencie (IDLicencie))   ;
 
 ALTER TABLE BENEVOLE ADD (
      CONSTRAINT FK_BENEVOLE_PARTICIPANT
@@ -694,14 +694,14 @@ ALTER TABLE INTERVENANT ADD (
           FOREIGN KEY (IDATELIER)
                REFERENCES ATELIER (ID))   ;
 
-ALTER TABLE LICENCIE ADD (
-     CONSTRAINT FK_LICENCIE_QUALITE
+ALTER TABLE Licencie ADD (
+     CONSTRAINT FK_Licencie_QUALITE
           FOREIGN KEY (IDQUALITE)
                REFERENCES QUALITE (ID))   ;
 
-ALTER TABLE LICENCIE ADD (
-     CONSTRAINT FK_LICENCIE_PARTICIPANT
-          FOREIGN KEY (IDLICENCIE)
+ALTER TABLE Licencie ADD (
+     CONSTRAINT FK_Licencie_PARTICIPANT
+          FOREIGN KEY (IDLicencie)
                REFERENCES PARTICIPANT (ID)
                     ON DELETE CASCADE
 )   ;
@@ -725,13 +725,13 @@ ALTER TABLE PARTICIPER ADD (
 
 ALTER TABLE PARTICIPER ADD (
      CONSTRAINT FK_PARTICIPER_INSCRIRE
-          FOREIGN KEY (IDLICENCIE, IDATELIER)
+          FOREIGN KEY (IDLicencie, IDATELIER)
                REFERENCES INSCRIRE (IDPARTICIPANT, IDATELIER))   ;
 
 ALTER TABLE INSCRIRE ADD (
-     CONSTRAINT FK_INSCRIRE_LICENCIE
+     CONSTRAINT FK_INSCRIRE_Licencie
           FOREIGN KEY (IDPARTICIPANT)
-               REFERENCES LICENCIE (IDLICENCIE)
+               REFERENCES Licencie (IDLicencie)
                     ON DELETE CASCADE
 )   ;
 
@@ -779,8 +779,8 @@ ALTER TABLE INCLUREACCOMPAGNANT ADD (
 
 ALTER TABLE INCLUREACCOMPAGNANT ADD (
      CONSTRAINT FK_INCLUREACCOMPAGNANT_LICENCI
-          FOREIGN KEY (IDLICENCIE)
-               REFERENCES LICENCIE (IDLICENCIE)
+          FOREIGN KEY (IDLicencie)
+               REFERENCES Licencie (IDLicencie)
                     ON DELETE CASCADE
 )   ;
 
@@ -801,7 +801,7 @@ select IDRESTAURATION ID, to_char(daterestauration, 'Day dd Month YYYY','NLS_DAT
 from RESTAURATION;
 create public synonym VRESTAURATION01 for VRESTAURATION01;
 
--- Cette vue vqualite01 va permettre d'avoir un résultat trié dans les combobox
+-- Cette vue vqualite01 va permettre d'avoir un rï¿½sultat triï¿½ dans les combobox
 drop public synonym VQUALITE01;
 create or replace view VQUALITE01 as
 select id, libellequalite as libelle
@@ -809,21 +809,21 @@ from qualite
 order by libellequalite;
 create public synonym VQUALITE01 for VQUALITE01;
 --
--- Cette vue VDATEBENEVOLAT01 va permettre de choisir les dates où un bénévole est disponible
+-- Cette vue VDATEBENEVOLAT01 va permettre de choisir les dates oï¿½ un bï¿½nï¿½vole est disponible
 drop public synonym VDATEBENEVOLAT01;
 create or replace view VDATEBENEVOLAT01 as
 select id, to_char(datebenevolat, 'Day dd Month YYYY','NLS_DATE_LANGUAGE = FRENCH')as libelle
 from DATEBENEVOLAT;
 create public synonym VDATEBENEVOLAT01 for VDATEBENEVOLAT01;
 --
--- Cette vue VDATENUITE01 va permettre de choisir les dates où un participant peut arriverà l'hotel
+-- Cette vue VDATENUITE01 va permettre de choisir les dates oï¿½ un participant peut arriverï¿½ l'hotel
 drop public synonym VDATENUITE01;
 create or replace view VDATENUITE01 as
 select id, to_char(DATEARRIVEENUITEE, 'Day dd Month YYYY','NLS_DATE_LANGUAGE = FRENCH')as libelle
 from DATENUITE;
 create public synonym VDATENUITE01 for VDATENUITE01;
 
--- Cette vue VDATENUITE02 est une alternative à VDATENUITE01 elle va renvoyer la date au format date
+-- Cette vue VDATENUITE02 est une alternative ï¿½ VDATENUITE01 elle va renvoyer la date au format date
 drop public synonym VDATENUITE02;
 create or replace view VDATENUITE02 as
 select id, DATEARRIVEENUITEE as datenuite
@@ -831,14 +831,14 @@ from DATENUITE;
 create public synonym VDATENUITE02 for VDATENUITE02;
 
 --
--- Cette vue VHOTEL01 va permettre de remplir la combobox du choix d'hotel du composant nuité
+-- Cette vue VHOTEL01 va permettre de remplir la combobox du choix d'hotel du composant nuitï¿½
 drop public synonym VHOTEL01;
 create or replace view VHOTEL01 as
 select codehotel as id, nomhotel as libelle
 from hotel;
 create public synonym VHOTEL01 for VHOTEL01;
 --
--- Cette vue VCATEGORIECHAMBRE01 va permettre de remplir la combobox du choix de la catégorie de la chambre du composant nuité
+-- Cette vue VCATEGORIECHAMBRE01 va permettre de remplir la combobox du choix de la catï¿½gorie de la chambre du composant nuitï¿½
 drop public synonym VCATEGORIECHAMBRE01;
 create or replace view VCATEGORIECHAMBRE01 as
 select id , libellecategorie as libelle
@@ -846,7 +846,7 @@ from categoriechambre;
 create public synonym VCATEGORIECHAMBRE01 for VCATEGORIECHAMBRE01;
 
 --
--- Cette vue VSTATUTO1 va permettre de créer les boutons radio du statut de l'intervenant sur un atelier
+-- Cette vue VSTATUTO1 va permettre de crï¿½er les boutons radio du statut de l'intervenant sur un atelier
 drop public synonym VSTATUT01;
 create or replace view VSTATUT01 as
 select id , libellestatut as libelle

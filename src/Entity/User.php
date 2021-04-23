@@ -51,7 +51,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToOne(targetEntity=Licencie::class, mappedBy="compte", cascade={"persist", "remove"})
      */
-    private $licencie;
+    private $Licencie;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -170,17 +170,17 @@ class User implements UserInterface
 
     public function getLicencie(): ?Licencie
     {
-        return $this->licencie;
+        return $this->Licencie;
     }
 
-    public function setLicencie(?Licencie $licencie): self
+    public function setLicencie(?Licencie $Licencie): self
     {
-        $this->licencie = $licencie;
+        $this->Licencie = $Licencie;
 
         // set (or unset) the owning side of the relation if necessary
-        $newCompte = null === $licencie ? null : $this;
-        if ($licencie->getCompte() !== $newCompte) {
-            $licencie->setCompte($newCompte);
+        $newCompte = null === $Licencie ? null : $this;
+        if ($Licencie->getCompte() !== $newCompte) {
+            $Licencie->setCompte($newCompte);
         }
 
         return $this;

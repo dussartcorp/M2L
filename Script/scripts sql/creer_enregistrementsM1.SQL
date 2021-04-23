@@ -23,8 +23,8 @@
 -- -----------------------------------------------------------------------------
 --       TABLE : CATEGORIECHAMBRE
 -- 
-insert into Categoriechambre (LIBELLECATEGORIE) values ('Single');
-insert into Categoriechambre (LIBELLECATEGORIE) values ('Double');
+insert into Categoriechambre (libelleCategorie) values ('Single');
+insert into Categoriechambre (libelleCategorie) values ('Double');
 
 -- -----------------------------------------------------------------------------
 --       TABLE : QUALITE

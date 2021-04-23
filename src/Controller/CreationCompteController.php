@@ -53,11 +53,11 @@ class CreationCompteController extends AbstractController
                     <p>Vous vous êtes inscrit sur notre site, veuillez cliquer sur le lien ci-dessou pour l\'activer : </p>
                     <a href=' . $url . '> Activer votre compte </a>' , 'text/html');
 
-                    // $manager->persist($compte);
-                    // $manager->flush();
+                    $manager->persist($compte);
+                    $manager->flush();
 
-                    // $id = $lrepo->recupIdCompte($numLicence);
-                    // $lrepo->addIdCompte($numLicence, $id[0]['id']);
+                    $id = $lrepo->recupIdCompte($numLicence);
+                    $lrepo->addIdCompte($numLicence, $id[0]['id']);
 
                     // $message = (new \Swift_Message('Activation de votre compte'))
                     //     ->setFrom('lraM2L@gmail.com')

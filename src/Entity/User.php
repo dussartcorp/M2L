@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="User")
  */
 class User implements UserInterface
 {

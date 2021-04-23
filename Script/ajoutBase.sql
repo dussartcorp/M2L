@@ -1,4 +1,4 @@
-Insert into theme(libelle) values 
+Insert into Theme(libelle) values 
 ("Diagnostic et identification des critères du club"), 
 ("Analyse systémique de l'environnement et méthodologique de mise en oeuvre du projet"), 
 ("Action solidaires et innovantes"), 
@@ -32,7 +32,7 @@ Insert into theme(libelle) values
 ("Echange");
 
 
-insert into themesparatelier(idatelier, idtheme) values
+insert into Themesparatelier(idatelier, idtheme) values
 (1, 1),
 (1, 2),
 (1, 3),
@@ -66,7 +66,7 @@ insert into themesparatelier(idatelier, idtheme) values
 (6, 31);
 
 
-insert into restauration (typesrepas, daterestauration) values 
+insert into Restauration (typesrepas, daterestauration) values 
 ('midi', '2021-09-14 00:00:00'),
 ('soir', '2021-09-14 00:00:00'),
 ('midi', '2021-09-15 00:00:00');

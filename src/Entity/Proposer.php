@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProposerRepository::class)
+ * @ORM\Table(name="Proposer")
  */
 class Proposer
 {

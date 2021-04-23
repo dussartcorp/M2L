@@ -36,7 +36,7 @@ final class Version20210407144951 extends AbstractMigration
         $this->addSql('CREATE TABLE Theme (id INT AUTO_INCREMENT NOT NULL, libelle VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE User (id INT AUTO_INCREMENT NOT NULL, num_licence VARCHAR(11) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, conf_password VARCHAR(255) NOT NULL, activation_token VARCHAR(50) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649D8A9FCA1 (num_licence), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Vacation (id INT AUTO_INCREMENT NOT NULL, libelle VARCHAR(70) NOT NULL, dateheuredebut DATETIME NOT NULL, dateheurefin DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE Aelier ADD CONSTRAINT FK_E1BB1823490F9778 FOREIGN KEY (idvacation) REFERENCES vacation (id)');
+        $this->addSql('ALTER TABLE Atelier ADD CONSTRAINT FK_E1BB1823490F9778 FOREIGN KEY (idvacation) REFERENCES vacation (id)');
         $this->addSql('ALTER TABLE Themesparatelier ADD CONSTRAINT FK_D33808EE3EBF4A4D FOREIGN KEY (idatelier) REFERENCES atelier (id)');
         $this->addSql('ALTER TABLE Themesparatelier ADD CONSTRAINT FK_D33808EE41708B11 FOREIGN KEY (idtheme) REFERENCES theme (id)');
         $this->addSql('ALTER TABLE Inscription ADD CONSTRAINT FK_5E90F6D6AB4BFFCC FOREIGN KEY (idcompte) REFERENCES user (id)');

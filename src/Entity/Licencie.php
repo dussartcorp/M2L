@@ -70,7 +70,7 @@ class Licencie
     private $dateAdhesion;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="licencie", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="Licencie", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="idcompte", nullable=true)
      */
     private $compte;

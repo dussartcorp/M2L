@@ -22,6 +22,7 @@
         "symfony/maker-bundle": "1.23",
         "symfony/proxy-manager-bridge": "4.4.*",
         "symfony/security-bundle": "4.4.*",
+        "symfony/serializer": "4.4.*",
         "symfony/stopwatch": "4.4.*",
         "symfony/swiftmailer-bundle": "^3.5",
         "symfony/twig-bundle": "4.4.*",

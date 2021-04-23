@@ -100,4 +100,36 @@ class LicencieRepository extends ServiceEntityRepository
             return 'ko';
         }
     }
+
+    public function infoLicencies(){
+        $dql = $this->getEntityManager()->createQuery('select l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
+        . 'from App\Entity\Licencie l '
+        . 'inner join App\Entity\Qualite q '
+        . 'with l.laQualite = q.id '
+        . 'inner join App\Entity\Club c '
+        . 'with l.leClub = c.id ');
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'ko';
+        }
+    }
+
+    public function infoLicencie($id){
+        $dql = $this->getEntityManager()->createQuery('select l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
+        . 'from App\Entity\Licencie l '
+        . 'inner join App\Entity\Qualite q '
+        . 'with l.laQualite = q.id '
+        . 'inner join App\Entity\Club c '
+        . 'with l.leClub = c.id '
+        . 'where l.id = :id');
+        $dql->setParameter('id', $id);
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'Le licencie precise n\'existe pas';
+        }
+    }
 }

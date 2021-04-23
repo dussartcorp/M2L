@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Repository\LicencieRepository;
+use App\Service\GestionContact;
 
 /**
  * @Route("/inscription/", name="creation_")
@@ -44,6 +45,8 @@ class CreationCompteController extends AbstractController
 
                     $compte->setActivationToken(md5(uniqid()));
 
+
+                    // GestionContact::send($form->get('Email')->getData(), 'Name', 'Test', 'Ce message est un test');
 
                     $manager->persist($compte);
                     $manager->flush();

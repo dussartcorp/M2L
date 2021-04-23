@@ -66,7 +66,7 @@ class ConnexionController extends AbstractController
             }
 
             $url = $this->generateUrl('app_reset_password', ['token' => $token]);
-
+            $url = 'm2l' . $url;
             GestionContact::send($user->getEmail(), 'Vous', 'Réinitialisation de votre mot de passe', '<p> Bonjour, </p> 
             <p>Vous avez fait une demande de réinitialisation de mot de passe, veuillez cliquer sur le lien ci-dessou pour y accéder :</p>
                     <a href=' . $url . '> Activer votre compte </a>', 'text/html');

@@ -128,6 +128,8 @@ function libelleDate(){
 {% else %}
       <div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page. Retourner vers <a href="{{ path('home') }}">l'accueil</a></div>
 {% endif %}
+{% else %}
+      <div class="alert alert-danger">Vous n'êtes pas connecté. Retourner vers <a href="{{ path('home') }}">l'accueil</a> ou connectez-vous <a href="{{ path('app_login') }}">par ici.</a></div>
 {% endif %}
 
 

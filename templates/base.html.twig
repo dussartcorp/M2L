@@ -43,6 +43,18 @@
 					
 					{% if app.user %}
 						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER') %}
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Congrès
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="{{path('congres_voirtous')}}">Voir les ateliers</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{{path('congres_atelier')}}">Créer un atelier </a>
+									<a class="dropdown-item" href="{{path('congres_creerTheme')}}">Créer un thème</a>
+									<a class="dropdown-item" href="{{path('congres_creerVacation')}}">Créer une vacation</a>
+								</div>
+							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('congres_atelier') }}">Congrès</a>
 							</li>

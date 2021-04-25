@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\CategorieChambre;
-use App\Entity\Nuite;
+use App\Entity\Nuitee;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,7 +12,7 @@ use App\Entity\Hotel;
 use DateTime;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class NuiteType extends AbstractType
+class NuiteeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -37,8 +37,7 @@ class NuiteType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Nuite::class,
+        $resolver->setDefaults(['data_class' => Nuitee::class,
         ]);
     }
 }

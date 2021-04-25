@@ -511,7 +511,7 @@ begin
   FOR i IN plescategories.FIRST .. plescategories.LAST 
   LOOP
       vnumordre:=vnumordre + 1;
-      insert into contenuhebergement(idparticipant, numordre,codehotel, idcategorie, iddatearriveenuitee)
+      insert into contenuhebergement(idparticipant, numordre,codehotel, idcategorie, iddatearriveeNuiteee)
        values (newid, vnumordre, pleshotels(i) ,plescategories(i), plesnuits(i));   
   END LOOP;
 Exception

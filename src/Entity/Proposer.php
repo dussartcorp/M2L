@@ -19,9 +19,9 @@ class Proposer
     private $id;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2,name="tarifNuite")
+     * @ORM\Column(type="decimal", precision=5, scale=2,name="tarifNuitee")
      */
-    private $tarifNuite;
+    private $tarifNuitee;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="tarifs",cascade={"persist"})
@@ -30,7 +30,7 @@ class Proposer
     private $categorie;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="tarifs")
+     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="tarifs",cascade={"persist"})
      * @ORM\Column(name="idhotel")
      */
     private $hotel;
@@ -40,14 +40,14 @@ class Proposer
         return $this->id;
     }
 
-    public function getTarifNuite(): ?string
+    public function getTarifNuitee(): ?string
     {
-        return $this->tarifNuite;
+        return $this->tarifNuitee;
     }
 
-    public function setTarifNuite(string $tarifNuite): self
+    public function setTarifNuitee(string $tarifNuitee): self
     {
-        $this->tarifNuite = $tarifNuite;
+        $this->tarifNuitee = $tarifNuitee;
 
         return $this;
     }

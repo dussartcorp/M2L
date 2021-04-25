@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Nuite;
+use App\Entity\Nuitee;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Nuite|null find($id, $lockMode = null, $lockVersion = null)
- * @method Nuite|null findOneBy(array $criteria, array $orderBy = null)
- * @method Nuite[]    findAll()
- * @method Nuite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Nuitee|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Nuitee|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Nuitee[]    findAll()
+ * @method Nuitee[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class NuiteRepository extends ServiceEntityRepository
+class NuiteeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Nuite::class);
+        parent::__construct($registry, Nuitee::class);
     }
 
     // /**
-    //  * @return Nuite[] Returns an array of Nuite objects
+    //  * @return Nuitee[] Returns an array of Nuitee objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class NuiteRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Nuite
+    public function findOneBySomeField($value): ?Nuitee
     {
         return $this->createQueryBuilder('n')
             ->andWhere('n.exampleField = :val')

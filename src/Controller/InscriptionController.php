@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use App\Form\NuiteType;
-use App\Entity\Nuite;
+use App\Form\NuiteeType;
+use App\Entity\Nuitee;
 use App\Entity\Restauration;
 use App\Entity\User;
 use App\Repository\RestaurationRepository;
@@ -55,24 +55,23 @@ class InscriptionController extends AbstractController
             
         }
         $inscription= New Inscription();
-        $nuitee1=New Nuite();
-        $nuitee2=New Nuite();
+        $Nuiteee1 = new Nuitee();
+        $Nuiteee2 = new Nuitee();
         $uneRestauration1=New Restauration();
         $uneRestauration2=New Restauration();
         $uneRestauration3=New Restauration();
-        $formNuitee1=$this->createForm(NuiteType::class,$nuitee1);
-        $formNuitee2=$this->createForm(NuiteType::class,$nuitee2);
+        $formNuiteee1 = $this->createForm(NuiteeType::class, $Nuiteee1);
+        $formNuiteee2 = $this->createForm(NuiteeType::class, $Nuiteee2);
         $form=$this->createForm(InscriptionType::class,$inscription);
         $form->handleRequest($request);
-        $formNuitee1->handleRequest($request);
-        $formNuitee2->handleRequest($request);
-        if(($form->isSubmitted()&&$form->isValid())&&($formNuitee1->isSubmitted()&&$formNuitee1->isValid())&&($formNuitee2->isSubmitted()&&$formNuitee2->isValid())){   
-            if($nuitee2->getHotel()==null && $nuitee1->getHotel()!=null){
-                $inscription->addNuitee($nuitee1);
-            }
-            else if($nuitee2->getHotel()!=null && $nuitee1->getHotel()!=null){
-                $inscription->addNuitee($nuitee1);
-                $inscription->addNuitee($nuitee2);
+        $formNuiteee1->handleRequest($request);
+        $formNuiteee2->handleRequest($request);
+        if (($form->isSubmitted() && $form->isValid()) && ($formNuiteee1->isSubmitted() && $formNuiteee1->isValid()) && ($formNuiteee2->isSubmitted() && $formNuiteee2->isValid())) {
+            if ($Nuiteee2->getHotel() == null && $Nuiteee1->getHotel() != null) {
+                $inscription->addNuiteee($Nuiteee1);
+            } else if ($Nuiteee2->getHotel() != null && $Nuiteee1->getHotel() != null) {
+                $inscription->addNuiteee($Nuiteee1);
+                $inscription->addNuiteee($Nuiteee2);
             }
             $inscription->setDateInscription(new DateTime('NOW'));
             if(isset($_POST['ckcSamMidi'])){
@@ -98,7 +97,7 @@ class InscriptionController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('home');
         }
-        return $this->render('inscription/inscriptionSejour.html.twig',['form'=>$form->createView(),'nuitee1'=>$formNuitee1->createView(),'nuitee2'=>$formNuitee2->createView(),'resto1'=>$resto1,'resto2'=>$resto2]);
+        return $this->render('inscription/inscriptionSejour.html.twig', ['form' => $form->createView(), 'Nuiteee1' => $formNuiteee1->createView(), 'Nuiteee2' => $formNuiteee2->createView(), 'resto1' => $resto1, 'resto2' => $resto2]);
     }
 
 

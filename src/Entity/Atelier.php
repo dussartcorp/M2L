@@ -38,7 +38,7 @@ class Atelier
     /**
      * @ORM\ManyToMany(targetEntity=Theme::class, inversedBy="ateliers",cascade={"persist"})
      * @ORM\JoinTable(
-     *        name="themesparatelier",
+     *        name="Themesparatelier",
      *        joinColumns={@ORM\JoinColumn(name="idatelier", referencedColumnName="id")},
      *        inverseJoinColumns={@ORM\JoinColumn(name="idtheme", referencedColumnName="id")}
      *        )

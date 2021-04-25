@@ -21,7 +21,7 @@ class Nuitee
     private $id;
 
     /**
-     * @ORM\Column(type="datetime",name="dateNuiteee")
+     * @ORM\Column(type="datetime",name="dateNuitee")
      */
     private $dateNuiteee;
 

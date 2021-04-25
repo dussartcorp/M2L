@@ -19,14 +19,12 @@ INSERT INTO Hotel
    (NOMHOTEL, ADRESSE1,ADRESSE2 ,CP,VILLE,TEL,MAIL) 
    VALUES ('Hôtel Novotel Lille Centre Grand Place','116 rue de l''Hopital Militaire',null,'59000','LILLE','(+33)3/28385353','H0918@accor.com') ;
 
-insert into Nuite(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-27 00:00:00',2);
-insert into Nuite(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-26 00:00:00',1);
 
 
-INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITE) VALUES(1,1,61.20 );   
-INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITE) VALUES(2,1,62.20 ); 
-INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITE) VALUES(1,2,112.00 ); 
-INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITE) VALUES(2,2,122.00 );    
+INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITEE) VALUES(1,1,61.20 );   
+INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITEE) VALUES(2,1,62.20 ); 
+INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITEE) VALUES(1,2,112.00 ); 
+INSERT INTO Proposer (idcategorie, idhotel, TARIFNUITEE) VALUES(2,2,122.00 );    
 
 
 commit;

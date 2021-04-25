@@ -1,19 +1,19 @@
 -- -----------------------------------------------------------------------------
---             Génération d'une base de données pour
+--             Gï¿½nï¿½ration d'une base de donnï¿½es pour
 --                      Oracle Version 10g XE
 --                        
 -- -----------------------------------------------------------------------------
 --      Projet : MaisonDesLigues
---      Auteur : Benoît ROCHE
---      Date de dernière modification : 9/01/2013 11:32:40
+--      Auteur : Benoï¿½t ROCHE
+--      Date de derniï¿½re modification : 9/01/2013 11:32:40
 -- -----------------------------------------------------------------------------
 
 -- -----------------------------------------------------------------------------
---      Partie 2: Création de l'utilisateur MDL qui sera aussi le propriétaire
--- 		des objets : tables, index, procédures
+--      Partie 2: Crï¿½ation de l'utilisateur MDL qui sera aussi le propriï¿½taire
+-- 		des objets : tables, index, procï¿½dures
 --
---		Ce script doit être exécuté par un l'utilisateur MDL
---		(celui qui vient d'être créé dans le script creer_user)
+--		Ce script doit ï¿½tre exï¿½cutï¿½ par un l'utilisateur MDL
+--		(celui qui vient d'ï¿½tre crï¿½ï¿½ dans le script creer_user)
 --- -----------------------------------------------------------------------------
 
 -- -----------------------------------------------------------------------------
@@ -30,8 +30,8 @@ DROP TABLE BENEVOLE CASCADE CONSTRAINTS;
 Drop public synonym BENEVOLE;
 DROP TABLE CONTENUHEBERGEMENT CASCADE CONSTRAINTS;
 Drop public synonym CONTENUHEBERGEMENT;
-DROP TABLE DATENUITE CASCADE CONSTRAINTS;
-Drop public synonym DATENUITE;
+DROP TABLE DATENuitee CASCADE CONSTRAINTS;
+Drop public synonym DATENuitee;
 DROP TABLE DATEBENEVOLAT CASCADE CONSTRAINTS;
 Drop public synonym DATEBENEVOLAT;
 DROP TABLE HOTEL CASCADE CONSTRAINTS;
@@ -115,12 +115,12 @@ create sequence SEQDATEBENEVOLAT
   start with 1;
 create public synonym SEQDATEBENEVOLAT for SEQDATEBENEVOLAT;  
 
-drop sequence SEQDATENUITE ;
-drop public synonym SEQDATENUITE;
-create sequence SEQDATENUITE
+drop sequence SEQDATENuitee ;
+drop public synonym SEQDATENuitee;
+create sequence SEQDATENuitee
   increment by 1
   start with 1;  
-create public synonym SEQDATENUITE for SEQDATENUITE;  
+create public synonym SEQDATENuitee for SEQDATENuitee;  
 -- -----------------------------------------------------------------------------
 --       CREATION ET SUPPRESSION DES TABLES
 --
@@ -141,16 +141,16 @@ CREATE TABLE PAIEMENT
    ) ;
 create public synonym PAIEMENT for PAIEMENT;
 COMMENT ON COLUMN PAIEMENT.ID
-     IS 'identifant de l''hébergement';
+     IS 'identifant de l''hï¿½bergement';
 
 COMMENT ON COLUMN PAIEMENT.IDLICENCIE
      IS 'identifiant du participant';
 
 COMMENT ON COLUMN PAIEMENT.MONTANTCHEQUE
-     IS 'obligatoire pour un licencié';
+     IS 'obligatoire pour un licenciï¿½';
 
 COMMENT ON COLUMN PAIEMENT.NUMEROCHEQUE
-     IS 'obligatoire pour un licencié';
+     IS 'obligatoire pour un licenciï¿½';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE PAIEMENT
@@ -185,10 +185,10 @@ COMMENT ON COLUMN PARTICIPANT.ID
      IS 'identifiant du participant';
 
 COMMENT ON COLUMN PARTICIPANT.DATEENREGISTREMENTARRIVEE
-     IS 'Date et heure à laqielle le participant arrive aux assises';
+     IS 'Date et heure ï¿½ laqielle le participant arrive aux assises';
 
 COMMENT ON COLUMN PARTICIPANT.CLEWIFI
-     IS 'si le participant veut une clé wifi, on la génère et on la sauvegarde.';
+     IS 'si le participant veut une clï¿½ wifi, on la gï¿½nï¿½re et on la sauvegarde.';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : ATELIER
@@ -231,18 +231,18 @@ CREATE TABLE CONTENUHEBERGEMENT
     NUMORDRE NUMBER(1)  NOT NULL,
     CODEHOTEL CHAR(4)  NOT NULL,
     IDCATEGORIE CHAR(1)  NOT NULL,
-    IDDATEARRIVEENUITEE NUMBER(3)  NOT NULL,
+    IDDATEARRIVEENuiteeE NUMBER(3)  NOT NULL,
     CONSTRAINT PK_CONTENUHEBERGEMENT PRIMARY KEY (IDPARTICIPANT, NUMORDRE)  
    ) ;
 create public synonym CONTENUHEBERGEMENT for CONTENUHEBERGEMENT;
 COMMENT ON COLUMN CONTENUHEBERGEMENT.IDPARTICIPANT
-     IS 'identifiant du participant. Ne peut être l''identifiant d''un bénévole';
+     IS 'identifiant du participant. Ne peut ï¿½tre l''identifiant d''un bï¿½nï¿½vole';
 
 COMMENT ON COLUMN CONTENUHEBERGEMENT.CODEHOTEL
-     IS 'Identifiant de l''hôtel';
+     IS 'Identifiant de l''hï¿½tel';
 
 COMMENT ON COLUMN CONTENUHEBERGEMENT.IDCATEGORIE
-     IS 'Identifiant de la catégorie';
+     IS 'Identifiant de la catï¿½gorie';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE CONTENUHEBERGEMENT
@@ -257,7 +257,7 @@ CREATE  INDEX I_FK_CONTENUHEBERGEMENT_CATEGO
     ;
 
 CREATE  INDEX I_FK_CONTENUHEBERGEMENT_DATENU
-     ON CONTENUHEBERGEMENT (IDDATEARRIVEENUITEE ASC)
+     ON CONTENUHEBERGEMENT (IDDATEARRIVEENuiteeE ASC)
     ;
 
 CREATE  INDEX I_FK_CONTENUHEBERGEMENT_PARTIC
@@ -265,18 +265,18 @@ CREATE  INDEX I_FK_CONTENUHEBERGEMENT_PARTIC
     ;
 
 -- -----------------------------------------------------------------------------
---       TABLE : DATENUITE
+--       TABLE : DATENuitee
 -- -----------------------------------------------------------------------------
 
-CREATE TABLE DATENUITE
+CREATE TABLE DATENuitee
    (
     ID NUMBER(3) NOT NULL,
-	DATEARRIVEENUITEE DATE  NOT NULL,
-  CONSTRAINT PK_DATENUITE PRIMARY KEY (ID)  
+	DATEARRIVEENuiteeE DATE  NOT NULL,
+  CONSTRAINT PK_DATENuitee PRIMARY KEY (ID)  
    ) ;
-create public synonym DATENUITE for DATENUITE;
-COMMENT ON TABLE DATENUITE
-     IS 'date d''arrivée hotel pour une nuit';
+create public synonym DATENuitee for DATENuitee;
+COMMENT ON TABLE DATENuitee
+     IS 'date d''arrivï¿½e hotel pour une nuit';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : DATEBENEVOLAT
@@ -307,7 +307,7 @@ CREATE TABLE HOTEL
    ) ;
 create public synonym HOTEL for HOTEL;
 COMMENT ON COLUMN HOTEL.CODEHOTEL
-     IS 'Identifiant de l''hôtel';
+     IS 'Identifiant de l''hï¿½tel';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : INTERVENANT
@@ -352,7 +352,7 @@ COMMENT ON COLUMN LICENCIE.IDLICENCIE
      IS 'identifiant du participant';
 
 COMMENT ON COLUMN LICENCIE.IDQUALITE
-     IS 'identifiant de qualité';
+     IS 'identifiant de qualitï¿½';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE LICENCIE
@@ -391,10 +391,10 @@ COMMENT ON COLUMN VACATION.IDATELIER
      IS 'Identifiant d''un atelier';
 
 COMMENT ON COLUMN VACATION.NUMERO
-     IS 'identifiant de la session de 1 à 5';
+     IS 'identifiant de la session de 1 ï¿½ 5';
 
 COMMENT ON COLUMN VACATION.HEUREDEBUT
-     IS 'Format date heure, doit inclure date ET heure de début';
+     IS 'Format date heure, doit inclure date ET heure de dï¿½but';
 
 COMMENT ON COLUMN VACATION.HEUREFIN
      IS 'Format date heure, doit inclure date ET heure de fin';
@@ -419,7 +419,7 @@ CREATE TABLE CATEGORIECHAMBRE
    ) ;
 create public synonym CATEGORIECHAMBRE for CATEGORIECHAMBRE;
 COMMENT ON COLUMN CATEGORIECHAMBRE.ID
-     IS 'Identifiant de la catégorie';
+     IS 'Identifiant de la catï¿½gorie';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : QUALITE
@@ -433,7 +433,7 @@ CREATE TABLE QUALITE
    ) ;
 create public synonym QUALITE for QUALITE;
 COMMENT ON COLUMN QUALITE.ID
-     IS 'identifiant de qualité';
+     IS 'identifiant de qualitï¿½';
 
 -- -----------------------------------------------------------------------------
 --       TABLE : THEME
@@ -451,7 +451,7 @@ COMMENT ON COLUMN THEME.IDATELIER
      IS 'Identifiant d''un atelier';
 
 COMMENT ON COLUMN THEME.NUMERO
-     IS 'Numéro du thème à l''intérieur d''un atelier';
+     IS 'Numï¿½ro du thï¿½me ï¿½ l''intï¿½rieur d''un atelier';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE THEME
@@ -480,7 +480,7 @@ COMMENT ON COLUMN PARTICIPER.IDATELIER
      IS 'Identifiant d''un atelier';
 
 COMMENT ON COLUMN PARTICIPER.NUMERO
-     IS 'identifiant de la session de 1 à 5';
+     IS 'identifiant de la session de 1 ï¿½ 5';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE PARTICIPER
@@ -531,18 +531,18 @@ CREATE TABLE PROPOSER
    (
     CODEHOTEL CHAR(4)  NOT NULL,
     IDCATEGORIE CHAR(1)  NOT NULL,
-    TARIFNUITE NUMBER(6,2)  NOT NULL,
+    TARIFNuitee NUMBER(6,2)  NOT NULL,
     CONSTRAINT PK_PROPOSER PRIMARY KEY (CODEHOTEL, IDCATEGORIE)  
    ) ;
 create public synonym PROPOSER for PROPOSER;
 COMMENT ON COLUMN PROPOSER.CODEHOTEL
-     IS 'Identifiant de l''hôtel';
+     IS 'Identifiant de l''hï¿½tel';
 
 COMMENT ON COLUMN PROPOSER.IDCATEGORIE
-     IS 'Identifiant de la catégorie';
+     IS 'Identifiant de la catï¿½gorie';
 
-COMMENT ON COLUMN PROPOSER.TARIFNUITE
-     IS 'tarif de la nuité pour les assises';
+COMMENT ON COLUMN PROPOSER.TARIFNuitee
+     IS 'tarif de la nuitï¿½ pour les assises';
 
 -- -----------------------------------------------------------------------------
 --       INDEX DE LA TABLE PROPOSER
@@ -674,8 +674,8 @@ ALTER TABLE CONTENUHEBERGEMENT ADD (
 
 ALTER TABLE CONTENUHEBERGEMENT ADD (
      CONSTRAINT FK_CONTENUHEBERGEMENT_DATENUIT
-          FOREIGN KEY (IDDATEARRIVEENUITEE)
-               REFERENCES DATENUITE (ID))   ;
+          FOREIGN KEY (IDDATEARRIVEENuiteeE)
+               REFERENCES DATENuitee (ID))   ;
 
 ALTER TABLE CONTENUHEBERGEMENT ADD (
      CONSTRAINT FK_CONTENUHEBERGEMENT_PARTICIP
@@ -801,7 +801,7 @@ select IDRESTAURATION ID, to_char(daterestauration, 'Day dd Month YYYY','NLS_DAT
 from RESTAURATION;
 create public synonym VRESTAURATION01 for VRESTAURATION01;
 
--- Cette vue vqualite01 va permettre d'avoir un résultat trié dans les combobox
+-- Cette vue vqualite01 va permettre d'avoir un rï¿½sultat triï¿½ dans les combobox
 drop public synonym VQUALITE01;
 create or replace view VQUALITE01 as
 select id, libellequalite as libelle
@@ -809,36 +809,36 @@ from qualite
 order by libellequalite;
 create public synonym VQUALITE01 for VQUALITE01;
 --
--- Cette vue VDATEBENEVOLAT01 va permettre de choisir les dates où un bénévole est disponible
+-- Cette vue VDATEBENEVOLAT01 va permettre de choisir les dates oï¿½ un bï¿½nï¿½vole est disponible
 drop public synonym VDATEBENEVOLAT01;
 create or replace view VDATEBENEVOLAT01 as
 select id, to_char(datebenevolat, 'Day dd Month YYYY','NLS_DATE_LANGUAGE = FRENCH')as libelle
 from DATEBENEVOLAT;
 create public synonym VDATEBENEVOLAT01 for VDATEBENEVOLAT01;
 --
--- Cette vue VDATENUITE01 va permettre de choisir les dates où un participant peut arriverà l'hotel
-drop public synonym VDATENUITE01;
-create or replace view VDATENUITE01 as
-select id, to_char(DATEARRIVEENUITEE, 'Day dd Month YYYY','NLS_DATE_LANGUAGE = FRENCH')as libelle
-from DATENUITE;
-create public synonym VDATENUITE01 for VDATENUITE01;
+-- Cette vue VDATENuitee01 va permettre de choisir les dates oï¿½ un participant peut arriverï¿½ l'hotel
+drop public synonym VDATENuitee01;
+create or replace view VDATENuitee01 as
+select id, to_char(DATEARRIVEENuiteeE, 'Day dd Month YYYY','NLS_DATE_LANGUAGE = FRENCH')as libelle
+from DATENuitee;
+create public synonym VDATENuitee01 for VDATENuitee01;
 
--- Cette vue VDATENUITE02 est une alternative à VDATENUITE01 elle va renvoyer la date au format date
-drop public synonym VDATENUITE02;
-create or replace view VDATENUITE02 as
-select id, DATEARRIVEENUITEE as datenuite
-from DATENUITE;
-create public synonym VDATENUITE02 for VDATENUITE02;
+-- Cette vue VDATENuitee02 est une alternative ï¿½ VDANuiteeTE01 elle va renvoyer la date au format date
+drop public synonym VDATENuitee02;
+create or replace view VDATENuitee02 as
+select id, DATEARRIVEENuiteeE as dateNuitee
+from DATENuitee;
+create public synonym VDATENuitee02 for VDATENuitee02;
 
 --
--- Cette vue VHOTEL01 va permettre de remplir la combobox du choix d'hotel du composant nuité
+-- Cette vue VHOTEL01 va permettre de remplir la combobox du choix d'hotel du composant nuitï¿½
 drop public synonym VHOTEL01;
 create or replace view VHOTEL01 as
 select codehotel as id, nomhotel as libelle
 from hotel;
 create public synonym VHOTEL01 for VHOTEL01;
 --
--- Cette vue VCATEGORIECHAMBRE01 va permettre de remplir la combobox du choix de la catégorie de la chambre du composant nuité
+-- Cette vue VCATEGORIECHAMBRE01 va permettre de remplir la combobox du choix de la catï¿½gorie de la chambre du composant nuitï¿½
 drop public synonym VCATEGORIECHAMBRE01;
 create or replace view VCATEGORIECHAMBRE01 as
 select id , libellecategorie as libelle
@@ -846,7 +846,7 @@ from categoriechambre;
 create public synonym VCATEGORIECHAMBRE01 for VCATEGORIECHAMBRE01;
 
 --
--- Cette vue VSTATUTO1 va permettre de créer les boutons radio du statut de l'intervenant sur un atelier
+-- Cette vue VSTATUTO1 va permettre de crï¿½er les boutons radio du statut de l'intervenant sur un atelier
 drop public synonym VSTATUT01;
 create or replace view VSTATUT01 as
 select id , libellestatut as libelle

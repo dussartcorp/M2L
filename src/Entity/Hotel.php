@@ -55,9 +55,9 @@ class Hotel
     private $mail;
 
     /**
-     * @ORM\OneToMany(targetEntity=Nuite::class, mappedBy="hotel")
+     * @ORM\OneToMany(targetEntity=Nuitee::class, mappedBy="hotel")
      */
-    private $nuites;
+    private $Nuitees;
 
     /**
      * @ORM\OneToMany(targetEntity=Proposer::class, mappedBy="hotel")
@@ -66,7 +66,7 @@ class Hotel
 
     public function __construct()
     {
-        $this->nuites = new ArrayCollection();
+        $this->Nuitees = new ArrayCollection();
         $this->tarifs = new ArrayCollection();
     }
 
@@ -160,29 +160,29 @@ class Hotel
     }
 
     /**
-     * @return Collection|Nuite[]
+     * @return Collection|Nuitee[]
      */
-    public function getNuites(): Collection
+    public function getNuitees(): Collection
     {
-        return $this->nuites;
+        return $this->Nuitees;
     }
 
-    public function addNuite(Nuite $nuite): self
+    public function addNuitee(Nuitee $Nuitee): self
     {
-        if (!$this->nuites->contains($nuite)) {
-            $this->nuites[] = $nuite;
-            $nuite->setHotel($this);
+        if (!$this->Nuitees->contains($Nuitee)) {
+            $this->Nuitees[] = $Nuitee;
+            $Nuitee->setHotel($this);
         }
 
         return $this;
     }
 
-    public function removeNuite(Nuite $nuite): self
+    public function removeNuitee(Nuitee $Nuitee): self
     {
-        if ($this->nuites->removeElement($nuite)) {
+        if ($this->Nuitees->removeElement($Nuitee)) {
             // set the owning side to null (unless already changed)
-            if ($nuite->getHotel() === $this) {
-                $nuite->setHotel(null);
+            if ($Nuitee->getHotel() === $this) {
+                $Nuitee->setHotel(null);
             }
         }
 

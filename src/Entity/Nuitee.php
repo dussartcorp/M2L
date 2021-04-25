@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\NuiteRepository;
+use App\Repository\NuiteeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=NuiteRepository::class)
+ * @ORM\Entity(repositoryClass=NuiteeRepository::class)
  */
-class Nuite
+class Nuitee
 {
     /**
      * @ORM\Id
@@ -20,31 +20,31 @@ class Nuite
     private $id;
 
     /**
-     * @ORM\Column(type="datetime",name="dateNuitee")
+     * @ORM\Column(type="datetime",name="dateNuiteee")
      */
-    private $dateNuitee;
+    private $dateNuiteee;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="nuites",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="Nuitees",cascade={"persist"})
      * @ORM\JoinColumn(name="idhotel")
      */
     private $hotel;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="nuites",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="Nuitees",cascade={"persist"})
      * @ORM\Column(name="idcategorieChambre")
      */
     private $categorieChambre;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="Nuitees",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="nuitees")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $inscriptions;
 
 
     public function __construct()
     {
-        
     }
 
     public function getId(): ?int
@@ -52,19 +52,19 @@ class Nuite
         return $this->id;
     }
 
-    public function getDateNuitee(): ?\DateTimeInterface
+    public function getDateNuiteee(): ?\DateTimeInterface
     {
-        return $this->dateNuitee;
+        return $this->dateNuiteee;
     }
 
-    public function setDateNuitee(\DateTimeInterface $dateNuitee): self
+    public function setDateNuiteee(\DateTimeInterface $dateNuiteee): self
     {
-        $this->dateNuitee = $dateNuitee;
+        $this->dateNuiteee = $dateNuiteee;
 
         return $this;
     }
 
-    public function getHotel():?Hotel
+    public function getHotel(): ?Hotel
     {
         return $this->hotel;
     }
@@ -99,6 +99,4 @@ class Nuite
 
         return $this;
     }
-
-
 }

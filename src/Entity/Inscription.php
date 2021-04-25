@@ -52,16 +52,16 @@ class Inscription
     private $restaurations;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Nuite::class, inversedBy="inscription",cascade={"persist"})
-     * @ORM\JoinColumn(name="idinscription")
+     * @ORM\OneToMany(targetEntity=Nuitee::class, mappedBy="inscriptions", orphanRemoval=true)
      */
-    private $Nuitees;
+    private $nuitees;
 
     public function __construct()
     {
         $this->ateliers = new ArrayCollection();
         $this->restaurations = new ArrayCollection();
-        $this->Nuitees = new ArrayCollection();
+        $this->Nuiteees = new ArrayCollection();
+        $this->nuitees = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,26 +148,26 @@ class Inscription
     }
 
     /**
-     * @return Collection|Nuite[]
+     * @return Collection|Nuitee[]
      */
     public function getNuitees(): Collection
     {
-        return $this->Nuitees;
+        return $this->nuitees;
     }
 
-    public function addNuitee(Nuite $nuitee): self
+    public function addNuitee(Nuitee $nuitee): self
     {
-        if (!$this->Nuitees->contains($nuitee)) {
-            $this->Nuitees[] = $nuitee;
+        if (!$this->nuitees->contains($nuitee)) {
+            $this->nuitees[] = $nuitee;
             $nuitee->setInscriptions($this);
         }
 
         return $this;
     }
 
-    public function removeNuitee(Nuite $nuitee): self
+    public function removeNuitee(Nuitee $nuitee): self
     {
-        if ($this->Nuitees->removeElement($nuitee)) {
+        if ($this->nuitees->removeElement($nuitee)) {
             // set the owning side to null (unless already changed)
             if ($nuitee->getInscriptions() === $this) {
                 $nuitee->setInscriptions(null);
@@ -176,4 +176,5 @@ class Inscription
 
         return $this;
     }
+
 }

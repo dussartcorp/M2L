@@ -26,9 +26,9 @@ class CategorieChambre
     private $libelleCategorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Nuite::class, mappedBy="categorieChambre",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Nuitee::class, mappedBy="categorieChambre",cascade={"persist"})
      */
-    private $nuites;
+    private $Nuitees;
 
     /**
      * @ORM\OneToMany(targetEntity=Proposer::class, mappedBy="categorie")
@@ -37,7 +37,7 @@ class CategorieChambre
 
     public function __construct()
     {
-        $this->nuites = new ArrayCollection();
+        $this->Nuitees = new ArrayCollection();
         $this->tarifs = new ArrayCollection();
     }
 
@@ -59,29 +59,29 @@ class CategorieChambre
     }
 
     /**
-     * @return Collection|Nuite[]
+     * @return Collection|Nuitee[]
      */
-    public function getNuites(): Collection
+    public function getNuitees(): Collection
     {
-        return $this->nuites;
+        return $this->Nuitees;
     }
 
-    public function addNuite(Nuite $nuite): self
+    public function addNuitee(Nuitee $Nuitee): self
     {
-        if (!$this->nuites->contains($nuite)) {
-            $this->nuites[] = $nuite;
-            $nuite->setCategorieChambre($this);
+        if (!$this->Nuitees->contains($Nuitee)) {
+            $this->Nuitees[] = $Nuitee;
+            $Nuitee->setCategorieChambre($this);
         }
 
         return $this;
     }
 
-    public function removeNuite(Nuite $nuite): self
+    public function removeNuitee(Nuitee $Nuitee): self
     {
-        if ($this->nuites->removeElement($nuite)) {
+        if ($this->Nuitees->removeElement($Nuitee)) {
             // set the owning side to null (unless already changed)
-            if ($nuite->getCategorieChambre() === $this) {
-                $nuite->setCategorieChambre(null);
+            if ($Nuitee->getCategorieChambre() === $this) {
+                $Nuitee->setCategorieChambre(null);
             }
         }
 

@@ -104,20 +104,20 @@ INSERT INTO HOTEL
 
   
 -- -----------------------------------------------------------------------------
---       TABLE : NUITE
+--       TABLE : Nuitee
 --
-insert into NUITE(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-27 00:00:00',2);
-insert into NUITE(idhotel, DATENUITEE, idcategoriechambre) values(1,'2021-03-26 00:00:00',1);
+insert into Nuitee(idhotel, DATENuiteeE, idcategoriechambre) values(1,'2021-03-27 00:00:00',2);
+insert into Nuitee(idhotel, DATENuiteeE, idcategoriechambre) values(1,'2021-03-26 00:00:00',1);
 
 
 -- -----------------------------------------------------------------------------
 --       TABLE : PROPOSER
 -- -----------------------------------------------------------------------------
 
-INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(1,1,61.20 );   
-INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,1,62.20 ); 
-INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(1,2,112.00 ); 
-INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNUITE) VALUES(2,2,122.00 );    
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNuitee) VALUES(1,1,61.20 );   
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNuitee) VALUES(2,1,62.20 ); 
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNuitee) VALUES(1,2,112.00 ); 
+INSERT INTO PROPOSER (idcategorie, idhotel, TARIFNuitee) VALUES(2,2,122.00 );    
 
 -- -----------------------------------------------------------------------------
 --       TABLE : PARAMETRES

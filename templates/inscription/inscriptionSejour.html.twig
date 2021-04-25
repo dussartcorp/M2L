@@ -2,8 +2,8 @@
 {% block body %}
 <div>
     {{form_start(form)}}
-    {{form_start(nuitee1)}}
-    {{form_start(nuitee2)}}
+    {{form_start(Nuiteee1)}}
+    {{form_start(Nuiteee2)}}
         <div class="InscriptionBox container">
             <div>
                 <div class="form-group">
@@ -32,14 +32,14 @@
                     </div>
                 <div id="hotel1" style="display:block";>
                     <input class=" paramHotel form form-control col-5" type="date" id="date1" name="date1" value="{{resto1.dateResto}}" readonly>
-                    {{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
-                    {{form_widget(nuitee1.categorieChambre)}}
+                    {{ form_widget(Nuiteee1.hotel,{'attr':{'class':'paramHotel'}}) }}
+                    {{form_widget(Nuiteee1.categorieChambre)}}
                 </div>
                 <div id="hotel2" style="display:block";>
                     <hr>
                     <input class=" paramHotel form form-control col-5" type="date" id="date2" name="date2" value="{{ resto2.dateResto }}" readonly>
-                    {{ form_widget(nuitee2.hotel,{'attr':{'class':'paramHotel'}}) }}
-                    {{form_widget(nuitee2.categorieChambre)}}
+                    {{ form_widget(Nuiteee2.hotel,{'attr':{'class':'paramHotel'}}) }}
+                    {{form_widget(Nuiteee2.categorieChambre)}}
                 </div>
                 <div id="lblRestauration" style="display:block";>
                     <hr>
@@ -72,6 +72,6 @@
         <button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
     </div>       
     {{form_end(form)}}
-    {{form_end(nuitee1)}}
-    {{form_end(nuitee2)}}
+    {{form_end(Nuiteee1)}}
+    {{form_end(Nuiteee2)}}
 {% endblock %}

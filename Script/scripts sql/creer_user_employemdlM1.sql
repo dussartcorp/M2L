@@ -1,22 +1,22 @@
 -- -----------------------------------------------------------------------------
---             Génération d'une base de données pour
+--             Gï¿½nï¿½ration d'une base de donnï¿½es pour
 --                      Oracle Version 11g XE
 --                        
 -- -----------------------------------------------------------------------------
 --      Projet : MaisonDesLigues
---      Auteur : Benoît ROCHE
---      Date de dernière modification : 9/01/2013 11:32:40
+--      Auteur : Benoï¿½t ROCHE
+--      Date de derniï¿½re modification : 9/01/2013 11:32:40
 -- -----------------------------------------------------------------------------
 
 -- -----------------------------------------------------------------------------
---      Partie 1: Création de l'utilisateur MDL qui sera aussi le propriétaire
--- 		des objets : tables, index, procédures
+--      Partie 1: Crï¿½ation de l'utilisateur MDL qui sera aussi le propriï¿½taire
+-- 		des objets : tables, index, procï¿½dures
 --		
---		Ce script doit être exécuté par un utilisateur possédant le droit de créer un utilisateur.
+--		Ce script doit ï¿½tre exï¿½cutï¿½ par un utilisateur possï¿½dant le droit de crï¿½er un utilisateur.
 --		Par exemple l'utilisateur SYSTEM
 -- -----------------------------------------------------------------------------
 --
---      On commence par supprimer l'utilisateur avant de le recréer
+--      On commence par supprimer l'utilisateur avant de le recrï¿½er
 -- -
 -- 
 drop user employemdl cascade ;
@@ -27,16 +27,16 @@ ACCOUNT UNLOCK ;
 GRANT create session TO employemdl;
 
 
--- on va créer un rôle : ensemble de droits et on va attribuer ce role à l'employe mdl
+-- on va crï¿½er un rï¿½le : ensemble de droits et on va attribuer ce role ï¿½ l'employe mdl
 drop role applimdl;
 create role applimdl;
 GRANT create session TO applimdl;
-grant execute on mdl.pckparticipant to applimdl; -- autorisation d'exécuter toutes les procédures et fonctions publiques du package
+grant execute on mdl.pckparticipant to applimdl; -- autorisation d'exï¿½cuter toutes les procï¿½dures et fonctions publiques du package
 grant select on mdl.VRESTAURATION01  to applimdl;
 grant select on mdl.VQUALITE01  to applimdl;
 grant select on mdl.VDATEBENEVOLAT01  to applimdl;
-grant select on mdl.VDATENUITE01  to applimdl;
-grant select on mdl.VDATENUITE02  to applimdl;
+grant select on mdl.VDATENuitee01  to applimdl;
+grant select on mdl.VDATENuitee02  to applimdl;
 grant select on mdl.VHOTEL01  to applimdl;
 grant select on mdl.VCATEGORIECHAMBRE01  to applimdl;
 grant select on mdl.VSTATUT01  to applimdl;
@@ -46,5 +46,5 @@ grant select on mdl.VVACATION01  to applimdl ;
 grant execute on mdl.pckatelier to applimdl;
 grant execute on mdl.fonctionsdiverses to applimdl;
 
--- attribution du role à employemdl
+-- attribution du role ï¿½ employemdl
 grant applimdl to employemdl;

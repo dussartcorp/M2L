@@ -39,7 +39,7 @@ class Nuitee
 
     /**
      * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="nuitees")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="idinscription")
      */
     private $inscriptions;
 

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210425182430 extends AbstractMigration
+final class Version20210425182914 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -29,7 +29,7 @@ final class Version20210425182430 extends AbstractMigration
         $this->addSql('CREATE TABLE InscriptionparAtelier (idinscription INT NOT NULL, idatelier INT NOT NULL, INDEX IDX_7F8556F898518679 (idinscription), INDEX IDX_7F8556F83EBF4A4D (idatelier), PRIMARY KEY(idinscription, idatelier)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE InscriptionparRestauration (idinscription INT NOT NULL, idrestauration INT NOT NULL, INDEX IDX_CD5210B998518679 (idinscription), INDEX IDX_CD5210B9CF2461F8 (idrestauration), PRIMARY KEY(idinscription, idrestauration)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Licencie (id INT AUTO_INCREMENT NOT NULL, idcompte INT DEFAULT NULL, numLicence VARCHAR(12) NOT NULL, nom VARCHAR(70) NOT NULL, prenom VARCHAR(70) NOT NULL, adresse1 VARCHAR(255) NOT NULL, adresse2 VARCHAR(255) DEFAULT NULL, cp VARCHAR(6) NOT NULL, ville VARCHAR(80) NOT NULL, tel VARCHAR(14) NOT NULL, mail VARCHAR(100) NOT NULL, dateAdhesion DATE NOT NULL, idQualite INT NOT NULL, idClub INT NOT NULL, UNIQUE INDEX UNIQ_C2033444AB4BFFCC (idcompte), INDEX IDX_C2033444780A3CAD (idQualite), INDEX IDX_C2033444CB1366EC (idClub), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE Nuitee (id INT AUTO_INCREMENT NOT NULL, idhotel INT DEFAULT NULL, inscriptions_id INT NOT NULL, dateNuitee DATETIME NOT NULL, idcategorieChambre VARCHAR(255) NOT NULL, INDEX IDX_8526D730D55632C0 (idhotel), INDEX IDX_8526D7308E2AD382 (inscriptions_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE Nuitee (id INT AUTO_INCREMENT NOT NULL, idhotel INT DEFAULT NULL, idinscription INT NOT NULL, dateNuitee DATETIME NOT NULL, idcategorieChambre VARCHAR(255) NOT NULL, INDEX IDX_8526D730D55632C0 (idhotel), INDEX IDX_8526D73098518679 (idinscription), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Proposer (id INT AUTO_INCREMENT NOT NULL, tarifNuitee NUMERIC(5, 2) NOT NULL, idcategorie VARCHAR(255) NOT NULL, idhotel VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Qualite (id INT AUTO_INCREMENT NOT NULL, libellequalite VARCHAR(50) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Restauration (id INT AUTO_INCREMENT NOT NULL, typesRepas enum(\'Midi\', \'Soir\'), dateRestauration DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -48,7 +48,7 @@ final class Version20210425182430 extends AbstractMigration
         $this->addSql('ALTER TABLE Licencie ADD CONSTRAINT FK_C2033444780A3CAD FOREIGN KEY (idQualite) REFERENCES Qualite (id)');
         $this->addSql('ALTER TABLE Licencie ADD CONSTRAINT FK_C2033444CB1366EC FOREIGN KEY (idClub) REFERENCES Club (id)');
         $this->addSql('ALTER TABLE Nuitee ADD CONSTRAINT FK_8526D730D55632C0 FOREIGN KEY (idhotel) REFERENCES Hotel (id)');
-        $this->addSql('ALTER TABLE Nuitee ADD CONSTRAINT FK_8526D7308E2AD382 FOREIGN KEY (inscriptions_id) REFERENCES Inscription (id)');
+        $this->addSql('ALTER TABLE Nuitee ADD CONSTRAINT FK_8526D73098518679 FOREIGN KEY (idinscription) REFERENCES Inscription (id)');
     }
 
     public function down(Schema $schema) : void
@@ -60,7 +60,7 @@ final class Version20210425182430 extends AbstractMigration
         $this->addSql('ALTER TABLE Nuitee DROP FOREIGN KEY FK_8526D730D55632C0');
         $this->addSql('ALTER TABLE InscriptionparAtelier DROP FOREIGN KEY FK_7F8556F898518679');
         $this->addSql('ALTER TABLE InscriptionparRestauration DROP FOREIGN KEY FK_CD5210B998518679');
-        $this->addSql('ALTER TABLE Nuitee DROP FOREIGN KEY FK_8526D7308E2AD382');
+        $this->addSql('ALTER TABLE Nuitee DROP FOREIGN KEY FK_8526D73098518679');
         $this->addSql('ALTER TABLE Licencie DROP FOREIGN KEY FK_C2033444780A3CAD');
         $this->addSql('ALTER TABLE InscriptionparRestauration DROP FOREIGN KEY FK_CD5210B9CF2461F8');
         $this->addSql('ALTER TABLE Themesparatelier DROP FOREIGN KEY FK_C407739341708B11');

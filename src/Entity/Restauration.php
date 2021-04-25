@@ -24,7 +24,7 @@ class Restauration
     private $typesRepas;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations")
+     * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations",cascade={"persist"})
      * @ORM\JoinColumn(name="idinscription")
      */
     private $inscriptions;

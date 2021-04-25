@@ -37,8 +37,7 @@ class Nuite
     private $categorieChambre;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="Nuitees",cascade={"persist"})
-     * @ORM\JoinColumn(name="idinscription")
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="Nuitees",cascade={"persist"})
      */
     private $inscriptions;
 

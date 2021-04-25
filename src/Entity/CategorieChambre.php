@@ -26,7 +26,7 @@ class CategorieChambre
     private $libelleCategorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Nuite::class, mappedBy="categorieChambre")
+     * @ORM\OneToMany(targetEntity=Nuite::class, mappedBy="categorieChambre",cascade={"persist"})
      */
     private $nuites;
 

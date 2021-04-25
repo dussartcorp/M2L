@@ -52,7 +52,8 @@ class Inscription
     private $restaurations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Nuite::class, mappedBy="inscriptions")
+     * @ORM\ManyToOne(targetEntity=Nuite::class, inversedBy="inscription",cascade={"persist"})
+     * @ORM\JoinColumn(name="idinscription")
      */
     private $Nuitees;
 

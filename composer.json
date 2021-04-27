@@ -10,6 +10,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "easycorp/easyadmin-bundle": "^3.2",
         "mailjet/mailjet-apiv3-php": "^1.5",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",

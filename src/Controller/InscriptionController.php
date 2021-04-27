@@ -93,9 +93,11 @@ class InscriptionController extends AbstractController
                 $inscription->addRestauration($uneRestauration3);
             }
             $inscription->setCompte($user);
-            $manager->persist($inscription);
-            $manager->flush();
-            return $this->redirectToRoute('home');
+
+            var_dump($Nuitee2);
+            // $manager->persist($inscription);
+            // $manager->flush();
+            // return $this->redirectToRoute('home');
         }
         return $this->render('inscription/inscriptionSejour.html.twig', ['form' => $form->createView(), 'nuitee1' => $formNuitee1->createView(), 'nuitee2' => $formNuitee2->createView(), 'resto1' => $resto1, 'resto2' => $resto2]);
     }

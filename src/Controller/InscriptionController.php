@@ -68,10 +68,10 @@ class InscriptionController extends AbstractController
         $formNuiteee2->handleRequest($request);
         if (($form->isSubmitted() && $form->isValid()) && ($formNuiteee1->isSubmitted() && $formNuiteee1->isValid()) && ($formNuiteee2->isSubmitted() && $formNuiteee2->isValid())) {
             if ($Nuiteee2->getHotel() == null && $Nuiteee1->getHotel() != null) {
-                $inscription->addNuiteee($Nuiteee1);
+                $inscription->addNuitee($Nuiteee1);
             } else if ($Nuiteee2->getHotel() != null && $Nuiteee1->getHotel() != null) {
-                $inscription->addNuiteee($Nuiteee1);
-                $inscription->addNuiteee($Nuiteee2);
+                $inscription->addNuitee($Nuiteee1);
+                $inscription->addNuitee($Nuiteee2);
             }
             $inscription->setDateInscription(new DateTime('NOW'));
             if(isset($_POST['ckcSamMidi'])){

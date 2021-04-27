@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Atelier;
-use App\Entity\Nuitee;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class InscriptionType extends AbstractType

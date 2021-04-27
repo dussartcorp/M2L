@@ -61,7 +61,6 @@ class Inscription
     {
         $this->ateliers = new ArrayCollection();
         $this->restaurations = new ArrayCollection();
-        $this->Nuiteees = new ArrayCollection();
         $this->nuitees = new ArrayCollection();
     }
 

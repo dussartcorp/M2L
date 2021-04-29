@@ -19,6 +19,20 @@ class AtelierRepository extends ServiceEntityRepository
         parent::__construct($registry, Atelier::class);
     }
 
+
+    /**
+     * 
+     * Permet de récupérer le nombre d'ateliers du congrès
+     */
+    public function countAteliers()
+    {
+        $sql = $this->createQueryBuilder('a');
+        $sql->select('COUNT(a.id) as nb');
+
+        return $sql->getQuery()->getOneOrNullResult()['nb'];
+    }
+
+
     // /**
     //  * @return Atelier[] Returns an array of Atelier objects
     //  */

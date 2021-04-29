@@ -19,6 +19,20 @@ class ThemeRepository extends ServiceEntityRepository
         parent::__construct($registry, Theme::class);
     }
 
+
+    /**
+     * 
+     * Permet de récupérer le nombre de thèmes pour le congrès
+     */
+    public function countThemes()
+    {
+        $sql = $this->createQueryBuilder('t');
+        $sql->select('COUNT(t.id) as nb');
+
+        return $sql->getQuery()->getOneOrNullResult()['nb'];
+    }
+
+
     // /**
     //  * @return Theme[] Returns an array of Theme objects
     //  */

@@ -3,8 +3,30 @@
 {% block content %}
 
   <div class="jumbotron">
-    <h1 class="display-4"> Administration </h1>
-    <p class="lead"> Bienvenue dand l'interface d'administration de maison des ligues </p>
+    <div class="container">
+      <h1 class="display-4"> Administration </h1>
+      <p> Bienvenue dans l'interface d'administration de maison des ligues </p>
+      <div class="row" style="display: flex; justify-content: space-around;">
+        <div class="card text-white bg-info mb-3" style="min-width: 15rem;">
+          <div class="card-body">
+            <h4 class="card-title">Utilisateurs</h4>
+            <p class="card-text" style="font-size:6rem;"><span class="fas fa-user text-dark"></span> {{users}}</p>
+          </div>
+        </div>
+        <div class="card text-white bg-info mb-3" style="min-width: 15rem;">
+          <div class="card-body">
+            <h4 class="card-title">Ateliers</h4>
+            <p class="card-text" style="font-size:6rem;"><span class="fas fa-address-book text-dark"></span> {{ateliers}}</p>
+          </div>
+        </div>
+        <div class="card text-white bg-info mb-3" style="min-width: 15rem;">
+          <div class="card-body">
+            <h4 class="card-title">Thèmes</h4>
+            <p class="card-text" style="font-size:6rem;"><span class="fas fa-archive text-dark"></span> {{themes}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 

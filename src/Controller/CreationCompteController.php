@@ -35,7 +35,7 @@ class CreationCompteController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
             if ($lrepo->isNumLicenceValid($numLicence) === 'ok') {
-                $compte->setRoles(["ROLE_INSCRIT"]);
+                $compte->setRoles(["ROLE_USER"]);
                 $mdp = $form->get('password')->getData();
                 $vmdp = $form->get('confPassword')->getData();
                 if ($mdp === $vmdp) {

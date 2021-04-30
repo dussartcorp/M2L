@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Theme;
 use App\Entity\User;
 use App\Entity\Atelier;
+use App\Entity\Licencie;
 use App\Entity\Vacation;
 use App\Repository\ThemeRepository;
 use App\Repository\AtelierRepository;
@@ -54,9 +55,10 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class);
-        yield MenuItem::linkToCrud('Ateliers', 'fas fa-users', Atelier::class);
-        yield MenuItem::linkToCrud('Vacations', 'fas fa-users', Vacation::class);
-        yield MenuItem::linkToCrud('Thèmes', 'fas fa-users', Theme::class);
+        yield MenuItem::linkToCrud('Licenciés', 'fas fa-address-card', Licencie::class);
+        yield MenuItem::linkToCrud('Ateliers', 'fas fa-address-book', Atelier::class);
+        yield MenuItem::linkToCrud('Vacations', 'fas fa-calendar', Vacation::class);
+        yield MenuItem::linkToCrud('Thèmes', 'fas fa-archive', Theme::class);
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu

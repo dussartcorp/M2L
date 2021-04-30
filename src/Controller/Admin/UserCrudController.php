@@ -18,6 +18,8 @@ class UserCrudController extends AbstractCrudController
     }
 
 
+
+
     public function configureFields(string $pageName): iterable
     {
         $mdp = TextField::new('password', 'Mot de passe');

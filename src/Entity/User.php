@@ -72,6 +72,12 @@ class User implements UserInterface
      */
     private $activation_token;
 
+
+    public function __toString()
+    {
+        return ' Compte n°' . $this->id . ' / mail :' . $this->email;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

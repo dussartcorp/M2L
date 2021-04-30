@@ -12,6 +12,7 @@
 		{% block stylesheets %}
 			<link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.css') }}" type="text/css">
 			<link rel="stylesheet" href="{{ asset('assets/styles.css') }}" type="text/css">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 		{% endblock %}
 
 		{% block javascripts %}
@@ -43,12 +44,15 @@
 					
 					{% if app.user %}
 						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('admin') }}">Administration</a>
+							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Congrès
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="{{path('congres_voirtous')}}">Voir les ateliers</a>
+									<a class="dropdown-item" href="{{path('congres_voirtousateliers')}}">Voir les ateliers</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="{{path('congres_atelier')}}">Créer un atelier </a>
 									<a class="dropdown-item" href="{{path('congres_creerTheme')}}">Créer un thème</a>
@@ -56,7 +60,7 @@
 								</div>
 							</li>
 						{% endif %}
-						{% if is_granted('ROLE_INSCRIT') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN') %}
+						{% if is_granted('ROLE_USER') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('inscription_sejour') }}">Séjour</a>
 							</li>
@@ -79,6 +83,9 @@
 				</div>
 			</li>
 		</ul>
+		{% if app.user %}
+			<span class="navbar-text">{{app.user.licencie.nom}}  {{app.user.licencie.prenom }}</span>
+		{% endif %}
 	</div>
 </nav>
 </header>

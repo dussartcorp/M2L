@@ -14,6 +14,8 @@ use App\Form\ThemeType;
 use App\Form\VacationType;
 use App\Entity\Theme;
 use App\Entity\Vacation;
+use App\Repository\ThemeRepository;
+use App\Repository\VacationRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -49,7 +51,7 @@ class CongresController extends AbstractController
             return $this->redirectToRoute('congres_atelier');
         }
         return $this->render(
-            'congres/creerAtelier.html.twig',
+            'congres/atelier/creerAtelier.html.twig',
             [
                 'form' => $form->createView(),
                 'formTheme' => $formTheme->createView(),
@@ -81,7 +83,7 @@ class CongresController extends AbstractController
             return $this->redirectToRoute('congres_atelier');
         }
         return $this->render(
-            'congres/creerAtelier.html.twig',
+            'congres/atelier/creerAtelier.html.twig',
             [
                 'form' => $form->createView(),
                 'formTheme' => $formTheme->createView(),
@@ -110,7 +112,7 @@ class CongresController extends AbstractController
             return $this->redirectToRoute('congres_atelier');
         }
         return $this->render(
-            'congres/creerTheme.html.twig',
+            'congres/theme/creerTheme.html.twig',
             [
                 'formTheme' => $formTheme->createView()
             ]
@@ -160,7 +162,7 @@ class CongresController extends AbstractController
             }
         }
         return $this->render(
-            'congres/creerAtelier.html.twig',
+            'congres/atelier/creerAtelier.html.twig',
             [
                 'form' => $form->createView(),
                 'formTheme' => $formTheme->createView(),
@@ -209,7 +211,7 @@ class CongresController extends AbstractController
             }
         }
         return $this->render(
-            'congres/creerVacation.html.twig',
+            'congres/vacation/creerVacation.html.twig',
             [
                 'formVacation' => $formVacation->createView()
             ]
@@ -219,13 +221,35 @@ class CongresController extends AbstractController
 
     /**
      * Liste de tous les ateliers
-     * @Route("voirtous", name="voirtous")
+     * @Route("voirtousateliers", name="voirtousateliers")
      */
-    public function voirtous(AtelierRepository $repo)
+    public function voirAteliertous(AtelierRepository $repo)
     {
         $ateliers = $repo->findAll();
 
-        return $this->render('congres/voirtous.html.twig', ['ateliers' => $ateliers]);
+        return $this->render('congres/atelier/voirtous.html.twig', ['ateliers' => $ateliers]);
+    }
+
+    /**
+     * Liste de tous les themes
+     * @Route("voirtousthemes", name="voirtousthemes")
+     */
+    public function voirThemestous(ThemeRepository $trepo)
+    {
+        $themes = $trepo->findAll();
+
+        return $this->render('congres/theme/voirtous.html.twig', ['themes' => $themes]);
+    }
+
+    /**
+     * Liste de toutes les vacations
+     * @Route("voirtousvacation", name="voirtousvacations")
+     */
+    public function voirVacationtous(VacationRepository $repo)
+    {
+        $vacations = $repo->findAll();
+
+        return $this->render('congres/vacation/voirtous.html.twig', ['vacations' => $vacations]);
     }
 
     /**
@@ -246,7 +270,7 @@ class CongresController extends AbstractController
             return $this->redirectToRoute('congres_voirtous');
         }
         return $this->render(
-            'congres/editAtelier.html.twig',
+            'congres/atelier/editAtelier.html.twig',
             [
                 'form' => $form->createView(),
             ]

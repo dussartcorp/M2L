@@ -11,7 +11,7 @@
     <table class="table table-bordered table-striped table-info">
       <thead class="table-danger">
         <tr>
-          <th> LIbelle</th>
+          <th> Lubellé</th>
           <th> Nombres de places maxi </th>
           <th> Horaires </th>
           <th> Nombres de thèmes </th>
@@ -24,7 +24,9 @@
           <td>{{ atelier.nbPlaceMaxi}}</td>
           <td>{{ atelier.vacations.libelle}}</td>
           <td>{{atelier.themes | length}}</td>
-          <td><a href=" {{ path('congres_editAtelier', {id:atelier.id}) }}">Voir détails</td>
+          <td>
+            <a href="{{ path('congres_editAtelier', {id:atelier.id}) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+          </td>
           {# <td><a href=" {{ path('navire_modifier', {id:navire.id}) }}"> Voir détails</a></td> #}
         </tr>
       {% endfor %}

@@ -17,7 +17,7 @@
           <th> Actions </th>
         </tr>
       </thead>
-      {% for vacation in vacations %}s
+      {% for vacation in vacations %}
         <tr>
           <td>{{ vacation.libelle}}</td>
           <td>{{ vacation.dateHeureDebut | format_datetime('long', 'short', locale='fr')}}</td>

@@ -267,12 +267,81 @@ class CongresController extends AbstractController
             $manager->persist($atelier);
             $manager->flush();
             $this->addFlash('success', ' L\'atelier a bien été modifié');
-            return $this->redirectToRoute('congres_voirtous');
+            return $this->redirectToRoute('congres_voirtousateliers');
         }
         return $this->render(
             'congres/atelier/editAtelier.html.twig',
             [
                 'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     * Route permettant de modifier un thème
+     * @Route("theme/edit/{id}", name="editTheme")
+     */
+    public function editTheme(Request $request, EntityManagerInterface $manager, Theme $theme)
+    {
+        $formTheme = $this->createForm(ThemeType::class, $theme);
+
+        $formTheme->handleRequest($request);
+        if ($formTheme->isSubmitted() && $formTheme->isValid()) {
+
+            $manager->persist($theme);
+            $manager->flush();
+            $this->addFlash('success', ' Le thème a bien été modifié');
+            return $this->redirectToRoute('congres_voirtousthemes');
+        }
+        return $this->render(
+            'congres/theme/editTheme.html.twig',
+            [
+                'formTheme' => $formTheme->createView()
+            ]
+        );
+    }
+
+    /**
+     * Route permettant de modifier une vacation
+     * @Route("vacation/edit/{id}", name="editVacation")
+     */
+    public function editVacation(Request $request, EntityManagerInterface $manager, Vacation $vacation)
+    {
+
+        $formVacation = $this->createForm(VacationType::class, $vacation);
+
+        $formVacation->handleRequest($request);
+        if ($formVacation->isSubmitted() && $formVacation->isValid()) {
+
+            $dateDeb = $formVacation->get('dateHeureDebut')->getData();
+            $Deb = $dateDeb->format('d/n/Y');
+            $dateFin = $formVacation->get('dateHeureFin')->getData();
+            $fin = $dateFin->format('d/n/Y');
+            if ($dateDeb < $dateFin && $Deb === $fin) {
+
+                $mois_fr = array(
+                    "", "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août",
+                    "septembre", "octobre", "novembre", "décembre"
+                );
+
+                $hDeb = $dateDeb->format('H:i');
+                $hFin = $dateFin->format('H:i');
+                list($jour, $mois, $annee) = explode('/', $Deb);
+                $vacation->setLibelle("Le " . $jour . " " . $mois_fr[$mois] . " de " . $hDeb . " à " . $hFin);
+
+
+                $manager->persist($vacation);
+                $manager->flush();
+                $this->addFlash('success', ' La vacation a bien été modifiée');
+                return $this->redirectToRoute('congres_voirtousvacations');
+            } else {
+                $this->addFlash('warning', 'La date de fin de la vacation n\'est pas conforme à la date de début');
+            }
+        }
+        return $this->render(
+            'congres/vacation/editVacation.html.twig',
+            [
+                'formVacation' => $formVacation->createView()
             ]
         );
     }

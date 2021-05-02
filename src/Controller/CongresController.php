@@ -97,7 +97,7 @@ class CongresController extends AbstractController
      * Route permettant de créer un thème
      * @Route("theme/creer", name="creerTheme")
      */
-    public function creationTheme(Request $request, EntityManagerInterface $manager)
+    public function creationTheme(Request $request, EntityManagerInterface $manager, AtelierRepository $arepo)
     {
         $theme = new Theme();
 
@@ -106,10 +106,21 @@ class CongresController extends AbstractController
         $formTheme->handleRequest($request);
         if ($formTheme->isSubmitted() && $formTheme->isValid()) {
 
+            if ($_POST['theme']['ateliers']) {
+                foreach ($_POST['theme']['ateliers'] as $formatelier) {
+                    $atelier = $arepo->find($formatelier);
+                    $theme->addAtelier($atelier);
+                    $atelier->addTheme($theme);
+                }
+            }
             $manager->persist($theme);
             $manager->flush();
+            if ($_POST['theme']['ateliers']) {
+                $manager->persist($atelier);
+                $manager->flush();
+            }
             $this->addFlash('success', ' Le thème a bien été enregistré');
-            return $this->redirectToRoute('congres_atelier');
+            return $this->redirectToRoute('congres_voirtousthemes');
         }
         return $this->render(
             'congres/theme/creerTheme.html.twig',
@@ -205,7 +216,7 @@ class CongresController extends AbstractController
                 $manager->persist($vacation);
                 $manager->flush();
                 $this->addFlash('success', ' La vacation a bien été enregistrée');
-                return $this->redirectToRoute('congres_atelier');
+                return $this->redirectToRoute('congres_voirtousvacations');
             } else {
                 $this->addFlash('warning', 'La date de fin de la vacation n\'est pas conforme à la date de début');
             }
@@ -281,15 +292,28 @@ class CongresController extends AbstractController
      * Route permettant de modifier un thème
      * @Route("theme/edit/{id}", name="editTheme")
      */
-    public function editTheme(Request $request, EntityManagerInterface $manager, Theme $theme)
+    public function editTheme(Request $request, EntityManagerInterface $manager, Theme $theme, AtelierRepository $arepo)
     {
         $formTheme = $this->createForm(ThemeType::class, $theme);
-
+        foreach ($theme->getAteliers() as $atelier) {
+            $theme->removeAtelier($atelier);
+            $atelier->removeTheme($theme);
+        }
         $formTheme->handleRequest($request);
         if ($formTheme->isSubmitted() && $formTheme->isValid()) {
-
+            if ($_POST['theme']['ateliers']) {
+                foreach ($_POST['theme']['ateliers'] as $formatelier) {
+                    $atelier = $arepo->find($formatelier);
+                    $theme->addAtelier($atelier);
+                    $atelier->addTheme($theme);
+                }
+            }
             $manager->persist($theme);
             $manager->flush();
+            if ($_POST['theme']['ateliers']) {
+                $manager->persist($atelier);
+                $manager->flush();
+            }
             $this->addFlash('success', ' Le thème a bien été modifié');
             return $this->redirectToRoute('congres_voirtousthemes');
         }

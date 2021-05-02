@@ -129,7 +129,7 @@ class LicencieRepository extends ServiceEntityRepository
         if($result){
             return $result;
         }else{
-            return 'Le licencie precise n\'existe pas';
+            return 'Le licencie précisée n\'existe pas';
         }
     }
 }

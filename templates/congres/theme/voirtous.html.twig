@@ -21,7 +21,7 @@
           <td>{{ theme.libelle}}</td>
           <td>{{ theme.ateliers | length}}</td>
           <td>
-            <a href="{{ path('congres_editAtelier', {id:theme.id}) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+            <a href="{{ path('congres_editTheme', {id:theme.id}) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
           </td>
         </tr>
       {% endfor %}

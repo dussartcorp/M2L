@@ -102,7 +102,7 @@ class LicencieRepository extends ServiceEntityRepository
     }
 
     public function infoLicencies(){
-        $dql = $this->getEntityManager()->createQuery('select l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
+        $dql = $this->getEntityManager()->createQuery('select l.numLicence as NumLicence, l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
         . 'from App\Entity\Licencie l '
         . 'inner join App\Entity\Qualite q '
         . 'with l.laQualite = q.id '
@@ -117,7 +117,7 @@ class LicencieRepository extends ServiceEntityRepository
     }
 
     public function infoLicencie($id){
-        $dql = $this->getEntityManager()->createQuery('select l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
+        $dql = $this->getEntityManager()->createQuery('select l.numLicence as NumLicence, l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
         . 'from App\Entity\Licencie l '
         . 'inner join App\Entity\Qualite q '
         . 'with l.laQualite = q.id '

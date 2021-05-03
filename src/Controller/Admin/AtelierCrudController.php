@@ -21,7 +21,8 @@ class AtelierCrudController extends AbstractCrudController
         return [
             TextField::new('libelle', 'Libellé'),
             IntegerField::new('nbPlaceMaxi', 'Nombre de places'),
-            AssociationField::new('themes', 'Thèmes')
+            AssociationField::new('themes', 'Thèmes'),
+            AssociationField::new('vacations', 'Horaires')
         ];
     }
     

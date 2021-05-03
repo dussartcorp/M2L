@@ -79,23 +79,22 @@ class InscriptionController extends AbstractController
             $inscription->setDateInscription(new DateTime('NOW'));
             if(isset($_POST['ckcSamMidi'])){
                 $uneRestauration1->setTypesRepas($_POST['ckcSamMidi']);
-                $uneRestauration1->setDateRestauration(New DateTime($_POST['date1']));
-                $uneRestauration1->setInscriptions($inscription);
+                $uneRestauration1->setDateRestauration(new DateTime($_POST['date1']));
                 $inscription->addRestauration($uneRestauration1);
             }
             if(isset($_POST['ckcSamSoir'])){
                 $uneRestauration2->setTypesRepas($_POST['ckcSamSoir']);
                 $uneRestauration2->setDateRestauration(new DateTime($_POST['date1']));
-                $uneRestauration2->setInscriptions($inscription);
                 $inscription->addRestauration($uneRestauration2);
             }
             if(isset($_POST['ckcDimMidi'])){
                 $uneRestauration3->setTypesRepas($_POST['ckcDimMidi']);
-                $uneRestauration3->setDateRestauration(New DateTime($_POST['date2']));
-                $uneRestauration3->setInscriptions($inscription);
+                $uneRestauration3->setDateRestauration(new DateTime($_POST['date2']));
                 $inscription->addRestauration($uneRestauration3);
             }
             $inscription->setCompte($user);
+
+            // var_dump($Nuitee2);
             $manager->persist($inscription);
             $manager->flush();
             return $this->redirectToRoute('home');

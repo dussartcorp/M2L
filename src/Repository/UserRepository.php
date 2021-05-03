@@ -36,6 +36,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+
+    /**
+     * 
+     * Permet de récupérer le nombre de licenciés avec un compte 
+     */
+    public function countUsers()
+    {
+        $sql = $this->createQueryBuilder('u');
+        $sql->select('COUNT(u.id) as nb');
+
+        return $sql->getQuery()->getOneOrNullResult()['nb'];
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

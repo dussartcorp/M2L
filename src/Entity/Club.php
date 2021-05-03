@@ -48,6 +48,11 @@ class Club
      */
     private $tel;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

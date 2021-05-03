@@ -23,6 +23,10 @@ class Qualite
      */
     private $libelleQualite;
 
+    public function __toString()
+    {
+        return $this->libelleQualite;
+    }
     public function getId(): ?int
     {
         return $this->id;

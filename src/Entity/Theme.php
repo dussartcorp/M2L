@@ -26,13 +26,18 @@ class Theme
     private $libelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Atelier::class, mappedBy="themes")
+     * @ORM\ManyToMany(targetEntity=Atelier::class, mappedBy="themes", cascade={"persist", "remove"})
      */
     private $ateliers;
 
     public function __construct()
     {
         $this->ateliers = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
     }
 
     public function getId(): ?int

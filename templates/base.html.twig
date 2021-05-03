@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta rel="shortcut icon" href="{{asset('images/m2l.png')}}">
+		<meta rel="shortcut icon" href="{{asset('assets/images/m2l.png')}}">
 		<title>
 			{% block title %}M2L
 			{% endblock %}
@@ -10,8 +10,9 @@
 		{# Run `composer require symfony/webpack-encore-bundle`
 																						           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
-			<link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.css') }}" type="text/css">
-			<link rel="stylesheet" href="{{ asset('styles.css') }}" type="text/css">
+			<link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.css') }}" type="text/css">
+			<link rel="stylesheet" href="{{ asset('assets/styles.css') }}" type="text/css">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 		{% endblock %}
 
 		{% block javascripts %}
@@ -21,14 +22,14 @@
 			 {# <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> #}
 			{# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 					<script src="https://code.jquery.com/jquery-3.1.1.min.js"> #}
-			<script src="{{ asset('javaScript/inscription.js') }}"></script>
+			<script src="{{ asset('assets/javaScript/inscription.js') }}"></script>
 
 		{% endblock %}
 	</head>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="{{path('home')}}">
-			<img src="{{asset('images/m2l.png')}}" width="30" height="30" alt=""/></a>
+			<img src="{{asset('assets/images/m2l.png')}}" width="30" height="30" alt=""/></a>
 			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -43,20 +44,26 @@
 					
 					{% if app.user %}
 						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('admin') }}">Administration</a>
+							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Congrès
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="{{path('congres_voirtous')}}">Voir les ateliers</a>
-									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{{path('congres_voirtousateliers')}}">Voir les ateliers</a>
 									<a class="dropdown-item" href="{{path('congres_atelier')}}">Créer un atelier </a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{{path('congres_voirtousthemes')}}">Voir les thèmes</a>
 									<a class="dropdown-item" href="{{path('congres_creerTheme')}}">Créer un thème</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{{path('congres_voirtousvacations')}}">Voir les vacations</a>
 									<a class="dropdown-item" href="{{path('congres_creerVacation')}}">Créer une vacation</a>
 								</div>
 							</li>
 						{% endif %}
-						{% if is_granted('ROLE_INSCRIT') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN') %}
+						{% if is_granted('ROLE_USER') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('inscription_sejour') }}">Séjour</a>
 							</li>
@@ -79,6 +86,9 @@
 				</div>
 			</li>
 		</ul>
+		{% if app.user %}
+			<span class="navbar-text">{{app.user.licencie.nom}}  {{app.user.licencie.prenom }}</span>
+		{% endif %}
 	</div>
 </nav>
 </header>

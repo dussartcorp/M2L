@@ -18,14 +18,15 @@
 						<hr class="my-4">
 						<div class="row">
 							<h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
-							<div id="dropHotel" class="dropdown">
+							{{ form_widget(form.nuitees)}}
+							{# <div id="dropHotel" class="dropdown">
 								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"  data-toggle="dropdown" aria-expanded="false">Ajouter</button>
 								<ul class="dropdown-menu">
 									<li id="liAjoutHotel">
-										<a class="dropdown-item" href="" onclick="ajouterHotel()">Ajouter Hôtel</a>
+										<a class="dropdown-item" onclick="ajouterHotel()">Ajouter Hôtel</a>
 									</li>
 									<li id="liAjoutResto">
-										<a class="dropdown-item" href="" onclick="ajouterRestauration()">Ajouter restauration</a>
+										<a class="dropdown-item" onclick="ajouterRestauration()">Ajouter restauration</a>
 									</li>
 								</ul>
 							</div>
@@ -33,15 +34,15 @@
 								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">Supprimer</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 									<li id="liSuppHotel">
-										<a class="dropdown-item" href="" onclick="supprimerHotel()">Supprimer hôtel</a>
+										<a class="dropdown-item" onclick="supprimerHotel()">Supprimer hôtel</a>
 									</li>
 									<li id="liSuppResto">
-										<a class="dropdown-item" href="" onclick="supprimerRestauration()">Supprimer restauration</a>
+										<a class="dropdown-item" onclick="supprimerRestauration()">Supprimer restauration</a>
 									</li>
 								</ul>
-							</div>
+							</div> #}
 						</div>
-						<div id="hotel1" style="display:block" ;>
+						{# <div id="hotel1" style="display:block" ;>
 							<input class=" paramHotel form form-control col-5" type="date" id="date1" name="date1" value="{{resto1.dateResto}}" readonly>
 							{{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
 							{{form_widget(nuitee1.categorieChambre)}}
@@ -65,9 +66,9 @@
 									<label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
 								</div>
 							{% endfor %}
-						</div>
+						</div> #}
 						<br>
-						<div id="idRestauration2" style="display:block">
+						{# <div id="idRestauration2" style="display:block">
 							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" readonly>
 							<div class="from-control">
 								{% for resto in resto2.typeRepas %}
@@ -76,7 +77,7 @@
 									<label class="form-check-label" for="ckcDim{{ resto }}">{{ resto }}</label>
 								</div>
 							{% endfor %}
-						</div>
+						</div> #}
 					</div>
 				</div>
 				<hr>

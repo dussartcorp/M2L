@@ -59,18 +59,6 @@ class CreationCompteController extends AbstractController
                     $id = $lrepo->recupIdCompte($numLicence);
                     $lrepo->addIdCompte($numLicence, $id[0]['id']);
 
-                    // $message = (new \Swift_Message('Activation de votre compte'))
-                    //     ->setFrom('lraM2L@gmail.com')
-                    //     ->setTo($compte->getEmail())
-                    //     ->setBody(
-                    //         $this->renderView(
-                    //             'emails/activation.html.twig',
-                    //             ['token' => $compte->getActivationToken()]
-                    //         ),
-                    //         'text/html'
-                    //     );
-
-                    // $mailer->send($message);
 
                     $this->addFlash('success', " Votre demande a bien été prise en compte ! Veuillez la valider par mail ! ");
                 } else {

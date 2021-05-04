@@ -14,6 +14,7 @@ use App\Form\NuiteeType;
 use App\Entity\Nuitee;
 use App\Entity\Restauration;
 use App\Entity\User;
+use App\Form\InscriptionV2Type;
 use App\Repository\RestaurationRepository;
 use App\Service\Outils;
 use DateTime;
@@ -54,27 +55,25 @@ class InscriptionController extends AbstractController
             }
             
         }
-        $inscription= New Inscription();
-        $Nuitee1 = new Nuitee();
-        $Nuitee2 = new Nuitee();
         $uneRestauration1=New Restauration();
         $uneRestauration2=New Restauration();
         $uneRestauration3=New Restauration();
-        $formNuitee1 = $this->createForm(NuiteeType::class, $Nuitee1);
-        $formNuitee2 = $this->createForm(NuiteeType::class, $Nuitee2);
-        $form=$this->createForm(InscriptionType::class,$inscription);
-        $form->handleRequest($request);
-        $formNuitee1->handleRequest($request);
-        $formNuitee2->handleRequest($request);
-        if (($form->isSubmitted() && $form->isValid()) && ($formNuitee1->isSubmitted() && $formNuitee1->isValid()) && ($formNuitee2->isSubmitted() && $formNuitee2->isValid())) {
-            if ($Nuitee2->getHotel() == null && $Nuitee1->getHotel() != null) {
-                $Nuitee1->setDateNuiteee(New DateTime($_POST['date1']));
-                $inscription->addNuitee($Nuitee1);
-            } else if ($Nuitee2->getHotel() != null && $Nuitee1->getHotel() != null) {
-                $Nuitee1->setDateNuiteee(New DateTime($_POST['date1']));
-                $Nuitee2->setDateNuiteee(New DateTime($_POST['date2']));
-                $inscription->addNuitee($Nuitee1);
-                $inscription->addNuitee($Nuitee2);
+        $formInscription=$this->createForm(InscriptionV2Type::class);
+        $formInscription->handleRequest($request);
+        if (($formInscription->isSubmitted() && $formInscription->isValid())) {
+            //var_dump($formInscription);
+            $inscription=$formInscription['ateliers']->getData();
+            $nuite1=$formInscription['nuite1']->getData();
+            $nuite2=$formInscription['nuite2']->getdata();
+            //var_dump($nuite1);
+            if ($nuite2->getHotel() == null && $nuite1->getHotel() != null) {
+                $nuite1->setDateNuiteee(New DateTime($_POST['date1']));
+                $inscription->addNuitee($nuite1);
+            } else if ($nuite2->getHotel() != null && $nuite1->getHotel() != null) {
+                $nuite1->setDateNuiteee(New DateTime($_POST['date1']));
+                $nuite2->setDateNuiteee(New DateTime($_POST['date2']));
+                $inscription->addNuitee($nuite1);
+                $inscription->addNuitee($nuite2);
             }
             $inscription->setDateInscription(new DateTime('NOW'));
             if(isset($_POST['ckcSamMidi'])){
@@ -94,12 +93,12 @@ class InscriptionController extends AbstractController
             }
             $inscription->setCompte($user);
 
-            // var_dump($Nuitee2);
+            // var_dump($nuite2);
             $manager->persist($inscription);
             $manager->flush();
             return $this->redirectToRoute('home');
         }
-        return $this->render('inscription/inscriptionSejour.html.twig', ['form' => $form->createView(), 'nuitee1' => $formNuitee1->createView(), 'nuitee2' => $formNuitee2->createView(), 'resto1' => $resto1, 'resto2' => $resto2]);
+        return $this->render('inscription/inscriptionSejour.html.twig', ['nuites' => $formInscription->createView(),'resto1' => $resto1, 'resto2' => $resto2]);
     }
 
 

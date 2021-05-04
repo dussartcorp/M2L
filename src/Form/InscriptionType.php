@@ -7,8 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Atelier;
-use App\Form\NuiteeType;
-use App\Entity\Nuitee;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class InscriptionType extends AbstractType
@@ -22,7 +20,6 @@ class InscriptionType extends AbstractType
                 'choice_label'=>'libelle',
                 'expanded'=>true,
                 'multiple'=>true,])
-        ->add('nuitees', NuiteeType::class)
         ;
     }
 

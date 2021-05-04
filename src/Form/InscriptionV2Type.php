@@ -2,27 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\Inscription;
+use App\Entity\Restauration;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\NuiteeType;
+use App\Form\InscriptionType;
 
 class InscriptionV2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateInscription')
-            ->add('ateliers')
-            ->add('compte')
-            ->add('restaurations')
+            ->add('ateliers',InscriptionType::class)
+            ->add('nuite1',NuiteeType::class)
+            ->add('nuite2',NuiteeType::class)
+            ->add('resto1',RestaurationType::class)
+            ->add('resto2',RestaurationType::class)
+            ->add('resto3',RestaurationType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Inscription::class,
+            // Configure your form options here
         ]);
     }
 }

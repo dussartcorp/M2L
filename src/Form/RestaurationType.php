@@ -15,9 +15,10 @@ class RestaurationType extends AbstractType
         $builder
             ->add('typesRepas',EntityType::class,[
                 'class'=>Restauration::class,
-                'choice_label'=>'typesRepas',
-                'expanded'=>true,
-                'multiple'=>true,])
+                'choice_label'=>'nomHotel',
+                'expanded'=>false,
+                'multiple'=>false,
+            ])
         ;
     }
 

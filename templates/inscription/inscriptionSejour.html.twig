@@ -2,24 +2,21 @@
 {% block body %}
 
 	{% if app.user %}
-		{% if is_granted('ROLE_INSCRIT') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN')%}
+		{% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN')%}
 			<div>
-				{{form_start(form)}}
-				{{form_start(nuitee1)}}
-				{{form_start(nuitee2)}}
+			{{form_start(nuites)}}
 				<div class="InscriptionBox container">
 					<div>
 						<div class="form-group">
 							<div class="form-check" row>
 								<h5>Choix des ateliers (5 ateliers maximum - a cocher)</h5>
-								{{ form_widget(form.ateliers) }}
+								{{ form_row(nuites.ateliers.ateliers) }}
 							</div>
 						</div>
 						<hr class="my-4">
 						<div class="row">
 							<h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
-							{{ form_widget(form.nuitees)}}
-							{# <div id="dropHotel" class="dropdown">
+							 <div id="dropHotel" class="dropdown">
 								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"  data-toggle="dropdown" aria-expanded="false">Ajouter</button>
 								<ul class="dropdown-menu">
 									<li id="liAjoutHotel">
@@ -40,18 +37,18 @@
 										<a class="dropdown-item" onclick="supprimerRestauration()">Supprimer restauration</a>
 									</li>
 								</ul>
-							</div> #}
+							</div> 
 						</div>
-						{# <div id="hotel1" style="display:block" ;>
+						 <div id="hotel1" style="display:block" ;>
 							<input class=" paramHotel form form-control col-5" type="date" id="date1" name="date1" value="{{resto1.dateResto}}" readonly>
-							{{ form_widget(nuitee1.hotel,{'attr':{'class':'paramHotel'}}) }}
-							{{form_widget(nuitee1.categorieChambre)}}
+							{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'paramHotel'}}) }}
+							{{form_row(nuites.nuite1.categorieChambre)}}
 						</div>
 						<div id="hotel2" style="display:block" ;>
 							<hr>
 							<input class=" paramHotel form form-control col-5" type="date" id="date2" name="date2" value="{{ resto2.dateResto }}" readonly>
-							{{ form_widget(nuitee2.hotel,{'attr':{'class':'paramHotel'}}) }}
-							{{form_widget(nuitee2.categorieChambre)}}
+							{{ form_row(nuites.nuite2.hotel,{'attr':{'class':'paramHotel'}}) }}
+							{{form_row(nuites.nuite2.categorieChambre)}}
 						</div>
 						<div id="lblRestauration" style="display:block" ;>
 							<hr>
@@ -66,9 +63,9 @@
 									<label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
 								</div>
 							{% endfor %}
-						</div> #}
+						</div> 
 						<br>
-						{# <div id="idRestauration2" style="display:block">
+						<div id="idRestauration2" style="display:block">
 							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" readonly>
 							<div class="from-control">
 								{% for resto in resto2.typeRepas %}
@@ -77,15 +74,13 @@
 									<label class="form-check-label" for="ckcDim{{ resto }}">{{ resto }}</label>
 								</div>
 							{% endfor %}
-						</div> #}
+						</div>
 					</div>
 				</div>
 				<hr>
 				<button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
+				{{form_end(nuites)}}
 			</div>
-			{{form_end(form)}}
-			{{form_end(nuitee1)}}
-			{{form_end(nuitee2)}}
 		{% else %}
 			<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>
 		{% endif %}

@@ -66,25 +66,14 @@ class ConnexionController extends AbstractController
             }
 
             $url = $this->generateUrl('app_reset_password', ['token' => $token]);
-            $url = 'm2l' . $url;
+            $url = 'm2l-2.fr' . $url;
             GestionContact::send($user->getEmail(), 'Vous', 'Réinitialisation de votre mot de passe', '<p> Bonjour, </p> 
             <p>Vous avez fait une demande de réinitialisation de mot de passe, veuillez cliquer sur le lien ci-dessou pour y accéder :</p>
                     <a href=' . $url . '> Activer votre compte </a>', 'text/html');
 
-            // $message = (new \Swift_Message('Mot de passe oublié'))
-            //     ->setFrom('lraM2L@gmail.com')
-            //     ->setTo($user->getEmail())
-            //     ->setBody(
-            //         $this->renderView(
-            //             'emails/motDePasseOublie.html.twig', ['token' => $user->getActivationToken()]
-            //         ),
-            //         'text/html'
-            //     );
-            // $mailer->send($message);
 
             $this->addFlash('success', 'Un email de réinitialisation de mot de passe vous a été envoyé');
 
-            // return $this->redirectToRoute('app_login');
         };
 
         return $this->render('security/mdpOublie.html.twig');

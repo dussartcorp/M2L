@@ -47,11 +47,11 @@ class CreationCompteController extends AbstractController
 
                     $token = $compte->getActivationToken();
 
-                    // $url = $this->generateUrl('creation_activation', ['token' => $token]);
-                    // $url = 'm2l' . $url;
-                    // GestionContact::send($form->get('Email')->getData(), 'Vous', 'Activation de votre compte', '<p> Bonjour, </p> 
-                    // <p>Vous vous êtes inscrit sur notre site, veuillez cliquer sur le lien ci-dessou pour l\'activer : </p>
-                    // <a href=' . $url . '> Activer votre compte </a>' , 'text/html');
+                    $url = $this->generateUrl('creation_activation', ['token' => $token]);
+                    $url = 'm2l' . $url;
+                    GestionContact::send($form->get('Email')->getData(), 'Vous', 'Activation de votre compte', '<p> Bonjour, </p> 
+                    <p>Vous vous êtes inscrit sur notre site, veuillez cliquer sur le lien ci-dessou pour l\'activer : </p>
+                    <a href=' . $url . '> Activer votre compte </a>' , 'text/html');
 
                     $manager->persist($compte);
                     $manager->flush();
@@ -59,18 +59,6 @@ class CreationCompteController extends AbstractController
                     $id = $lrepo->recupIdCompte($numLicence);
                     $lrepo->addIdCompte($numLicence, $id[0]['id']);
 
-                    // $message = (new \Swift_Message('Activation de votre compte'))
-                    //     ->setFrom('lraM2L@gmail.com')
-                    //     ->setTo($compte->getEmail())
-                    //     ->setBody(
-                    //         $this->renderView(
-                    //             'emails/activation.html.twig',
-                    //             ['token' => $compte->getActivationToken()]
-                    //         ),
-                    //         'text/html'
-                    //     );
-
-                    // $mailer->send($message);
 
                     $this->addFlash('success', " Votre demande a bien été prise en compte ! Veuillez la valider par mail ! ");
                 } else {

@@ -22,7 +22,7 @@ class InscriptionType extends AbstractType
                 'choice_label'=>'libelle',
                 'expanded'=>true,
                 'multiple'=>true,])
-        ->add('nuitees', NuiteeType::class)
+        // ->add('nuitees', NuiteeType::class)
         ;
     }
 

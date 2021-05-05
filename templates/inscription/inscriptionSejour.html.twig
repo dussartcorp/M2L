@@ -40,46 +40,31 @@
 							</div> 
 						</div>
 						 <div id="hotel1" style="display:block" ;>
-							<input class=" paramHotel form form-control col-5" type="date" id="date1" name="date1" value="{{resto1.dateResto}}" readonly>
+							
 							{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'paramHotel'}}) }}
 							{{form_row(nuites.nuite1.categorieChambre)}}
 						</div>
 						<div id="hotel2" style="display:block" ;>
 							<hr>
-							<input class=" paramHotel form form-control col-5" type="date" id="date2" name="date2" value="{{ resto2.dateResto }}" readonly>
 							{{ form_row(nuites.nuite2.hotel,{'attr':{'class':'paramHotel'}}) }}
 							{{form_row(nuites.nuite2.categorieChambre)}}
 						</div>
-						<div id="lblRestauration" style="display:block" ;>
-							<hr>
+						
+						 <div id="lblRestauration" style="display:block" ;>
+					
 							<h5>Réservation restaurations accompagnant</h5>
 						</div>
 						<div id="idRestauration1" style="display:block">
-							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{resto1.dateResto}}" readonly>
 							<div class="from-control">
-								{% for resto in resto1.typeRepas %}
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="ckcSam{{ resto }}" id="ckcSam{{ resto }}" value="{{ resto }}"></input>
-									<label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
-								</div>
-							{% endfor %}
-						</div> 
-						<br>
-						<div id="idRestauration2" style="display:block">
-							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" readonly>
-							<div class="from-control">
-								{% for resto in resto2.typeRepas %}
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="ckcDim{{ resto }}" id="ckcDim{{ resto }}" value="{{ resto }}"></input>
-									<label class="form-check-label" for="ckcDim{{ resto }}">{{ resto }}</label>
-								</div>
-							{% endfor %}
-						</div>
+								{{form_row(nuites.resto)}}
+							</div>
+						</div> 			
+	
 					</div>
-				</div>
-				<hr>
+					<hr>
 				<button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
 				{{form_end(nuites)}}
+				</div>
 			</div>
 		{% else %}
 			<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>

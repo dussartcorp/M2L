@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\NuiteeType;
 use App\Form\InscriptionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class InscriptionV2Type extends AbstractType
 {
@@ -17,9 +18,8 @@ class InscriptionV2Type extends AbstractType
             ->add('ateliers',InscriptionType::class)
             ->add('nuite1',NuiteeType::class)
             ->add('nuite2',NuiteeType::class)
-            ->add('resto1',RestaurationType::class)
-            ->add('resto2',RestaurationType::class)
-            ->add('resto3',RestaurationType::class)
+            ->add('resto',RestaurationType::class)
+            //->add('resto2',RestaurationType::class)
         ;
     }
 

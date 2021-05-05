@@ -53,7 +53,7 @@ class Inscription
     private $restaurations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Nuitee::class, mappedBy="inscriptions", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Nuitee::class, mappedBy="inscriptions", orphanRemoval=true,cascade={"persist"})
      */
     private $nuitees;
 

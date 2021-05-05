@@ -42,19 +42,6 @@ class InscriptionController extends AbstractController
     public function inscription(Request $request,EntityManagerInterface $manager,RestaurationRepository $repoResto)
     {   
         $user=$this->getUser();
-        $restauration=$repoResto->getRestauration();
-        $resto1=[];
-        $resto2=[];
-        foreach($restauration as $item){
-    
-            if(count($item['typeRepas'])==2){
-                $resto1=$item;
-            }
-            else if(count($item['typeRepas'])<2){
-                $resto2=$item;
-            }
-            
-        }
         $uneRestauration1=New Restauration();
         $uneRestauration2=New Restauration();
         $uneRestauration3=New Restauration();

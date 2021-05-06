@@ -2,57 +2,57 @@
 {% block body %}
 
 	{% if app.user %}
-	 {% if not app.user.activationtoken %}
-		{% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN')%}
-			<div>
-			{{form_start(nuites)}}
-				<div class="InscriptionBox container">
-					<div>
-						<div class="form-group">
-							<div class="form-check" row>
-								<h5>Choix des ateliers (5 ateliers maximum - a cocher)</h5>
-								{{ form_row(nuites.inscription.ateliers) }}
+		{% if not app.user.activationtoken %}
+			{% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN')%}
+				<div>
+					{{form_start(nuites)}}
+					<div class="InscriptionBox container">
+						<div>
+							<div class="form-group">
+								<h2>Choix des ateliers (5 ateliers maximum à cocher)</h2>
+								{{ form_row(nuites.inscription.ateliers, {'attr':{'class':'form-check form-switch'}}
+								)}}
 							</div>
-						</div>
-						<hr class="my-4">
-						<div class="form-row">
-							<h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
-								<a class="btn btn-success" onclick="ajouterHotel()">Ajouter Hôtel</a>
-								<a class="btn btn-danger" onclick="supprimerHotel()">Supprimer hôtel</a>
-						</div>
-						 <div id="hotel1" style="display:block" ;>
-							
-							{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
-							{{form_row(nuites.nuite1.categorieChambre,{'attr':{'class':'form-select'}}) }}
-						</div>
-						<div id="hotel2" style="display:block" ;>
-							<hr>
-							{{ form_row(nuites.nuite2.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
-							{{form_row(nuites.nuite2.categorieChambre,{'attr':{'class':'form-select'}}) }}
-						</div>
-						
-						 <div id="lblRestauration" style="display:block" ;>
-					
-							<h5>Réservation restaurations accompagnant</h5>
-						</div>
-						<div id="idRestauration1" style="display:block">
-							<div class="from-control">
-								{{form_row(nuites.inscription.restaurations)}}
+							<hr class="my-4">
+							<div class="form-row">
+								<h2 id="libelleResa" style="display:block">Réservation hôtel</h2>
+								<a class="btn btn-outline-success" onclick="ajouterHotel()">Ajouter Hôtel</a>
+								<a class="btn btn-outline-danger" onclick="supprimerHotel()">Supprimer hôtel</a>
 							</div>
-						</div> 			
-	
+							<div id="hotel1" style="display:block" ;>
+
+								{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
+								{{form_row(nuites.nuite1.categorieChambre,{'attr':{'class':'form-select'}}) }}
+							</div>
+							<div id="hotel2" style="display:block" ;>
+								<hr>
+								{{ form_row(nuites.nuite2.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
+								{{form_row(nuites.nuite2.categorieChambre,{'attr':{'class':'form-select'}}) }}
+							</div>
+
+							<div id="lblRestauration" style="display:block" ;>
+								<hr class="my-4">
+								<h2>Réservation restaurations accompagnant</h2>
+							</div>
+							<div id="idRestauration1" style="display:block">
+								<div class="from-control">
+									{{form_row(nuites.inscription.restaurations, {'attr':{'class':'form-check form-switch'}}
+									)}}
+								</div>
+							</div>
+
+						</div>
+						<hr>
+						<button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
+						{{form_end(nuites)}}
 					</div>
-					<hr>
-				<button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>
-				{{form_end(nuites)}}
 				</div>
-			</div>
-		{% else %}
-			<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>
-		{% endif %}
+			{% else %}
+				<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>
+			{% endif %}
 		{% else %}
 			<div class="alert alert-danger">Votre compte n'a pas été activé, veuillez regarder vos mails afin de l'activer.</div>
-		{% endif %}	
+		{% endif %}
 	{% endif %}
 
 

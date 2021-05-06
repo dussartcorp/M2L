@@ -6,6 +6,8 @@ use App\Repository\InscriptionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Count;
 
 /**
  * @ORM\Entity(repositoryClass=InscriptionRepository::class)
@@ -32,6 +34,12 @@ class Inscription
      *        joinColumns={@ORM\JoinColumn(name="idinscription", referencedColumnName="id")},
      *        inverseJoinColumns={@ORM\JoinColumn(name="idatelier", referencedColumnName="id")}
      *        )
+     * @Assert\Count(
+     *      min = 1,
+     *      max = 5,
+     *      minMessage = "Veuillez selectionner au moins 1 atelier",
+     *      maxMessage = "Vous ne pouvez selectionner que seulement 5 ateliers"
+     * )
      */
     private $ateliers;
 

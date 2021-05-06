@@ -23,9 +23,16 @@ class APIController extends AbstractController
      */
     public function listeClubs(ClubRepository $clubsRepo)
     {
+
+        $db_username = "mdl";
+        $db_password = "mdl";
+        $db = "oci:dbname=10.10.2.10:1521/XE";
+        $conn = new \PDO($db, $db_username, $db_password);
+        // $conn = \oci_connect('mdl', 'mdl', '10.10.2.152:1521/MDL');
+
         // On récupère la liste des clubs
         $clubs = $clubsRepo->findAll();
-        
+
         // On spécifie qu'on utilise un encodeur en json
         $encoders = [new JsonEncoder()];
 
@@ -38,7 +45,7 @@ class APIController extends AbstractController
 
         // On convertit en json
         $jsonContent = $serializer->serialize($clubs, 'json', [
-            'circular_reference_handler' => function($object){
+            'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
         ]);
@@ -61,7 +68,7 @@ class APIController extends AbstractController
     {
         // On récupère la liste des qualités
         $qualites = $qualitesRepo->findAll();
-        
+
         $encoders = [new JsonEncoder()];
 
         $normalizers = [new ObjectNormalizer()];
@@ -69,7 +76,7 @@ class APIController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonContent = $serializer->serialize($qualites, 'json', [
-            'circular_reference_handler' => function($object){
+            'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
         ]);
@@ -89,7 +96,7 @@ class APIController extends AbstractController
     {
         // On récupère la liste des qualités en fonction d'un licencié
         $qualites = $qualitesRepo->qualiteLicencie($id);
-        
+
         $encoders = [new JsonEncoder()];
 
         $normalizers = [new ObjectNormalizer()];
@@ -97,7 +104,7 @@ class APIController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonContent = $serializer->serialize($qualites, 'json', [
-            'circular_reference_handler' => function($object){
+            'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
         ]);
@@ -117,7 +124,7 @@ class APIController extends AbstractController
     {
         // On récupère la liste des clubs en fonction d'un licencié
         $clubs = $clubsRepo->clubLicencie($id);
-        
+
         $encoders = [new JsonEncoder()];
 
         $normalizers = [new ObjectNormalizer()];
@@ -125,7 +132,7 @@ class APIController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonContent = $serializer->serialize($clubs, 'json', [
-            'circular_reference_handler' => function($object){
+            'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
         ]);
@@ -145,7 +152,7 @@ class APIController extends AbstractController
     {
         // On récupère la liste des licenciés avec leur qualité et leur club
         $licencies = $licencieRepo->infoLicencies();
-        
+
         $encoders = [new JsonEncoder()];
 
         $normalizers = [new ObjectNormalizer()];
@@ -153,7 +160,7 @@ class APIController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonContent = $serializer->serialize($licencies, 'json', [
-            'circular_reference_handler' => function($object){
+            'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
         ]);
@@ -173,7 +180,7 @@ class APIController extends AbstractController
     {
         // On récupère le licencié précisé avec sa qualité et son club
         $licencies = $licencieRepo->infoLicencie($id);
-        
+
         $encoders = [new JsonEncoder()];
 
         $normalizers = [new ObjectNormalizer()];
@@ -181,7 +188,7 @@ class APIController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonContent = $serializer->serialize($licencies, 'json', [
-            'circular_reference_handler' => function($object){
+            'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
         ]);

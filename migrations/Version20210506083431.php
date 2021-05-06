@@ -20,7 +20,7 @@ final class Version20210506083431 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE restauration CHANGE typesRepas typesRepas enum(\'Midi\', \'Soir\')');
+        $this->addSql('ALTER TABLE Restauration CHANGE typesRepas typesRepas enum(\'Midi\', \'Soir\')');
     }
 
     public function down(Schema $schema): void

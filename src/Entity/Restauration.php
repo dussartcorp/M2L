@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RestaurationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,8 +27,7 @@ class Restauration
     private $typesRepas;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations",cascade={"persist"})
-     * @ORM\JoinColumn(name="idinscription")
+     * @ORM\ManyToMany(targetEntity=Inscription::class, mappedBy="restaurations")
      */
     private $inscriptions;
 
@@ -34,6 +35,16 @@ class Restauration
      * @ORM\Column(type="datetime",name="dateRestauration")
      */
     private $dateRestauration;
+
+    public function __construct()
+    {
+        $this->inscriptions = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return 'Le ' . $this->getDateRestauration()->format('d-m-y'). ' : '. $this->getTypesRepas();
+    }
 
     public function getId(): ?int
     {
@@ -53,18 +64,33 @@ class Restauration
 
         return $this;
     }
-
-    public function getInscriptions(): ?Inscription
+/**
+     * @return Collection|Inscription[]
+     */
+    public function getInscriptions(): Collection
     {
         return $this->inscriptions;
     }
 
-    public function setInscriptions(?Inscription $inscriptions): self
+    public function addInscription(Inscription $inscription): self
     {
-        $this->inscriptions = $inscriptions;
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->addRestauration($this);
+        }
 
         return $this;
     }
+
+    public function removeInscription(Inscription $inscription): self
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            $inscription->removeRestauration($this);
+        }
+
+        return $this;
+    }
+
 
     public function getDateRestauration(): ?\DateTimeInterface
     {

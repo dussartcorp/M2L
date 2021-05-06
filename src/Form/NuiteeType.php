@@ -21,14 +21,16 @@ class NuiteeType extends AbstractType
                 'expanded'=>false,
                 'multiple'=>false,
                 'placeholder'=>'Veuillez choisir un Hôtel',
-                'required'=>false])
+                'required'=>false,
+                'label'=>false])
             ->add('categorieChambre',EntityType::class,[
                 'class'=>CategorieChambre::class,
                 'choice_label'=>'libelleCategorie',
                 'expanded'=>false,
                 'multiple'=>false,
                 'placeholder'=>'Veuillez choisir une catégorie de chambre',
-                'required'=>false
+                'required'=>false,
+                'label'=>false
             ])
         ;
     }

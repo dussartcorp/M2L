@@ -33,7 +33,7 @@ class Nuitee
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="Nuitees",cascade={"persist"})
-     * @ORM\Column(name="idcategorieChambre")
+     * @ORM\JoinColumn(name="idcategorieChambre")
      */
     private $categorieChambre;
 

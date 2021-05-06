@@ -30,7 +30,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="{{path('home')}}">
-			<img src="{{asset('assets/images/m2l.png')}}" width="30" height="30" alt=""/></a>
+			<img src="{{asset('assets/images/m2l.png')}}" width="30" height="30" alt=""/></a>{% if app.user%}{{~app.user.licencie.nom ~ ' '~app.user.licencie.prenom}}{% endif %}
 			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -84,15 +84,10 @@
 							<a class="nav-link" href="{{ path('creation_compte') }}">Inscription</a>
 						</li>
 					{% endif %}
-				</div>
-			</li>
-		</ul>
-		{% if app.user %}
-			<span class="navbar-text">{{app.user.licencie.nom}}  {{app.user.licencie.prenom }}</span>
-		{% endif %}
-	</div>
-</nav>
-</header>
+				</ul>
+			</div>
+		</nav>
+	</header>
 <body>
 {% for message in app.flashes('warning') %}
 	<div class="alert alert-danger" style="margin: 0 !important" role="alert">

@@ -41,6 +41,7 @@ class InscriptionController extends AbstractController
      */
     public function inscription(Request $request,EntityManagerInterface $manager,RestaurationRepository $repoResto)
     {   
+        // var_dump($repoResto->getDateRestauration());
         $user=$this->getUser();
         $inscription=null;
         $formInscription=$this->createForm(InscriptionV2Type::class);
@@ -68,7 +69,7 @@ class InscriptionController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('home');
         }
-        return $this->render('inscription/inscriptionSejour.html.twig', ['nuites' => $formInscription->createView()]);
+        return $this->render('inscription/inscriptionSejour.html.twig', ['nuites' => $formInscription->createView(),'dates'=>$repoResto->getDateRestauration()]);
     }
 
 

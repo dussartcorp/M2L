@@ -49,21 +49,13 @@ class RestaurationRepository extends ServiceEntityRepository
     */
 
 
-    public function getRestauration(){
-        $dateResto = [];
-        $dql = $this->getEntityManager()->createQuery('select distinct r from App\Entity\Restauration r');
+    public function getDateRestauration(){
+        $dates=array();
+        $dql = $this->getEntityManager()->createQuery('select distinct r.dateRestauration from App\Entity\Restauration r');
         $result = $dql->getResult();
-        foreach($result as $q){
-            
-            if(!in_array($q->getDateRestauration()->format('Y-m-d'), array_column($dateResto, 'dateResto'))){ 
-                $dateResto[] = [ 'dateResto' => $q->getDateRestauration()->format('Y-m-d'),
-                'typeRepas' => [$q->getTypesRepas()]];
-                
-            } else {
-                $key = array_search($q->getDateRestauration()->format('Y-m-d'), array_column($dateResto, 'dateResto'));
-                array_push($dateResto[$key]['typeRepas'], $q->getTypesRepas());
-            }
+        foreach($result as $date){
+            array_push($dates,date_format($date['dateRestauration'],"Y-d-m"));
         }
-        return $result;
+        return $dates;
     }
 }

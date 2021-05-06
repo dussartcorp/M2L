@@ -51,7 +51,7 @@ class RestaurationRepository extends ServiceEntityRepository
 
     public function getRestauration(){
         $dateResto = [];
-        $dql = $this->getEntityManager()->createQuery('select r from App\Entity\Restauration r');
+        $dql = $this->getEntityManager()->createQuery('select distinct r from App\Entity\Restauration r');
         $result = $dql->getResult();
         foreach($result as $q){
             
@@ -64,6 +64,6 @@ class RestaurationRepository extends ServiceEntityRepository
                 array_push($dateResto[$key]['typeRepas'], $q->getTypesRepas());
             }
         }
-        return $dateResto;
+        return $result;
     }
 }

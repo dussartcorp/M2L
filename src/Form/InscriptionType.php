@@ -7,9 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Atelier;
-use App\Form\NuiteeType;
-use App\Entity\Nuitee;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Restauration;
 
 class InscriptionType extends AbstractType
 {
@@ -21,8 +20,17 @@ class InscriptionType extends AbstractType
                 'class'=>Atelier::class,
                 'choice_label'=>'libelle',
                 'expanded'=>true,
-                'multiple'=>true,])
-        // ->add('nuitees', NuiteeType::class)
+                'multiple'=>true,
+                'label'=>false,])
+                ->add('restaurations',EntityType::class,[
+                    'class'=>Restauration::class,                  
+                    'choice_label'=>function(Restauration $resto){
+                        return 'Le ' . $resto->getDateRestauration()->format('d-m-y'). ' : '. $resto->getTypesRepas();
+                    },
+                    'expanded'=>true,
+                    'multiple'=>true,
+                    'label'=>false,
+                ]);
         ;
     }
 

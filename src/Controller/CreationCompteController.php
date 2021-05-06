@@ -47,11 +47,11 @@ class CreationCompteController extends AbstractController
 
                     $token = $compte->getActivationToken();
 
-                    $url = $this->generateUrl('creation_activation', ['token' => $token]);
-                    $url = 'm2l' . $url;
-                    GestionContact::send($form->get('Email')->getData(), 'Vous', 'Activation de votre compte', '<p> Bonjour, </p> 
-                    <p>Vous vous êtes inscrit sur notre site, veuillez cliquer sur le lien ci-dessou pour l\'activer : </p>
-                    <a href=' . $url . '> Activer votre compte </a>' , 'text/html');
+                    // $url = $this->generateUrl('creation_activation', ['token' => $token]);
+                    // $url = 'm2l' . $url;
+                    // GestionContact::send($form->get('Email')->getData(), 'Vous', 'Activation de votre compte', '<p> Bonjour, </p> 
+                    // <p>Vous vous êtes inscrit sur notre site, veuillez cliquer sur le lien ci-dessou pour l\'activer : </p>
+                    // <a href=' . $url . '> Activer votre compte </a>' , 'text/html');
 
                     $manager->persist($compte);
                     $manager->flush();

@@ -94,3 +94,8 @@ h2{
     justify-content: center;
     flex-direction: column;
 }
+.d-center{
+    display: flex;
+    justify-content: center;
+    padding-top:10px;
+}

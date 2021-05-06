@@ -16,12 +16,7 @@
 						<hr class="my-4">
 						<div class="row">
 							<h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
-<<<<<<< HEAD
-							{# {{ form_widget(form.nuitees)}} #}
-							<div id="dropHotel" class="dropdown">
-=======
 							 <div id="dropHotel" class="dropdown">
->>>>>>> feature/inscription
 								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"  data-toggle="dropdown" aria-expanded="false">Ajouter</button>
 								<ul class="dropdown-menu">
 									<li id="liAjoutHotel">
@@ -60,34 +55,11 @@
 							<h5>Réservation restaurations accompagnant</h5>
 						</div>
 						<div id="idRestauration1" style="display:block">
-<<<<<<< HEAD
-							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{resto1.dateResto}}" readonly>
-							<div class="from-control">
-								{% for resto in resto1.typeRepas %}
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="ckcSam{{ resto }}" id="ckcSam{{ resto }}" value="{{ resto }}"></input>
-									<label class="form-check-label" for="ckcSam{{ resto }}">{{ resto }}</label>
-								</div>
-							{% endfor %}
-						</div>
-						<br>
-						<div id="idRestauration2" style="display:block">
-							<input class=" paramHotel form form-control col-5" type="date" name="trip-start" value="{{ resto2.dateResto }}" readonly>
-							<div class="from-control">
-								{% for resto in resto2.typeRepas %}
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="ckcDim{{ resto }}" id="ckcDim{{ resto }}" value="{{ resto }}"></input>
-									<label class="form-check-label" for="ckcDim{{ resto }}">{{ resto }}</label>
-								</div>
-							{% endfor %}
-						</div>
-=======
 							<div class="from-control">
 								{{form_row(nuites.inscription.restaurations)}}
 							</div>
 						</div> 			
 	
->>>>>>> feature/inscription
 					</div>
 					<hr>
 				<button class="btn btn-outline-primary" type="submit">Valider l'inscription</button>

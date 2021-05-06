@@ -16,6 +16,7 @@ use App\Entity\Theme;
 use App\Entity\Vacation;
 use App\Repository\ThemeRepository;
 use App\Repository\VacationRepository;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -39,7 +40,9 @@ class CongresController extends AbstractController
         $vacation = new Vacation();
 
         $form = $this->createForm(AtelierType::class, $atelier);
-        $formTheme = $this->createForm(ThemeType::class, $theme);
+        $formTheme = $this->createFormBuilder($theme)
+            ->add('libelle', TextType::class)
+            ->getForm();
         $formVacation = $this->createForm(VacationType::class, $vacation);
 
         $form->handleRequest($request);
@@ -71,7 +74,9 @@ class CongresController extends AbstractController
         $vacation = new Vacation();
 
         $form = $this->createForm(AtelierType::class, $atelier);
-        $formTheme = $this->createForm(ThemeType::class, $theme);
+        $formTheme = $this->createFormBuilder($theme)
+            ->add('libelle', TextType::class)
+            ->getForm();
         $formVacation = $this->createForm(VacationType::class, $vacation);
 
         $formTheme->handleRequest($request);
@@ -141,7 +146,9 @@ class CongresController extends AbstractController
         $vacation = new Vacation();
 
         $form = $this->createForm(AtelierType::class, $atelier);
-        $formTheme = $this->createForm(ThemeType::class, $theme);
+        $formTheme = $this->createFormBuilder($theme)
+            ->add('libelle', TextType::class)
+            ->getForm();
         $formVacation = $this->createForm(VacationType::class, $vacation);
 
         $formVacation->handleRequest($request);

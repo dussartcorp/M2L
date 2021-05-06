@@ -2,6 +2,7 @@
 {% block body %}
 
 	{% if app.user %}
+	 {% if not app.user.activationtoken %}
 		{% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER') or is_granted('ROLE_ADMIN')%}
 			<div>
 			{{form_start(nuites)}}
@@ -49,7 +50,9 @@
 		{% else %}
 			<div class="alert alert-danger">Votre compte n'a pas le role nécessaire pour accéder à cette page.</div>
 		{% endif %}
-
+		{% else %}
+			<div class="alert alert-danger">Votre compte n'a pas été activé, veuillez regarder vos mails afin de l'activer.</div>
+		{% endif %}	
 	{% endif %}
 
 

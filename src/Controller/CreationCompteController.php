@@ -32,9 +32,12 @@ class CreationCompteController extends AbstractController
             if ($lrepo->isNumLicenceExist($numLicence) === 'ok') {
 
                 $this->addFlash('warning', 'Un compte est déjà créé avec ce numéro de licence');
-                return $this->redirectToRoute('app_login');
             }
-            if ($lrepo->isNumLicenceValid($numLicence) === 'ok') {
+            else if ($lrepo->isMailExist($form->get('Email')->getData()) === 'ok') {
+
+                $this->addFlash('warning', 'Un compte est déjà créé avec cette adresse mail');
+            }
+            else if ($lrepo->isNumLicenceValid($numLicence) === 'ok') {
                 $compte->setRoles(["ROLE_USER"]);
                 $mdp = $form->get('password')->getData();
                 $vmdp = $form->get('confPassword')->getData();

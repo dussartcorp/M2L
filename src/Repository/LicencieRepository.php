@@ -74,6 +74,19 @@ class LicencieRepository extends ServiceEntityRepository
         }
     }
 
+    public function isMailExist(string $email){
+        $dql = $this->getEntityManager()->createQuery('select u.id '
+        . 'from App\Entity\User u '
+        . 'where u.email = :email');
+        $dql->setParameter('email', $email);
+        $result = $dql->getResult();
+        if($result){
+            return 'ok';
+        }else{
+            return 'ko';
+        }
+    }
+
     public function recupIdCompte(string $numLicence){
         $dql = $this->getEntityManager()->createQuery('select l.id '
         . 'from App\Entity\User l '

@@ -23,7 +23,7 @@
           <td>{{ vacation.dateHeureDebut | format_datetime('long', 'short', locale='fr')}}</td>
           <td>{{ vacation.dateHeureFin | format_datetime('long', 'short', locale='fr')}}</td>
           <td>
-            <a href="{{ path('congres_editVacation', {id:vacation.id}) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+            <a href="{{ path('congres_editVacation', {id:vacation.id}) }}" class="btn btn-light"><i class="fas fa-edit"></i></a>
           </td>
         </tr>
       {% endfor %}

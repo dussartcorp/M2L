@@ -12,15 +12,15 @@
         <div class="row">
           <div class="col-md-6">
             {{ form_label(formVacation.dateHeureDebut, 'Heure de début : ') }}
-            {{ form_widget(formVacation.dateHeureDebut, { 'attr' :{ 'class': "form-control"}}) }}
+            {{ form_widget(formVacation.dateHeureDebut) }}
           </div>
           <div class="col-md-6">
             {{ form_label(formVacation.dateHeureFin, 'Heure de fin :') }}
-            {{ form_widget(formVacation.dateHeureFin, { 'attr' :{'class': "form-control"}}) }}
+            {{ form_widget(formVacation.dateHeureFin) }}
           </div>
            <div class="col-md-6" style="display:none;">
             {{ form_label(formVacation.Libelle, 'Libelle :') }}
-            {{ form_widget(formVacation.Libelle, { 'attr' :{'class': "form-control"}}) }}
+            {{ form_widget(formVacation.Libelle) }}
           </div>
         </div>
         <div class="d-center">

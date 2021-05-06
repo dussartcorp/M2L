@@ -12,11 +12,11 @@
 				{{ form_start(form)}}
 				<div class="row">
 					<div class="form-floating col-md-6" id=" some-custom-id">
-            {{ form_widget(form.libelle, { 'attr' :{'placeholder': 'Saisir le libellé de l\'atelier', 'class': "form-control"}}) }}
+            {{ form_widget(form.libelle, { 'attr' :{'placeholder': 'Saisir le libellé de l\'atelier'}}) }}
 						{{ form_label(form.libelle, 'Libellé de l\'atelier') }}
       </div>
       <div class="form-floating col-md-6" id="some-custom-id">
-        {{ form_widget(form.nbPlaceMaxi, {'attr': {'placeholder': 'Saisir le nombre de places', 'class': "form-control"}}) }}
+        {{ form_widget(form.nbPlaceMaxi, {'attr': {'placeholder': 'Saisir le nombre de places'}}) }}
         {{ form_label(form.nbPlaceMaxi, 'Nombres de places maximum') }}
       </div>
     </div>

@@ -15,10 +15,19 @@ class InscriptionV2Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ateliers',InscriptionType::class)
+            ->add('inscription',InscriptionType::class)
             ->add('nuite1',NuiteeType::class)
             ->add('nuite2',NuiteeType::class)
-            ->add('resto',RestaurationType::class)
+            // ->add('resto',EntityType::class,[
+            //     'class'=>Restauration::class,
+            //     // 'choice_label' => 'typesRepas',
+            //     'choice_label'=>function(Restauration $resto){
+            //         return 'Le ' . $resto->getDateRestauration()->format('d-m-y'). ' : '. $resto->getTypesRepas();
+            //     },
+            //     'expanded'=>true,
+            //     'multiple'=>true,
+            //     'label'=>false,
+            // ]);
             //->add('resto2',RestaurationType::class)
         ;
     }

@@ -45,16 +45,12 @@ class InscriptionController extends AbstractController
         $inscription=null;
         $formInscription=$this->createForm(InscriptionV2Type::class);
         $formInscription->handleRequest($request);
-        if (($formInscription->isSubmitted() && $formInscription->isValid())) {
-            $restos=$formInscription['resto']->getdata();
-            //var_dump($formInscription);
-            $inscription=$formInscription['ateliers']->getData();
+        if (($formInscription->isSubmitted() && $formInscription->isValid())) {           
+            $inscription=$formInscription['inscription']->getData();         
             $nuite1=$formInscription['nuite1']->getData();
             $nuite2=$formInscription['nuite2']->getdata();
-            foreach($restos as $resto){
-                $inscription->addRestauration($resto);
-            }
-            //var_dump($nuite1);
+            $nuite1->setDateNuiteee(new DateTime('NOW'));
+            $nuite2->setDateNuiteee(new DateTime('NOW'));
             if ($nuite2->getHotel() == null && $nuite1->getHotel() != null) {
                 //$nuite1->setDateNuiteee(New DateTime($_POST['date1']));
                 $inscription->addNuitee($nuite1);

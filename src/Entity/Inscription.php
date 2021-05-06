@@ -129,7 +129,6 @@ class Inscription
     {
         if (!$this->restaurations->contains($restauration)) {
             $this->restaurations[] = $restauration;
-            $restauration->setInscriptions($this);
         }
 
         return $this;
@@ -137,12 +136,7 @@ class Inscription
 
     public function removeRestauration(Restauration $restauration): self
     {
-        if ($this->restaurations->removeElement($restauration)) {
-            // set the owning side to null (unless already changed)
-            if ($restauration->getInscriptions() === $this) {
-                $restauration->setInscriptions(null);
-            }
-        }
+        $this->restaurations->removeElement($restauration);
 
         return $this;
     }

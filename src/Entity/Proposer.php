@@ -25,13 +25,13 @@ class Proposer
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieChambre::class, inversedBy="tarifs",cascade={"persist"})
-     * @ORM\Column(name="idcategorie")
+     * @ORM\JoinColumn(name="idcategorie")
      */
     private $categorie;
 
     /**
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="tarifs",cascade={"persist"})
-     * @ORM\Column(name="idhotel")
+     * @ORM\JoinColumn(name="idhotel")
      */
     private $hotel;
 

@@ -14,15 +14,15 @@
 								)}}
 							</div>
 							<hr class="my-4">
-							<div class="form-row">
+							<div class="form-row mb-3">
 								<h2 id="libelleResa" style="display:block">Réservation hôtel</h2>
 								<a class="btn btn-outline-success" onclick="ajouterHotel()">Ajouter Hôtel</a>
 								<a class="btn btn-outline-danger" onclick="supprimerHotel()">Supprimer hôtel</a>
 							</div>
 							<div id="hotel1" style="display:block" ;>
 								<div class="form-group row">
-  										<div class="col-10">
-    										<input  placeholder="{{dates[0]}}" class="form-control" type="date" value="{{dates[0]}}" readonly>
+  										<div style="width: 132px;">
+    										<input  placeholder="{{dates[0]}}" class="form-control" value="{{dates[0]}}" readonly>
   										</div>
 								</div>
 								{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'form-select paramHotel'}}) }}

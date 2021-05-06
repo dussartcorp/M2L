@@ -16,11 +16,12 @@
 						<hr class="my-4">
 						<div class="form-row">
 							<h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
-								<a class="btn btn-success" onclick="ajouterHotel()">Ajouter Hôtel</a>
+								<a class="btn btn-secondary" onclick="ajouterHotel()">Ajouter Hôtel</a>
 								<a class="btn btn-danger" onclick="supprimerHotel()">Supprimer hôtel</a>
 						</div>
 						 <div id="hotel1" style="display:block" ;>
-							
+						 	<a>{{dates[0]}}</a>
+						 	<input id ="date" type="date" value="{{dates[0]}}">
 							{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
 							{{form_row(nuites.nuite1.categorieChambre,{'attr':{'class':'form-select'}}) }}
 						</div>
@@ -31,7 +32,7 @@
 						</div>
 						
 						 <div id="lblRestauration" style="display:block" ;>
-					
+							<br>
 							<h5>Réservation restaurations accompagnant</h5>
 						</div>
 						<div id="idRestauration1" style="display:block">

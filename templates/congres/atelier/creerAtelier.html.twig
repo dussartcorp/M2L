@@ -10,7 +10,7 @@
 			<div class="container" style="padding-top: 10px;padding-bottom: 10px;">
 				<h1 class="text-center">Création d'un nouvel atelier :</h1>
 				{{ form_start(form)}}
-				<div class="form-row">
+				<div class="row">
 					<div class="form-group col-md-6" id=" some-custom-id">
 						{{ form_label(form.libelle, 'Libellé de l\'atelier') }}
         {{ form_widget(form.libelle, { 'attr' :{'placeholder': 'Saisir le libellé de l\'atelier', 'class': "form-control"}}) }}
@@ -20,26 +20,28 @@
         {{ form_widget(form.nbPlaceMaxi, {'attr': {'placeholder': 'Saisir le nombre de places', 'class': "form-control"}}) }}
       </div>
     </div>
-    <div class="form-row">
-      <div class="col-md-6" id="some-custom-id">
+    <div class="row">
+      <div class="col-md-6">
         {{ form_label(form.themes, 'Thèmes') }}
         {{ form_widget(form.themes) }}
       </div>
-      <div class="col-md-3 ml-auto" id="some-custom-id">
+      <div class="col-md-6 ml-auto">
         {{ form_label(form.vacations, 'Horaire') }}
         {{ form_widget(form.vacations) }}
       </div>
     </div>
-    <div class="form-row">
-      <div class="col-md-3">
+    <div class="row" style="padding-top: 15px;">
+      <div class="col-md-6"  style="display:flex; justify-content: center;">
       <div type="button" class="btn btn-info" data-toggle="modal" data-target="#modalTheme">Ajouter un thème</div>
       </div>
-      <div class="col-md-3 ml-auto">
+      <div class="col-md-6 ml-auto"  style="display:flex; justify-content: center;">
       <div type="button" class="btn btn-info" data-toggle="modal" data-target="#modalVacation">Ajouter un horaire</div>
       </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-success">Créer</button>
+    <div style="display:flex; justify-content: center;">
+      <button type="submit" class="btn btn-success text-cente">Créer</button>
+    </div>
   </div>
   {{ form_end(form) }}
   

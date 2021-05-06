@@ -15,40 +15,20 @@
 							</div>
 						</div>
 						<hr class="my-4">
-						<div class="row">
+						<div class="form-row">
 							<h5 id="libelleResa" style="display:block">Réservation hôtel</h5>
-							 <div id="dropHotel" class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"  data-toggle="dropdown" aria-expanded="false">Ajouter</button>
-								<ul class="dropdown-menu">
-									<li id="liAjoutHotel">
-										<a class="dropdown-item" onclick="ajouterHotel()">Ajouter Hôtel</a>
-									</li>
-									<li id="liAjoutResto">
-										<a class="dropdown-item" onclick="ajouterRestauration()">Ajouter restauration</a>
-									</li>
-								</ul>
-							</div>
-							<div class="dropdown">
-								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">Supprimer</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									<li id="liSuppHotel">
-										<a class="dropdown-item" onclick="supprimerHotel()">Supprimer hôtel</a>
-									</li>
-									<li id="liSuppResto">
-										<a class="dropdown-item" onclick="supprimerRestauration()">Supprimer restauration</a>
-									</li>
-								</ul>
-							</div> 
+								<a class="btn btn-success" onclick="ajouterHotel()">Ajouter Hôtel</a>
+								<a class="btn btn-danger" onclick="supprimerHotel()">Supprimer hôtel</a>
 						</div>
 						 <div id="hotel1" style="display:block" ;>
 							
-							{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'paramHotel'}}) }}
-							{{form_row(nuites.nuite1.categorieChambre)}}
+							{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
+							{{form_row(nuites.nuite1.categorieChambre,{'attr':{'class':'form-select'}}) }}
 						</div>
 						<div id="hotel2" style="display:block" ;>
 							<hr>
-							{{ form_row(nuites.nuite2.hotel,{'attr':{'class':'paramHotel'}}) }}
-							{{form_row(nuites.nuite2.categorieChambre)}}
+							{{ form_row(nuites.nuite2.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
+							{{form_row(nuites.nuite2.categorieChambre,{'attr':{'class':'form-select'}}) }}
 						</div>
 						
 						 <div id="lblRestauration" style="display:block" ;>

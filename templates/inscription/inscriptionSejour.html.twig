@@ -20,7 +20,11 @@
 								<a class="btn btn-outline-danger" onclick="supprimerHotel()">Supprimer hôtel</a>
 							</div>
 							<div id="hotel1" style="display:block" ;>
-
+								<div class="form-group row">
+  										<div class="col-10">
+    										<input  placeholder="{{dates[0]}}" class="form-control" type="date" value="{{dates[0]}}" readonly>
+  										</div>
+								</div>
 								{{ form_row(nuites.nuite1.hotel,{'attr':{'class':'form-select paramHotel'}}) }}
 								{{form_row(nuites.nuite1.categorieChambre,{'attr':{'class':'form-select'}}) }}
 							</div>

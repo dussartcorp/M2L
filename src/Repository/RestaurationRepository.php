@@ -54,7 +54,7 @@ class RestaurationRepository extends ServiceEntityRepository
         $dql = $this->getEntityManager()->createQuery('select distinct r.dateRestauration from App\Entity\Restauration r');
         $result = $dql->getResult();
         foreach($result as $date){
-            array_push($dates,date_format($date['dateRestauration'],"d-m-Y"));
+            array_push($dates,date_format($date['dateRestauration'],"Y-d-m"));
         }
         return $dates;
     }

@@ -11,21 +11,21 @@
         <h2> Remplissez ce formulaire afin de vous créer un compte ! </h2>
         </div>
     {{form_start(form)}}
-        <div class="InscriptionBoxInput">
+        <div class="InscriptionBoxInput form-floating mb-3">
+            {{ form_widget(form.numLicence, {'attr': {'placeholder': 'Numéro de Licence - 11 chiffres'}}) }}
             {{ form_label(form.numLicence, 'Numéro de Licence') }}
-            {{ form_widget(form.numLicence, {'attr': {'placeholder': 'Numéro de Licence - 11 chiffres','class':'form-control'}}) }}
         </div>
-        <div class="InscriptionBoxInput"> 
+        <div class="InscriptionBoxInput form-floating mb-3"> 
+            {{ form_widget(form.Email, {'attr': {'placeholder': 'Email'}}) }}
             {{ form_label(form.Email, 'Email') }}
-            {{ form_widget(form.Email, {'attr': {'placeholder': 'Email','class':'form-control'}}) }}
         </div>
-        <div class="InscriptionBoxInput">
+        <div class="InscriptionBoxInput form-floating mb-3">
+            {{ form_widget(form.password, {'attr': {'placeholder': 'Mot de passe'}}) }}
             {{ form_label(form.password, 'Mot de passe') }}
-            {{ form_widget(form.password, {'attr': {'placeholder': 'Mot de passe','class':'form-control'}}) }}
         </div>
-        <div class="InscriptionBoxInput">
+        <div class="InscriptionBoxInput form-floating mb-3">
+            {{ form_widget(form.confPassword, {'attr': {'placeholder': 'Confirmer le mot de passe'}}) }}
             {{ form_label(form.confPassword, 'Confirmer le mot de passe') }}
-            {{ form_widget(form.confPassword, {'attr': {'placeholder': 'Confirmer le mot de passe','class':'form-control'}}) }}
         </div>
         </br>
     

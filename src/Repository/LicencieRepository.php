@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Licencie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @method Licencie|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +15,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LicencieRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, HttpClientInterface $client)
     {
         parent::__construct($registry, Licencie::class);
+        $this->client = $client;
     }
 
     // /**
@@ -144,5 +146,59 @@ class LicencieRepository extends ServiceEntityRepository
         }else{
             return 'Le licencie précisée n\'existe pas';
         }
+    }
+
+    public function InfoLicencieAtelier($id){
+        $dql = $this->getEntityManager()->createQuery('SELECT inscription.dateInscription, atelier.libelle, vacation.libelle ' 
+        . 'from inscription inner join inscriptionparatelier on inscriptionparatelier.idinscription = inscription.id inner join ' 
+        . 'atelier on atelier.id = inscriptionparatelier.idatelier inner join vacation on vacation.id = atelier.idvacation '
+        . 'where inscription.id = :id');
+        $dql->setParameter('id', $id);
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'Le licencie précisée n\'existe pas';
+        }
+    }
+
+    public function InfoLicencieRestauration($id){
+        $dql = $this->getEntityManager()->createQuery('SELECT restauration.typesRepas, restauration.dateRestauration from restauration inner join ' 
+        . 'inscriptionparrestauration on restauration.id = inscriptionparrestauration.idrestauration where inscriptionparrestauration.idinscription = :id'); 
+        $dql->setParameter('id', $id);
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'Le licencie précisée n\'existe pas';
+        }
+    }
+
+    public function getInfoLicencieAtelier(){
+        $response = $this->client->request(
+            'GET',
+            'http://m2l/api/info/licencie/atelier/1'
+        );
+
+        $content = $response->getContent();
+        // $content = '{"id":521583, "name":"symfony-docs", ...}'
+        $content = $response->toArray();
+        // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
+
+        return $content;
+    }
+
+    public function getInfoLicencieRestauration(){
+        $response = $this->client->request(
+            'GET',
+            'http://m2l/api/info/licencie/restauration/1'
+        );
+
+        $content = $response->getContent();
+        // $content = '{"id":521583, "name":"symfony-docs", ...}'
+        $content = $response->toArray();
+        // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
+
+        return $content;
     }
 }

@@ -199,4 +199,60 @@ class APIController extends AbstractController
 
         return $response;
     }
+
+    /**
+     * @Route("info/licencie/atelier/{id}", name="infoLicencieAtelier", methods={"GET"})
+     * Recupère les infos atelier du licencié précisé 
+     */
+    public function InfoLicencieAtelier($id, LicencieRepository $licencieRepo)
+    {
+        // On récupère le licencié précisé avec sa qualité et son club
+        $licencies = $licencieRepo->InfoLicencieAtelier($id);
+
+        $encoders = [new JsonEncoder()];
+
+        $normalizers = [new ObjectNormalizer()];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $jsonContent = $serializer->serialize($licencies, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        $response = new Response($jsonContent);
+
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    /**
+     * @Route("info/licencie/restauration/{id}", name="infoLicencieRestauration", methods={"GET"})
+     * Recupère les infos restauration du licencié précisé 
+     */
+    public function InfoLicencieRestauration($id, LicencieRepository $licencieRepo)
+    {
+        // On récupère le licencié précisé avec sa qualité et son club
+        $licencies = $licencieRepo->InfoLicencieRestauration($id);
+
+        $encoders = [new JsonEncoder()];
+
+        $normalizers = [new ObjectNormalizer()];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $jsonContent = $serializer->serialize($licencies, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        $response = new Response($jsonContent);
+
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 }

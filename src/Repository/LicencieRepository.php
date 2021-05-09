@@ -187,11 +187,11 @@ class LicencieRepository extends ServiceEntityRepository
         return $dql->fetch();
     }
 
-    public function getInfoLicencieAtelier()
+    public function getInfoLicencieAtelier($id)
     {
         $response = $this->client->request(
             'GET',
-            'http://m2l/api/info/licencie/atelier/1'
+            "http://m2l/api/info/licencie/atelier/'$id'"
         );
 
         $content = $response->getContent();
@@ -202,11 +202,11 @@ class LicencieRepository extends ServiceEntityRepository
         return $content;
     }
 
-    public function getInfoLicencieRestauration()
+    public function getInfoLicencieRestauration($id)
     {
         $response = $this->client->request(
             'GET',
-            'http://m2l/api/info/licencie/restauration/1'
+            "http://m2l/api/info/licencie/restauration/'$id'"
         );
 
         $content = $response->getContent();

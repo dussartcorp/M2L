@@ -15,10 +15,22 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 class LicencieRepository extends ServiceEntityRepository
 {
+    private static $serveur = 'mysql:host=localhost';
+    private static $bdd = 'dbname=dbmdl';
+    private static $user = 'dbamdl';
+    private static $mdp = 'maisondesligues21!';
+    private static $monPdo;
+
     public function __construct(ManagerRegistry $registry, HttpClientInterface $client)
     {
         parent::__construct($registry, Licencie::class);
         $this->client = $client;
+        LicencieRepository::$monPdo = new \PDO(
+            LicencieRepository::$serveur . ';' . LicencieRepository::$bdd,
+            LicencieRepository::$user,
+            LicencieRepository::$mdp
+        );
+        LicencieRepository::$monPdo->query('SET CHARACTER SET utf8');
     }
 
     // /**
@@ -50,131 +62,133 @@ class LicencieRepository extends ServiceEntityRepository
     }
     */
 
-    public function isNumLicenceValid(string $numLicence){
+    public function isNumLicenceValid(string $numLicence)
+    {
         $dql = $this->getEntityManager()->createQuery('select l.numLicence '
-        . 'from App\Entity\Licencie l '
-        . 'where l.numLicence = :licence');
+            . 'from App\Entity\Licencie l '
+            . 'where l.numLicence = :licence');
         $dql->setParameter('licence', $numLicence);
         $result = $dql->getResult();
-        if($result){
+        if ($result) {
             return 'ok';
-        }else{
-            return 'ko';
-        }
-    }
-    
-    public function isNumLicenceExist(string $numLicence){
-        $dql = $this->getEntityManager()->createQuery('select l.numLicence '
-        . 'from App\Entity\User l '
-        . 'where l.numLicence = :licence');
-        $dql->setParameter('licence', $numLicence);
-        $result = $dql->getResult();
-        if($result){
-            return 'ok';
-        }else{
+        } else {
             return 'ko';
         }
     }
 
-    public function isMailExist(string $email){
+    public function isNumLicenceExist(string $numLicence)
+    {
+        $dql = $this->getEntityManager()->createQuery('select l.numLicence '
+            . 'from App\Entity\User l '
+            . 'where l.numLicence = :licence');
+        $dql->setParameter('licence', $numLicence);
+        $result = $dql->getResult();
+        if ($result) {
+            return 'ok';
+        } else {
+            return 'ko';
+        }
+    }
+
+    public function isMailExist(string $email)
+    {
         $dql = $this->getEntityManager()->createQuery('select u.id '
-        . 'from App\Entity\User u '
-        . 'where u.email = :email');
+            . 'from App\Entity\User u '
+            . 'where u.email = :email');
         $dql->setParameter('email', $email);
         $result = $dql->getResult();
-        if($result){
+        if ($result) {
             return 'ok';
-        }else{
+        } else {
             return 'ko';
         }
     }
 
-    public function recupIdCompte(string $numLicence){
+    public function recupIdCompte(string $numLicence)
+    {
         $dql = $this->getEntityManager()->createQuery('select l.id '
-        . 'from App\Entity\User l '
-        . 'where l.numLicence = :licence');
+            . 'from App\Entity\User l '
+            . 'where l.numLicence = :licence');
         $dql->setParameter('licence', $numLicence);
         $result = $dql->getResult();
-        if($result){
+        if ($result) {
             return $result;
-        }else{
+        } else {
             return 'ko';
         }
     }
 
-    public function addIdCompte(string $numLicence, int $id){
+    public function addIdCompte(string $numLicence, int $id)
+    {
         $dql = $this->getEntityManager()->createQuery('Update App\Entity\Licencie l '
-        . 'set l.compte = :id '
-        . 'where l.numLicence = :licence');
+            . 'set l.compte = :id '
+            . 'where l.numLicence = :licence');
         $dql->setParameter('licence', $numLicence);
         $dql->setParameter('id', $id);
         $result = $dql->getResult();
-        if($result){
+        if ($result) {
             return $result;
-        }else{
+        } else {
             return 'ko';
         }
     }
 
-    public function infoLicencies(){
+    public function infoLicencies()
+    {
         $dql = $this->getEntityManager()->createQuery('select l.numLicence as NumLicence, l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
-        . 'from App\Entity\Licencie l '
-        . 'inner join App\Entity\Qualite q '
-        . 'with l.laQualite = q.id '
-        . 'inner join App\Entity\Club c '
-        . 'with l.leClub = c.id ');
+            . 'from App\Entity\Licencie l '
+            . 'inner join App\Entity\Qualite q '
+            . 'with l.laQualite = q.id '
+            . 'inner join App\Entity\Club c '
+            . 'with l.leClub = c.id ');
         $result = $dql->getResult();
-        if($result){
+        if ($result) {
             return $result;
-        }else{
+        } else {
             return 'ko';
         }
     }
 
-    public function infoLicencie($id){
+    public function infoLicencie($id)
+    {
         $dql = $this->getEntityManager()->createQuery('select l.numLicence as NumLicence, l.nom as Nom, l.prenom as Prenom, q.libelleQualite as Qualite, c.nom as Club '
-        . 'from App\Entity\Licencie l '
-        . 'inner join App\Entity\Qualite q '
-        . 'with l.laQualite = q.id '
-        . 'inner join App\Entity\Club c '
-        . 'with l.leClub = c.id '
-        . 'where l.id = :id');
+            . 'from App\Entity\Licencie l '
+            . 'inner join App\Entity\Qualite q '
+            . 'with l.laQualite = q.id '
+            . 'inner join App\Entity\Club c '
+            . 'with l.leClub = c.id '
+            . 'where l.id = :id');
         $dql->setParameter('id', $id);
         $result = $dql->getResult();
-        if($result){
+        if ($result) {
             return $result;
-        }else{
+        } else {
             return 'Le licencie précisée n\'existe pas';
         }
     }
 
-    public function InfoLicencieAtelier($id){
-        $dql = $this->getEntityManager()->createQuery('SELECT inscription.dateInscription, atelier.libelle, vacation.libelle ' 
-        . 'from inscription inner join inscriptionparatelier on inscriptionparatelier.idinscription = inscription.id inner join ' 
-        . 'atelier on atelier.id = inscriptionparatelier.idatelier inner join vacation on vacation.id = atelier.idvacation '
-        . 'where inscription.id = :id');
-        $dql->setParameter('id', $id);
-        $result = $dql->getResult();
-        if($result){
-            return $result;
-        }else{
-            return 'Le licencie précisée n\'existe pas';
-        }
+    public function InfoLicencieAtelier($id)
+    {
+        $dql = LicencieRepository::$monPdo->prepare('SELECT inscription.dateInscription as dates, atelier.libelle as ateliers, vacation.libelle as vacations '
+            . 'from inscription inner join inscriptionparatelier on inscriptionparatelier.idinscription = inscription.id inner join '
+            . 'atelier on atelier.id = inscriptionparatelier.idatelier inner join vacation on vacation.id = atelier.idvacation '
+            . 'where inscription.id = :id');
+        $dql->bindParam(':id', $id, \PDO::PARAM_INT);
+        $dql->execute();
+        return $dql->fetch();
     }
 
-    public function InfoLicencieRestauration($id){
-        $dql = $this->getEntityManager()->createQuery('SELECT restauration.typesRepas, restauration.dateRestauration from restauration inner join ' 
-        . 'inscriptionparrestauration on restauration.id = inscriptionparrestauration.idrestauration where inscriptionparrestauration.idinscription = :id'); 
-        $dql->setParameter('id', $id);
-        $result = $dql->getResult();
-        if($result){
-            return $result;
-        }else{
-            return 'Le licencie précisée n\'existe pas';
-        }
+    public function InfoLicencieRestauration($id)
+    {
+        $dql = LicencieRepository::$monPdo->prepare('SELECT restauration.typesRepas, restauration.dateRestauration from restauration inner join '
+            . 'inscriptionparrestauration on restauration.id = inscriptionparrestauration.idrestauration where inscriptionparrestauration.idinscription = :id');
+        $dql->bindParam(':id', $id, \PDO::PARAM_INT);
+        $dql->execute();
+        return $dql->fetch();
     }
 
-    public function getInfoLicencieAtelier(){
+    public function getInfoLicencieAtelier()
+    {
         $response = $this->client->request(
             'GET',
             'http://m2l/api/info/licencie/atelier/1'
@@ -188,7 +202,8 @@ class LicencieRepository extends ServiceEntityRepository
         return $content;
     }
 
-    public function getInfoLicencieRestauration(){
+    public function getInfoLicencieRestauration()
+    {
         $response = $this->client->request(
             'GET',
             'http://m2l/api/info/licencie/restauration/1'

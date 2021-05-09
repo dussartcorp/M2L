@@ -145,17 +145,7 @@ class APIController extends AbstractController
         // On récupère le licencié précisé avec sa qualité et son club
         $licencies = $licencieRepo->InfoLicencieAtelier($id);
 
-        $encoders = [new JsonEncoder()];
-
-        $normalizers = [new ObjectNormalizer()];
-
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $jsonContent = $serializer->serialize($licencies, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+        $jsonContent = json_encode($licencies, JSON_UNESCAPED_UNICODE);
 
         $response = new Response($jsonContent);
 
@@ -173,17 +163,7 @@ class APIController extends AbstractController
         // On récupère le licencié précisé avec sa qualité et son club
         $licencies = $licencieRepo->InfoLicencieRestauration($id);
 
-        $encoders = [new JsonEncoder()];
-
-        $normalizers = [new ObjectNormalizer()];
-
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $jsonContent = $serializer->serialize($licencies, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+        $jsonContent = json_encode($licencies, JSON_UNESCAPED_UNICODE);
 
         $response = new Response($jsonContent);
 

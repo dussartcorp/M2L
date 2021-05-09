@@ -33,22 +33,8 @@ class APIController extends AbstractController
         // On récupère la liste des clubs
         $clubs = $clubsRepo->findAll();
 
-        // On spécifie qu'on utilise un encodeur en json
-        $encoders = [new JsonEncoder()];
-
-        // On instancie le "normaliseur" pour convertir la collection en tableau
-        $normalizers = [new ObjectNormalizer()];
-
-        // On fait la convertion en json
-        // On instancie le convertisseur
-        $serializer = new Serializer($normalizers, $encoders);
-
-        // On convertit en json
-        $jsonContent = $serializer->serialize($clubs, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+        //On encode en json en utf8
+        $jsonContent = json_encode($clubs, JSON_UNESCAPED_UNICODE);
 
         // On instancie la réponse
         $response = new Response($jsonContent);
@@ -69,17 +55,7 @@ class APIController extends AbstractController
         // On récupère la liste des qualités
         $qualites = $qualitesRepo->findAll();
 
-        $encoders = [new JsonEncoder()];
-
-        $normalizers = [new ObjectNormalizer()];
-
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $jsonContent = $serializer->serialize($qualites, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+        $jsonContent = json_encode($qualites, JSON_UNESCAPED_UNICODE);
 
         $response = new Response($jsonContent);
 
@@ -97,17 +73,7 @@ class APIController extends AbstractController
         // On récupère la liste des qualités en fonction d'un licencié
         $qualites = $qualitesRepo->qualiteLicencie($id);
 
-        $encoders = [new JsonEncoder()];
-
-        $normalizers = [new ObjectNormalizer()];
-
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $jsonContent = $serializer->serialize($qualites, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+        $jsonContent = json_encode($qualites, JSON_UNESCAPED_UNICODE);
 
         $response = new Response($jsonContent);
 
@@ -125,17 +91,7 @@ class APIController extends AbstractController
         // On récupère la liste des clubs en fonction d'un licencié
         $clubs = $clubsRepo->clubLicencie($id);
 
-        $encoders = [new JsonEncoder()];
-
-        $normalizers = [new ObjectNormalizer()];
-
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $jsonContent = $serializer->serialize($clubs, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+        $jsonContent = json_encode($clubs, JSON_UNESCAPED_UNICODE);
 
         $response = new Response($jsonContent);
 

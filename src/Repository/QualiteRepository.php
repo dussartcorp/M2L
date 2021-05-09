@@ -49,12 +49,23 @@ class QualiteRepository extends ServiceEntityRepository
     */
 
     public function qualiteLicencie(int $id){
-        $dql = $this->getEntityManager()->createQuery('select q '
+        $dql = $this->getEntityManager()->createQuery('select q.id, q.libelleQualite '
         . 'from App\Entity\Qualite q '
         . 'inner join App\Entity\Licencie l '
         . 'with l.laQualite = q.id '
         . 'where l.id = :id');
         $dql->setParameter('id', $id);
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'Le licencie precise n\'existe pas';
+        }
+    }
+
+    public function findAll(){
+        $dql = $this->getEntityManager()->createQuery('select q.id, q.libelleQualite '
+        . 'from App\Entity\Qualite q');
         $result = $dql->getResult();
         if($result){
             return $result;

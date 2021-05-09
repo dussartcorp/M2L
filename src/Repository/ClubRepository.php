@@ -49,12 +49,23 @@ class ClubRepository extends ServiceEntityRepository
     */
 
     public function clubLicencie(int $id){
-        $dql = $this->getEntityManager()->createQuery('select c '
+        $dql = $this->getEntityManager()->createQuery('select c.id, c.nom, c.adresse1, c.adresse2, c.cp, c.ville, c.tel '
         . 'from App\Entity\Club c '
         . 'inner join App\Entity\Licencie l '
         . 'with l.leClub = c.id '
         . 'where l.id = :id');
         $dql->setParameter('id', $id);
+        $result = $dql->getResult();
+        if($result){
+            return $result;
+        }else{
+            return 'Le licencie precise n\'existe pas';
+        }
+    }
+
+    public function findAll(){
+        $dql = $this->getEntityManager()->createQuery('select c.id, c.nom, c.adresse1, c.adresse2, c.cp, c.ville, c.tel '
+        . 'from App\Entity\Club c');
         $result = $dql->getResult();
         if($result){
             return $result;

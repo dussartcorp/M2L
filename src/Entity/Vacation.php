@@ -34,6 +34,11 @@ class Vacation
      */
     private $dateHeureFin;
 
+    public function __toString()
+    {
+        return $this->Libelle;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
